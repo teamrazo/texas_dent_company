@@ -1,0 +1,274 @@
+import { Metadata } from 'next';
+import Link from 'next/link';
+import Image from 'next/image';
+import { CheckCircle, Shield, Star, Users, ArrowRight, Phone, MapPin } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent } from '@/components/ui/card';
+import { CTA } from '@/components/sections';
+import { COMPANY } from '@/lib/constants';
+
+export const metadata: Metadata = {
+  title: 'About Us | Texas Dent Company',
+  description: 'Family-owned hail damage repair company founded in 2017. Learn about our mission, values, and commitment to professional PDR services across Texas.',
+};
+
+const milestones = [
+  { year: '2017', title: 'Founded', description: 'Texas Dent Company founded by Cody and Kailey Wilson in Dallas, TX.' },
+  { year: '2020', title: 'Growth', description: 'Expanded team and served thousands of customers across North Texas.' },
+  { year: '2023', title: 'Frisco HQ', description: 'Moved headquarters to Frisco, TX to better serve the DFW metro.' },
+  { year: '2024', title: 'Odessa', description: 'Opened satellite location in Odessa, TX to serve West Texas.' },
+  { year: '2026', title: 'Today', description: '600+ 5-star reviews, A+ BBB rating, and growing across Texas.' },
+];
+
+const values = [
+  {
+    title: 'Quality First',
+    description: 'We never rush repairs. Proper PDR requires time, access, and precision to restore panels correctly. We prioritize quality results over quick turnarounds.',
+  },
+  {
+    title: 'Education Over Sales',
+    description: 'We do not hard-close. We educate customers on how deductibles work, how PDR impacts value, and why complete repairs beat shortcuts.',
+  },
+  {
+    title: 'Process-Driven',
+    description: 'Multi-step quality control, documented workflows, and final verification before every delivery. We are system-driven, not personality-driven.',
+  },
+  {
+    title: 'Integrity Always',
+    description: 'We work with your insurance on the repair side, not against it. No cash incentives, no shortcuts, no misrepresentation.',
+  },
+];
+
+export default function AboutPage() {
+  return (
+    <>
+      {/* Hero Section */}
+      <section className="bg-gradient-to-br from-secondary to-background py-16 md:py-24">
+        <div className="container-xl">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div className="space-y-6">
+              <h1 className="heading-1 text-foreground">
+                A High-Trust, Process-Driven Hail Repair Partner
+              </h1>
+              <p className="body-large text-muted-foreground">
+                Texas Dent Company is not positioned as a generic "dent repair shop." 
+                We are a high-trust, process-driven hail damage repair partner specializing 
+                in Paintless Dent Repair (PDR), repair-side insurance coordination, and 
+                vehicle value preservation.
+              </p>
+              <p className="text-muted-foreground">
+                You file the claim. We handle the repair side: inspection, documentation, 
+                repair coordination, and rentals.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 pt-4">
+                <Link href="/team">
+                  <Button size="lg" className="w-full sm:w-auto text-lg px-8">
+                    Meet Our Team <ArrowRight className="h-5 w-5 ml-2" />
+                  </Button>
+                </Link>
+                <a href={`tel:${COMPANY.phone}`}>
+                  <Button variant="outline" size="lg" className="w-full sm:w-auto text-lg px-8">
+                    <Phone className="h-5 w-5 mr-2" />
+                    {COMPANY.phone}
+                  </Button>
+                </a>
+              </div>
+            </div>
+            
+            <div className="relative aspect-[4/3] rounded-xl overflow-hidden">
+              <Image
+                src="/images/locations/frisco-shop.jpg"
+                alt="Texas Dent Company Frisco Location"
+                fill
+                className="object-cover"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Our Story */}
+      <section className="py-16 md:py-24">
+        <div className="container-xl">
+          <div className="max-w-3xl mx-auto">
+            <h2 className="heading-2 text-foreground mb-8 text-center">Our Story</h2>
+            
+            <div className="prose prose-lg max-w-none text-muted-foreground">
+              <p>
+                In 2017, Cody Wilson co-founded Texas Dent Company with a passion for providing 
+                high-quality paintless dent repair (PDR) services. As a Texas native and proud 
+                father of two beautiful children, Cody built a strong foundation for the company 
+                focused on quality, integrity, and customer education.
+              </p>
+              <p>
+                His wife Kailey Wilson, also a Texas native, brought her fascination with storm 
+                restoration and her childhood dreams of storm chasing into a thriving business. 
+                Together, they translated that passion into a company that combines Texas 
+                resilience with unmatched expertise to help homeowners and businesses recover 
+                from hail storms.
+              </p>
+              <p>
+                Over the years, Texas Dent Company has assembled a skilled team that has helped 
+                the company grow and serve thousands of customers across Texas. Although the 
+                home office is based in Frisco (serving the DFW metro), they have been fortunate 
+                to assist customers all over the state with their repair needs, including a 
+                satellite shop in Odessa serving West Texas.
+              </p>
+              <p className="font-medium text-foreground">
+                Our goal is to be the go-to company for anyone in Texas in need of professional 
+                PDR services - built on process, documentation, and quality verification rather 
+                than just promises.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Timeline */}
+      <section className="py-16 md:py-24 bg-secondary">
+        <div className="container-xl">
+          <h2 className="heading-2 text-foreground mb-12 text-center">Our Journey</h2>
+          
+          <div className="max-w-3xl mx-auto">
+            <div className="space-y-8">
+              {milestones.map((milestone, index) => (
+                <div key={index} className="flex gap-6">
+                  <div className="w-20 flex-shrink-0">
+                    <span className="text-2xl font-bold text-primary">{milestone.year}</span>
+                  </div>
+                  <div className="flex-1 pb-8 border-l-2 border-primary/20 pl-6 relative">
+                    <div className="absolute -left-[9px] top-1 w-4 h-4 rounded-full bg-primary"></div>
+                    <h3 className="heading-4 text-foreground mb-1">{milestone.title}</h3>
+                    <p className="text-muted-foreground">{milestone.description}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Our Values */}
+      <section className="py-16 md:py-24">
+        <div className="container-xl">
+          <div className="text-center max-w-2xl mx-auto mb-12">
+            <h2 className="heading-2 text-foreground mb-4">Our Values</h2>
+            <p className="body-large text-muted-foreground">
+              These principles guide everything we do at Texas Dent Company
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {values.map((value, index) => (
+              <Card key={index}>
+                <CardContent className="p-6">
+                  <h3 className="heading-4 text-foreground mb-3">{value.title}</h3>
+                  <p className="text-muted-foreground">{value.description}</p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* What We Sell */}
+      <section className="py-16 md:py-24 bg-secondary">
+        <div className="container-xl">
+          <div className="max-w-3xl mx-auto text-center">
+            <h2 className="heading-2 text-foreground mb-6">What We Actually Deliver</h2>
+            <p className="body-large text-muted-foreground mb-8">
+              We do not "sell dent removal." We deliver:
+            </p>
+            
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 text-left">
+              {[
+                'Claims clarity',
+                'Professional repair-side guidance',
+                'Process control and communication',
+                'Vehicle value protection',
+                'Reduced customer stress',
+                'Clean, documented, verified repair delivery',
+              ].map((item, index) => (
+                <div key={index} className="flex items-center gap-3 p-4 bg-background rounded-xl">
+                  <CheckCircle className="h-5 w-5 text-primary flex-shrink-0" />
+                  <span className="text-foreground font-medium">{item}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Locations */}
+      <section className="py-16 md:py-24">
+        <div className="container-xl">
+          <h2 className="heading-2 text-foreground mb-12 text-center">Our Locations</h2>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+            <Card>
+              <CardContent className="p-6">
+                <div className="flex items-center gap-3 mb-4">
+                  <MapPin className="h-6 w-6 text-primary" />
+                  <h3 className="heading-4 text-foreground">Frisco, TX (Home Office)</h3>
+                </div>
+                <p className="text-muted-foreground mb-2">122 Rose Lane, Suite 801</p>
+                <p className="text-muted-foreground mb-4">Frisco, TX 75036</p>
+                <p className="text-sm text-muted-foreground">
+                  Serving the DFW metro including Frisco, Plano, McKinney, Allen, 
+                  The Colony, Prosper, Celina, Little Elm, and surrounding areas.
+                </p>
+                <Link href="/frisco" className="text-primary font-medium text-sm mt-4 inline-block hover:underline">
+                  Learn more about our Frisco location →
+                </Link>
+              </CardContent>
+            </Card>
+            
+            <Card>
+              <CardContent className="p-6">
+                <div className="flex items-center gap-3 mb-4">
+                  <MapPin className="h-6 w-6 text-primary" />
+                  <h3 className="heading-4 text-foreground">Odessa, TX (Satellite Shop)</h3>
+                </div>
+                <p className="text-muted-foreground mb-2">4111 S County Rd 1297</p>
+                <p className="text-muted-foreground mb-4">Odessa, TX 79765</p>
+                <p className="text-sm text-muted-foreground">
+                  Serving West Texas including Odessa, Midland, Fort Stockton, 
+                  Big Spring, Pecos, Crane, and surrounding areas.
+                </p>
+                <Link href="/odessa" className="text-primary font-medium text-sm mt-4 inline-block hover:underline">
+                  Learn more about our Odessa location →
+                </Link>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </section>
+
+      {/* Stats */}
+      <section className="py-16 md:py-24 bg-primary text-primary-foreground">
+        <div className="container-xl">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+            <div>
+              <div className="text-4xl md:text-5xl font-bold mb-2">600+</div>
+              <div className="text-primary-foreground/80">5-Star Reviews</div>
+            </div>
+            <div>
+              <div className="text-4xl md:text-5xl font-bold mb-2">A+</div>
+              <div className="text-primary-foreground/80">BBB Rating</div>
+            </div>
+            <div>
+              <div className="text-4xl md:text-5xl font-bold mb-2">1000s</div>
+              <div className="text-primary-foreground/80">Vehicles Repaired</div>
+            </div>
+            <div>
+              <div className="text-4xl md:text-5xl font-bold mb-2">2</div>
+              <div className="text-primary-foreground/80">Texas Locations</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <CTA />
+    </>
+  );
+}
