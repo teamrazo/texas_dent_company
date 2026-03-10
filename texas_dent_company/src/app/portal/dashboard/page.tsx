@@ -210,7 +210,7 @@ export default function PartnerDashboardPage() {
 
   // Calculate pipeline progress
   const pipelineStages = [
-    { label: 'Leads', count: mockStats.leads, color: 'bg-blue-500' },
+    { label: 'Leads', count: mockStats.leads, color: 'bg-[#BD3728]' },
     { label: 'Prospects', count: mockStats.prospects, color: 'bg-yellow-500' },
     { label: 'Assessment', count: mockStats.damageAssessments, color: 'bg-orange-500' },
     { label: 'Scheduled', count: mockStats.repairsScheduled, color: 'bg-purple-500' },
@@ -264,7 +264,7 @@ export default function PartnerDashboardPage() {
         <Card>
           <CardContent className="pt-6">
             <div className="flex items-center gap-4">
-              <div className="w-12 h-12 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center">
+              <div className="w-12 h-12 rounded-full bg-[#BD3728]/10 text-[#BD3728] flex items-center justify-center">
                 <Users className="h-6 w-6" />
               </div>
               <div>

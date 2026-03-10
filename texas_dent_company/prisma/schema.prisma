@@ -6,7 +6,7 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
+  provider = "sqlite"
   url      = env("DATABASE_URL")
 }
 
@@ -20,12 +20,12 @@ model Account {
   type              String
   provider          String
   providerAccountId String
-  refresh_token     String? @db.Text
-  access_token      String? @db.Text
+  refresh_token     String?
+  access_token      String?
   expires_at        Int?
   token_type        String?
   scope             String?
-  id_token          String? @db.Text
+  id_token          String?
   session_state     String?
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
@@ -51,7 +51,7 @@ model User {
   emailVerified   DateTime?
   image           String?
   phone           String?
-  role            UserRole  @default(CUSTOMER)
+  role            String    @default("CUSTOMER")
   
   // GHL Integration
   ghlContactId    String?   @unique
@@ -79,53 +79,32 @@ model VerificationToken {
 }
 
 // =============================================================================
-// User Role Enum
-// =============================================================================
-
-enum UserRole {
-  CUSTOMER
-  PARTNER
-  ADMIN
-}
-
-// =============================================================================
 // Referral Tracking
 // =============================================================================
 
 model Referral {
-  id              String         @id @default(cuid())
+  id              String   @id @default(cuid())
   partnerId       String
-  customerId      String?        @unique
+  customerId      String?  @unique
   
   // GHL opportunity tracking
   ghlOpportunityId String?
-  status          ReferralStatus @default(NEW_LEAD)
+  status          String   @default("NEW_LEAD")
   
   // Commission tracking
-  commissionAmount Decimal?      @db.Decimal(10, 2)
-  commissionPaid  Boolean        @default(false)
+  commissionAmount Float?
+  commissionPaid  Boolean  @default(false)
   paidAt          DateTime?
   
-  createdAt       DateTime       @default(now())
-  updatedAt       DateTime       @updatedAt
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
   
-  partner         User           @relation("PartnerReferrals", fields: [partnerId], references: [id])
-  customer        User?          @relation("CustomerReferral", fields: [customerId], references: [id])
+  partner         User     @relation("PartnerReferrals", fields: [partnerId], references: [id])
+  customer        User?    @relation("CustomerReferral", fields: [customerId], references: [id])
 
   @@index([partnerId])
   @@index([status])
   @@index([ghlOpportunityId])
-}
-
-enum ReferralStatus {
-  NEW_LEAD
-  LEAD
-  PROSPECT
-  DAMAGE_ASSESSMENT
-  REPAIR_SCHEDULED
-  IN_PROGRESS
-  COMPLETED
-  LOST
 }
 
 // =============================================================================
@@ -138,7 +117,7 @@ model ContactSubmission {
   email           String
   phone           String?
   location        String?  // frisco, odessa
-  message         String?  @db.Text
+  message         String?
   source          String?  // claim-help, quality, home, etc.
   affiliateCode   String?
   

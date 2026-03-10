@@ -7,7 +7,7 @@ import {
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { CTA } from '@/components/sections';
+import { BeforeAfterGallery } from '@/components/sections/BeforeAfterGallery';
 import { COMPANY } from '@/lib/constants';
 
 export const metadata: Metadata = {
@@ -107,178 +107,195 @@ export default function ServicesPage() {
   return (
     <>
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-secondary to-background py-16 md:py-24">
-        <div className="container-xl">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div className="space-y-6">
-              <h1 className="heading-1 text-foreground">
-                Professional Hail Damage Repair Services
-              </h1>
-              <p className="body-large text-muted-foreground">
-                Texas Dent Company is a premium, professional paintless dent repair 
-                organization. We compete on quality of repair, professional execution, 
-                customer experience, and claims knowledge - not price or shortcuts.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 pt-4">
-                <Link href="/contact">
-                  <Button size="lg" className="w-full sm:w-auto text-lg px-8">
-                    Schedule Inspection <ArrowRight className="h-5 w-5 ml-2" />
-                  </Button>
-                </Link>
-                <a href={`tel:${COMPANY.phone}`}>
-                  <Button variant="outline" size="lg" className="w-full sm:w-auto text-lg px-8">
-                    <Phone className="h-5 w-5 mr-2" />
-                    {COMPANY.phone}
-                  </Button>
-                </a>
-              </div>
-            </div>
-            
-            <div className="relative aspect-[4/3] rounded-xl overflow-hidden">
-              <Image
-                src="/images/gallery/headliner-work.png"
-                alt="Professional PDR technician at work"
-                fill
-                className="object-cover"
-              />
+      <section className="bg-black py-16 md:py-20 relative overflow-hidden">
+        <div className="absolute inset-0">
+          <Image
+            src="/images/facility/tesla-in-shop.png"
+            alt="Texas Dent Company Shop"
+            fill
+            className="object-cover opacity-30"
+            priority
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/60 to-black/90" />
+        </div>
+        <div className="container mx-auto px-4 relative z-10">
+          <div className="max-w-3xl mx-auto text-center">
+            <p className="text-[#BD3728] uppercase tracking-[0.2em] text-sm font-semibold mb-4">
+              Premium PDR Services
+            </p>
+            <h1 className="text-4xl md:text-5xl font-bold text-white mb-6" style={{ fontFamily: 'var(--font-montserrat)' }}>
+              Professional Hail Damage <span className="text-[#BD3728]">Repair Services</span>
+            </h1>
+            <p className="text-gray-300 text-lg mb-8">
+              Texas Dent Company is a premium, professional paintless dent repair 
+              organization. We compete on quality of repair, professional execution, 
+              customer experience, and claims knowledge - not price or shortcuts.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link href="/contact">
+                <button className="inline-flex items-center gap-2 px-8 py-4 bg-[#BD3728] text-white font-bold rounded hover:bg-[#a32f22] transition-colors uppercase tracking-wide">
+                  Schedule Inspection <ArrowRight className="h-5 w-5" />
+                </button>
+              </Link>
+              <a href={`tel:${COMPANY.phone}`}>
+                <button className="inline-flex items-center gap-2 px-8 py-4 bg-white text-[#BD3728] font-bold rounded hover:bg-gray-100 transition-colors">
+                  <Phone className="h-5 w-5" />
+                  {COMPANY.phone}
+                </button>
+              </a>
             </div>
           </div>
         </div>
       </section>
 
       {/* Core Value Pillars */}
-      <section className="py-16 md:py-24">
-        <div className="container-xl">
+      <section className="py-16 md:py-20 bg-gray-50">
+        <div className="container mx-auto px-4">
           <div className="text-center max-w-2xl mx-auto mb-12">
-            <h2 className="heading-2 text-foreground mb-4">Our Value Framework</h2>
-            <p className="body-large text-muted-foreground">
+            <p className="text-[#BD3728] uppercase tracking-[0.2em] text-sm font-semibold mb-3">
+              Why Choose Us
+            </p>
+            <h2 className="text-3xl md:text-4xl font-bold text-black mb-4" style={{ fontFamily: 'var(--font-montserrat)' }}>
+              Our <span className="text-[#BD3728]">Value</span> Framework
+            </h2>
+            <p className="text-gray-600">
               Everything we offer supports professional-grade repairs, claims expertise, 
               customer convenience, and trust.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {valuePillars.map((pillar, index) => (
-              <Card key={index}>
-                <CardContent className="p-6">
-                  <h3 className="heading-4 text-foreground mb-3">{pillar.title}</h3>
-                  <p className="text-muted-foreground">{pillar.description}</p>
-                </CardContent>
-              </Card>
+              <div key={index} className="bg-white rounded-xl p-6 border border-gray-200 hover:shadow-lg transition-shadow">
+                <h3 className="font-bold text-black mb-3" style={{ fontFamily: 'var(--font-montserrat)' }}>{pillar.title}</h3>
+                <p className="text-gray-600">{pillar.description}</p>
+              </div>
             ))}
           </div>
         </div>
       </section>
 
       {/* Main Services */}
-      <section className="py-16 md:py-24 bg-secondary">
-        <div className="container-xl">
+      <section className="py-16 md:py-20 bg-white">
+        <div className="container mx-auto px-4">
           <div className="text-center max-w-2xl mx-auto mb-12">
-            <h2 className="heading-2 text-foreground mb-4">Our Services</h2>
-            <p className="body-large text-muted-foreground">
+            <p className="text-[#BD3728] uppercase tracking-[0.2em] text-sm font-semibold mb-3">
+              What We Offer
+            </p>
+            <h2 className="text-3xl md:text-4xl font-bold text-black mb-4" style={{ fontFamily: 'var(--font-montserrat)' }}>
+              Our <span className="text-[#BD3728]">Services</span>
+            </h2>
+            <p className="text-gray-600">
               Comprehensive hail damage repair from inspection to delivery
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {services.map((service, index) => (
-              <Card key={index} className="h-full">
-                <CardHeader>
-                  <div className="w-14 h-14 rounded-xl bg-primary/10 text-primary flex items-center justify-center mb-4">
-                    <service.icon className="h-7 w-7" />
-                  </div>
-                  <CardTitle className="heading-3">{service.title}</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-muted-foreground mb-6">{service.description}</p>
-                  <ul className="space-y-3">
-                    {service.features.map((feature, featureIndex) => (
-                      <li key={featureIndex} className="flex items-start gap-3">
-                        <CheckCircle className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
-                        <span className="text-foreground text-sm">{feature}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </CardContent>
-              </Card>
+              <div key={index} className="bg-gray-50 rounded-xl p-6 border border-gray-200 hover:shadow-lg transition-shadow h-full">
+                <div className="w-14 h-14 rounded-xl bg-[#BD3728]/10 flex items-center justify-center mb-4">
+                  <service.icon className="h-7 w-7 text-[#BD3728]" />
+                </div>
+                <h3 className="text-xl font-bold text-black mb-3" style={{ fontFamily: 'var(--font-montserrat)' }}>{service.title}</h3>
+                <p className="text-gray-600 mb-6">{service.description}</p>
+                <ul className="space-y-3">
+                  {service.features.map((feature, featureIndex) => (
+                    <li key={featureIndex} className="flex items-start gap-3">
+                      <CheckCircle className="h-5 w-5 text-[#BD3728] flex-shrink-0 mt-0.5" />
+                      <span className="text-gray-700 text-sm">{feature}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
             ))}
           </div>
         </div>
       </section>
 
+      {/* Before/After Gallery */}
+      <BeforeAfterGallery />
+
       {/* Added Value Services */}
-      <section className="py-16 md:py-24">
-        <div className="container-xl">
+      <section className="py-16 md:py-20 bg-white">
+        <div className="container mx-auto px-4">
           <div className="text-center max-w-2xl mx-auto mb-12">
-            <h2 className="heading-2 text-foreground mb-4">Added Value Services</h2>
-            <p className="body-large text-muted-foreground">
+            <p className="text-[#BD3728] uppercase tracking-[0.2em] text-sm font-semibold mb-3">
+              Extra Value
+            </p>
+            <h2 className="text-3xl md:text-4xl font-bold text-black mb-4" style={{ fontFamily: 'var(--font-montserrat)' }}>
+              Added Value <span className="text-[#BD3728]">Services</span>
+            </h2>
+            <p className="text-gray-600">
               Extra services that enhance your final result and customer experience
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {addedValueServices.map((service, index) => (
-              <Card key={index} className="text-center">
-                <CardContent className="pt-8 pb-6">
-                  <div className="w-16 h-16 rounded-full bg-primary/10 text-primary flex items-center justify-center mx-auto mb-4">
-                    <service.icon className="h-8 w-8" />
-                  </div>
-                  <h3 className="heading-4 text-foreground mb-2">{service.title}</h3>
-                  <p className="text-muted-foreground text-sm">{service.description}</p>
-                </CardContent>
-              </Card>
+              <div key={index} className="bg-gray-50 rounded-xl p-6 text-center border border-gray-200 hover:shadow-lg transition-shadow">
+                <div className="w-16 h-16 rounded-full bg-[#BD3728]/10 flex items-center justify-center mx-auto mb-4">
+                  <service.icon className="h-8 w-8 text-[#BD3728]" />
+                </div>
+                <h3 className="font-bold text-black mb-2" style={{ fontFamily: 'var(--font-montserrat)' }}>{service.title}</h3>
+                <p className="text-gray-600 text-sm">{service.description}</p>
+              </div>
             ))}
           </div>
         </div>
       </section>
 
       {/* Why Choose Us */}
-      <section className="py-16 md:py-24 bg-secondary">
-        <div className="container-xl">
+      <section className="py-16 md:py-20 bg-black text-white">
+        <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
-              <h2 className="heading-2 text-foreground mb-6">What Sets Us Apart</h2>
+              <p className="text-[#BD3728] uppercase tracking-[0.2em] text-sm font-semibold mb-4">
+                Trusted By Thousands
+              </p>
+              <h2 className="text-3xl md:text-4xl font-bold text-white mb-8" style={{ fontFamily: 'var(--font-montserrat)' }}>
+                What Sets Us <span className="text-[#BD3728]">Apart</span>
+              </h2>
               <div className="space-y-6">
                 <div className="flex gap-4">
-                  <div className="w-12 h-12 rounded-full bg-primary/10 text-primary flex items-center justify-center flex-shrink-0">
-                    <Star className="h-6 w-6" />
+                  <div className="w-12 h-12 rounded-full bg-[#BD3728]/20 flex items-center justify-center flex-shrink-0">
+                    <Star className="h-6 w-6 text-[#BD3728]" />
                   </div>
                   <div>
-                    <h3 className="heading-4 text-foreground mb-1">600+ Five-Star Reviews</h3>
-                    <p className="text-muted-foreground text-sm">
+                    <h3 className="font-bold text-white mb-1">600+ Five-Star Reviews</h3>
+                    <p className="text-gray-400 text-sm">
                       Trusted by thousands of Texas customers across Google, Facebook, and BBB.
                     </p>
                   </div>
                 </div>
                 <div className="flex gap-4">
-                  <div className="w-12 h-12 rounded-full bg-primary/10 text-primary flex items-center justify-center flex-shrink-0">
-                    <Shield className="h-6 w-6" />
+                  <div className="w-12 h-12 rounded-full bg-[#BD3728]/20 flex items-center justify-center flex-shrink-0">
+                    <Shield className="h-6 w-6 text-[#BD3728]" />
                   </div>
                   <div>
-                    <h3 className="heading-4 text-foreground mb-1">A+ BBB Rating</h3>
-                    <p className="text-muted-foreground text-sm">
+                    <h3 className="font-bold text-white mb-1">A+ BBB Rating</h3>
+                    <p className="text-gray-400 text-sm">
                       Recognized for our commitment to quality and customer satisfaction.
                     </p>
                   </div>
                 </div>
                 <div className="flex gap-4">
-                  <div className="w-12 h-12 rounded-full bg-primary/10 text-primary flex items-center justify-center flex-shrink-0">
-                    <Clock className="h-6 w-6" />
+                  <div className="w-12 h-12 rounded-full bg-[#BD3728]/20 flex items-center justify-center flex-shrink-0">
+                    <Clock className="h-6 w-6 text-[#BD3728]" />
                   </div>
                   <div>
-                    <h3 className="heading-4 text-foreground mb-1">Lifetime Warranty</h3>
-                    <p className="text-muted-foreground text-sm">
+                    <h3 className="font-bold text-white mb-1">Lifetime Warranty</h3>
+                    <p className="text-gray-400 text-sm">
                       We stand behind our work with a lifetime warranty on repaired dents.
                     </p>
                   </div>
                 </div>
                 <div className="flex gap-4">
-                  <div className="w-12 h-12 rounded-full bg-primary/10 text-primary flex items-center justify-center flex-shrink-0">
-                    <FileText className="h-6 w-6" />
+                  <div className="w-12 h-12 rounded-full bg-[#BD3728]/20 flex items-center justify-center flex-shrink-0">
+                    <FileText className="h-6 w-6 text-[#BD3728]" />
                   </div>
                   <div>
-                    <h3 className="heading-4 text-foreground mb-1">Trusted by Fleets</h3>
-                    <p className="text-muted-foreground text-sm">
+                    <h3 className="font-bold text-white mb-1">Trusted by Fleets</h3>
+                    <p className="text-gray-400 text-sm">
                       Trusted by school districts and government fleets for professional service.
                     </p>
                   </div>
@@ -286,10 +303,10 @@ export default function ServicesPage() {
               </div>
             </div>
             
-            <div className="relative aspect-[4/3] rounded-xl overflow-hidden">
+            <div className="relative h-[400px] rounded-2xl overflow-hidden">
               <Image
-                src="/images/gallery/rentals.jpg"
-                alt="Texas Dent Company rental fleet"
+                src="/images/facility/shop-bmw-2.webp"
+                alt="Texas Dent Company professional repair"
                 fill
                 className="object-cover"
               />
@@ -299,29 +316,53 @@ export default function ServicesPage() {
       </section>
 
       {/* Deductible Note */}
-      <section className="py-16 md:py-24">
-        <div className="container-xl">
-          <Card className="bg-gradient-to-br from-primary/5 to-background border-primary/20">
-            <CardContent className="p-8 md:p-12">
-              <div className="max-w-3xl mx-auto text-center">
-                <h2 className="heading-2 text-foreground mb-4">Our Approach to Deductibles</h2>
-                <p className="body-large text-muted-foreground mb-6">
-                  Insurance deductibles are often unavoidable. Our approach focuses on proper 
-                  estimating, identifying approved procedures, and passing along legitimate 
-                  cost savings where allowed.
-                </p>
-                <p className="text-foreground font-medium">
-                  We do not pay customers cash, provide rebates or kickbacks, or misrepresent 
-                  repairs to insurance. Our goal is to minimize out-of-pocket costs without 
-                  compromising integrity or quality.
-                </p>
-              </div>
-            </CardContent>
-          </Card>
+      <section className="py-16 md:py-20 bg-gray-50">
+        <div className="container mx-auto px-4">
+          <div className="bg-white rounded-xl border-2 border-[#BD3728]/20 p-8 md:p-12">
+            <div className="max-w-3xl mx-auto text-center">
+              <h2 className="text-2xl md:text-3xl font-bold text-black mb-4" style={{ fontFamily: 'var(--font-montserrat)' }}>
+                Our Approach to <span className="text-[#BD3728]">Deductibles</span>
+              </h2>
+              <p className="text-gray-600 mb-6">
+                Insurance deductibles are often unavoidable. Our approach focuses on proper 
+                estimating, identifying approved procedures, and passing along legitimate 
+                cost savings where allowed.
+              </p>
+              <p className="text-black font-medium">
+                We do not pay customers cash, provide rebates or kickbacks, or misrepresent 
+                repairs to insurance. Our goal is to minimize out-of-pocket costs without 
+                compromising integrity or quality.
+              </p>
+            </div>
+          </div>
         </div>
       </section>
 
-      <CTA />
+      {/* Final CTA */}
+      <section className="py-16 md:py-20 bg-white">
+        <div className="container mx-auto px-4">
+          <div className="max-w-2xl mx-auto text-center">
+            <div className="w-20 h-20 bg-[#BD3728] rounded-lg flex items-center justify-center text-white font-bold text-3xl mx-auto mb-6" style={{ fontFamily: 'var(--font-montserrat)' }}>
+              TD
+            </div>
+            <p className="text-[#BD3728] uppercase tracking-[0.2em] text-sm font-semibold mb-4">
+              Ready To Get Started?
+            </p>
+            <h2 className="text-3xl md:text-4xl font-bold text-black mb-4" style={{ fontFamily: 'var(--font-montserrat)' }}>
+              Schedule Your <span className="text-[#BD3728]">Free Inspection</span>
+            </h2>
+            <p className="text-gray-600 mb-8">
+              30-45 minute comprehensive inspection. No obligation.
+            </p>
+            <Link href="/contact">
+              <button className="inline-flex items-center gap-2 px-8 py-4 bg-[#BD3728] text-white font-bold rounded hover:bg-[#a32f22] transition-colors uppercase tracking-wide text-lg">
+                <FileText className="h-5 w-5" />
+                Schedule Your Inspection
+              </button>
+            </Link>
+          </div>
+        </div>
+      </section>
     </>
   );
 }

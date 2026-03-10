@@ -12,23 +12,28 @@
   --font-inter: 'Inter', sans-serif;
 }
 
-/* TDC Brand Colors */
+/* TDC Brand Colors - Exact match to hail.texasdentcompany.com */
 :root {
-  --radius: 0.75rem;
+  --radius: 0.25rem;
   
-  /* Primary Red - hsl(6 65% 45%) */
-  --primary: 6 65% 45%;
+  /* Primary Red - #BD3728 rgb(189, 55, 40) */
+  --primary: 5 65% 45%;
   --primary-foreground: 0 0% 100%;
   
-  /* Background - hsl(0 0% 100%) */
+  /* TDC Red for direct use */
+  --tdc-red: #BD3728;
+  --tdc-red-hover: #a32f22;
+  --tdc-red-light: #d94a3c;
+  
+  /* Background - white */
   --background: 0 0% 100%;
   --foreground: 0 0% 0%;
   
-  /* Secondary - hsl(0 0% 96%) */
+  /* Secondary - light gray #F5F5F5 */
   --secondary: 0 0% 96%;
   --secondary-foreground: 0 0% 0%;
   
-  /* Muted - hsl(0 0% 42%) */
+  /* Muted text - #6B6B6B */
   --muted: 0 0% 96%;
   --muted-foreground: 0 0% 42%;
   
@@ -55,14 +60,18 @@
   --input: 0 0% 90%;
   
   /* Ring */
-  --ring: 6 65% 45%;
+  --ring: 5 65% 45%;
   
   /* Chart colors */
-  --chart-1: 6 65% 45%;
-  --chart-2: 6 65% 55%;
-  --chart-3: 6 65% 65%;
+  --chart-1: 5 65% 45%;
+  --chart-2: 5 65% 55%;
+  --chart-3: 5 65% 65%;
   --chart-4: 0 0% 42%;
   --chart-5: 0 0% 60%;
+  
+  /* Dark section backgrounds */
+  --dark-bg: 0 0% 8%;
+  --dark-section: 0 0% 12%;
 }
 
 .dark {
@@ -183,4 +192,175 @@
 
 .gradient-overlay {
   background: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.7) 100%);
+}
+
+/* TDC Specific Styles - Exact match to reference */
+.text-tdc-red {
+  color: var(--tdc-red);
+}
+
+.bg-tdc-red {
+  background-color: var(--tdc-red);
+}
+
+.bg-tdc-red:hover {
+  background-color: var(--tdc-red-hover);
+}
+
+/* Primary CTA Button - matches reference site exactly */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  background-color: var(--tdc-red);
+  color: white;
+  font-weight: 600;
+  font-size: 0.875rem;
+  border-radius: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.025em;
+  transition: background-color 0.2s ease;
+  text-decoration: none;
+}
+
+.btn-primary:hover {
+  background-color: var(--tdc-red-hover);
+}
+
+/* Phone Button Style */
+.btn-phone {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background-color: var(--tdc-red);
+  color: white;
+  font-weight: 600;
+  font-size: 0.875rem;
+  border-radius: 4px;
+  transition: background-color 0.2s ease;
+  text-decoration: none;
+}
+
+.btn-phone:hover {
+  background-color: var(--tdc-red-hover);
+}
+
+/* Secondary/Outline Button */
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  background-color: transparent;
+  color: var(--tdc-red);
+  font-weight: 600;
+  font-size: 0.875rem;
+  border: 2px solid var(--tdc-red);
+  border-radius: 4px;
+  transition: all 0.2s ease;
+  text-decoration: none;
+}
+
+.btn-outline:hover {
+  background-color: var(--tdc-red);
+  color: white;
+}
+
+/* Tagline style - uppercase with letter spacing */
+.tagline {
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--tdc-red);
+}
+
+/* Section backgrounds */
+.bg-section-light {
+  background-color: #F5F5F5;
+}
+
+.bg-section-dark {
+  background-color: #1a1a1a;
+}
+
+/* Hero section with dark overlay */
+.hero-dark {
+  position: relative;
+  background-size: cover;
+  background-position: center;
+}
+
+.hero-dark::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+}
+
+/* Trust badges style */
+.trust-badge {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem 1.5rem;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  backdrop-filter: blur(8px);
+}
+
+.trust-badge-icon {
+  color: var(--tdc-red);
+  margin-bottom: 0.5rem;
+}
+
+/* Step indicator style */
+.step-number {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  background-color: var(--tdc-red);
+  color: white;
+  font-weight: 700;
+  font-size: 0.875rem;
+  border-radius: 50%;
+}
+
+/* Card with subtle border */
+.tdc-card {
+  background: white;
+  border: 1px solid #e5e5e5;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+/* Footer styles */
+.footer-dark {
+  background-color: #000;
+  color: #fff;
+}
+
+.footer-dark a {
+  color: #fff;
+  transition: color 0.2s ease;
+}
+
+.footer-dark a:hover {
+  color: var(--tdc-red);
+}
+
+/* Location headers in footer */
+.location-header {
+  color: var(--tdc-red);
+  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  font-size: 0.875rem;
 }
