@@ -64,6 +64,8 @@ model User {
   sessions        Session[]
   referrals       Referral[] @relation("PartnerReferrals")
   referredBy      Referral?  @relation("CustomerReferral")
+  paymentMethod   PaymentMethod?
+  payouts         Payout[]
 
   @@index([email])
   @@index([ghlContactId])
@@ -79,6 +81,69 @@ model VerificationToken {
 }
 
 // =============================================================================
+// Payment Methods
+// =============================================================================
+
+model PaymentMethod {
+  id              String   @id @default(cuid())
+  userId          String   @unique
+  
+  // Payment method type: ACH, VENMO, CASHAPP, ZELLE
+  type            String
+  
+  // ACH fields (encrypted in production)
+  achAccountNumber    String?
+  achRoutingNumber    String?
+  achAccountHolder    String?
+  
+  // Venmo fields
+  venmoUsername       String?
+  
+  // CashApp fields
+  cashappCashtag      String?
+  
+  // Zelle fields
+  zelleEmailOrPhone   String?
+  
+  isVerified      Boolean  @default(false)
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  
+  user            User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([type])
+}
+
+// =============================================================================
+// Payout Tracking
+// =============================================================================
+
+model Payout {
+  id              String   @id @default(cuid())
+  partnerId       String
+  
+  amount          Float
+  status          String   @default("PENDING")  // PENDING, PROCESSING, COMPLETED, FAILED
+  paymentMethod   String   // Type used for this payout
+  
+  // Transaction details
+  transactionId   String?
+  notes           String?
+  
+  // Timing
+  requestedAt     DateTime @default(now())
+  processedAt     DateTime?
+  completedAt     DateTime?
+  
+  partner         User     @relation(fields: [partnerId], references: [id])
+
+  @@index([partnerId])
+  @@index([status])
+  @@index([requestedAt])
+}
+
+// =============================================================================
 // Referral Tracking
 // =============================================================================
 
@@ -87,14 +152,32 @@ model Referral {
   partnerId       String
   customerId      String?  @unique
   
+  // Customer info (for manual referrals without user account)
+  customerName    String?
+  customerEmail   String?
+  customerPhone   String?
+  
   // GHL opportunity tracking
+  ghlContactId    String?
   ghlOpportunityId String?
   status          String   @default("NEW_LEAD")
   
+  // Opportunity value from GHL
+  opportunityValue Float?
+  
   // Commission tracking
+  commissionRate  Float    @default(0.10)  // 10% default commission
   commissionAmount Float?
   commissionPaid  Boolean  @default(false)
   paidAt          DateTime?
+  payoutId        String?
+  
+  // Source tracking
+  source          String?  // Direct Link, Text Message, Social Media, Manual Entry, etc.
+  
+  // GHL sync metadata
+  lastSyncedAt    DateTime?
+  syncError       String?
   
   createdAt       DateTime @default(now())
   updatedAt       DateTime @updatedAt
@@ -105,6 +188,30 @@ model Referral {
   @@index([partnerId])
   @@index([status])
   @@index([ghlOpportunityId])
+  @@index([ghlContactId])
+}
+
+// =============================================================================
+// GHL Sync Tracking
+// =============================================================================
+
+model GHLSyncLog {
+  id              String   @id @default(cuid())
+  
+  syncType        String   // CONTACTS, OPPORTUNITIES, EARNINGS
+  status          String   // SUCCESS, PARTIAL, FAILED
+  
+  recordsProcessed Int     @default(0)
+  recordsFailed   Int      @default(0)
+  
+  startedAt       DateTime @default(now())
+  completedAt     DateTime?
+  
+  errorMessage    String?
+  errorDetails    String?  // JSON string with details
+
+  @@index([syncType])
+  @@index([startedAt])
 }
 
 // =============================================================================

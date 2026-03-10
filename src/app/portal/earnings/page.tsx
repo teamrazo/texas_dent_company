@@ -1,7 +1,8 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useSession } from 'next-auth/react';
+import Link from 'next/link';
 import {
   DollarSign,
   TrendingUp,
@@ -14,6 +15,8 @@ import {
   CreditCard,
   Wallet,
   Filter,
+  RefreshCw,
+  Loader2,
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
@@ -28,18 +31,44 @@ import {
 } from '@/components/ui/select';
 import { toast } from 'sonner';
 
-// Mock earnings data
-const mockEarningsOverview = {
+interface Transaction {
+  id: string;
+  type: 'commission' | 'payout';
+  description: string;
+  amount: number;
+  status: string;
+  date: string;
+  referralName: string;
+}
+
+interface MonthlyEarning {
+  month: string;
+  year?: number;
+  amount: number;
+}
+
+interface EarningsData {
+  totalEarned: number;
+  pendingPayout: number;
+  totalPaidOut: number;
+  lastPayout: { amount: number; date: string } | null;
+  lifetimeReferrals: number;
+  conversionRate: number;
+  averageCommission: number;
+}
+
+// Mock fallback data
+const mockEarningsOverview: EarningsData = {
   totalEarned: 2450.00,
   pendingPayout: 450.00,
-  lastPayout: 800.00,
-  lastPayoutDate: '2026-02-28',
+  totalPaidOut: 2000.00,
+  lastPayout: { amount: 800.00, date: '2026-02-28' },
   lifetimeReferrals: 28,
   conversionRate: 64,
   averageCommission: 87.50,
 };
 
-const mockTransactions = [
+const mockTransactions: Transaction[] = [
   { id: '1', type: 'commission', description: 'Commission - John Davidson', amount: 150.00, status: 'pending', date: '2026-03-05', referralName: 'John Davidson' },
   { id: '2', type: 'commission', description: 'Commission - Sarah Mitchell', amount: 125.00, status: 'pending', date: '2026-03-04', referralName: 'Sarah Mitchell' },
   { id: '3', type: 'commission', description: 'Commission - Michael Roberts', amount: 175.00, status: 'pending', date: '2026-03-01', referralName: 'Michael Roberts' },
@@ -52,30 +81,85 @@ const mockTransactions = [
   { id: '10', type: 'commission', description: 'Commission - Amanda Garcia', amount: 100.00, status: 'completed', date: '2026-01-20', referralName: 'Amanda Garcia' },
 ];
 
-const paymentMethods = [
-  { id: '1', type: 'bank', name: 'Chase Bank ****4521', isDefault: true },
-  { id: '2', type: 'paypal', name: 'PayPal - john@email.com', isDefault: false },
+const mockMonthlyEarnings: MonthlyEarning[] = [
+  { month: 'Jan', amount: 375 },
+  { month: 'Feb', amount: 475 },
+  { month: 'Mar', amount: 450 },
 ];
 
 export default function EarningsPage() {
   const { data: session } = useSession();
   const [filterType, setFilterType] = useState('all');
-  const [filterPeriod, setFilterPeriod] = useState('all');
+  const [isLoading, setIsLoading] = useState(true);
+  const [isSyncing, setIsSyncing] = useState(false);
+  const [earningsData, setEarningsData] = useState<EarningsData>(mockEarningsOverview);
+  const [transactions, setTransactions] = useState<Transaction[]>(mockTransactions);
+  const [monthlyEarnings, setMonthlyEarnings] = useState<MonthlyEarning[]>(mockMonthlyEarnings);
+
+  // Fetch earnings data
+  const fetchEarnings = async () => {
+    try {
+      const response = await fetch('/api/ghl/sync-earnings');
+      if (response.ok) {
+        const data = await response.json();
+        if (data.earnings) {
+          setEarningsData({
+            totalEarned: data.earnings.totalEarned || 0,
+            pendingPayout: data.earnings.pendingPayout || 0,
+            totalPaidOut: data.earnings.totalPaidOut || 0,
+            lastPayout: data.earnings.lastPayout,
+            lifetimeReferrals: data.earnings.lifetimeReferrals || 0,
+            conversionRate: data.earnings.conversionRate || 0,
+            averageCommission: data.earnings.averageCommission || 0,
+          });
+        }
+        if (data.transactions && data.transactions.length > 0) {
+          setTransactions(data.transactions);
+        }
+        if (data.monthlyEarnings && data.monthlyEarnings.length > 0) {
+          setMonthlyEarnings(data.monthlyEarnings);
+        }
+      }
+    } catch (error) {
+      console.error('Error fetching earnings:', error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  // Sync earnings
+  const syncEarnings = async () => {
+    setIsSyncing(true);
+    try {
+      const response = await fetch('/api/ghl/sync-earnings', {
+        method: 'POST',
+      });
+      if (response.ok) {
+        const data = await response.json();
+        toast.success(data.message || 'Earnings synced successfully');
+        await fetchEarnings();
+      } else {
+        toast.error('Failed to sync earnings');
+      }
+    } catch (error) {
+      console.error('Error syncing earnings:', error);
+      toast.error('Error syncing earnings');
+    } finally {
+      setIsSyncing(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchEarnings();
+  }, []);
 
   // Filter transactions
-  const filteredTransactions = mockTransactions.filter((tx) => {
+  const filteredTransactions = transactions.filter((tx) => {
     const matchesType = filterType === 'all' || tx.type === filterType;
     return matchesType;
   });
 
-  // Calculate monthly earnings (mock)
-  const monthlyEarnings = [
-    { month: 'Jan', amount: 375 },
-    { month: 'Feb', amount: 475 },
-    { month: 'Mar', amount: 450 },
-  ];
-
-  const maxMonthly = Math.max(...monthlyEarnings.map(m => m.amount));
+  const maxMonthly = Math.max(...monthlyEarnings.map(m => m.amount), 1);
 
   return (
     <div className="space-y-6">
@@ -85,10 +169,25 @@ export default function EarningsPage() {
           <h1 className="heading-2 text-foreground">Earnings</h1>
           <p className="text-muted-foreground mt-1">Track your commissions and payouts</p>
         </div>
-        <Button variant="outline" className="gap-2" onClick={() => toast.info('Export coming soon')}>
-          <Download className="h-4 w-4" />
-          Export Report
-        </Button>
+        <div className="flex gap-2">
+          <Button
+            variant="outline"
+            className="gap-2"
+            onClick={syncEarnings}
+            disabled={isSyncing}
+          >
+            {isSyncing ? (
+              <Loader2 className="h-4 w-4 animate-spin" />
+            ) : (
+              <RefreshCw className="h-4 w-4" />
+            )}
+            Sync
+          </Button>
+          <Button variant="outline" className="gap-2" onClick={() => toast.info('Export coming soon')}>
+            <Download className="h-4 w-4" />
+            Export
+          </Button>
+        </div>
       </div>
 
       {/* Earnings Overview Cards */}
@@ -100,7 +199,7 @@ export default function EarningsPage() {
                 <DollarSign className="h-6 w-6" />
               </div>
               <div>
-                <p className="text-2xl font-bold text-foreground">${mockEarningsOverview.totalEarned.toFixed(2)}</p>
+                <p className="text-2xl font-bold text-foreground">${earningsData.totalEarned.toFixed(2)}</p>
                 <p className="text-sm text-muted-foreground">Total Earned</p>
               </div>
             </div>
@@ -114,7 +213,7 @@ export default function EarningsPage() {
                 <Clock className="h-6 w-6" />
               </div>
               <div>
-                <p className="text-2xl font-bold text-foreground">${mockEarningsOverview.pendingPayout.toFixed(2)}</p>
+                <p className="text-2xl font-bold text-foreground">${earningsData.pendingPayout.toFixed(2)}</p>
                 <p className="text-sm text-muted-foreground">Pending Payout</p>
               </div>
             </div>
@@ -128,7 +227,7 @@ export default function EarningsPage() {
                 <TrendingUp className="h-6 w-6" />
               </div>
               <div>
-                <p className="text-2xl font-bold text-foreground">${mockEarningsOverview.averageCommission.toFixed(2)}</p>
+                <p className="text-2xl font-bold text-foreground">${earningsData.averageCommission.toFixed(2)}</p>
                 <p className="text-sm text-muted-foreground">Avg. Commission</p>
               </div>
             </div>
@@ -142,7 +241,7 @@ export default function EarningsPage() {
                 <CheckCircle className="h-6 w-6" />
               </div>
               <div>
-                <p className="text-2xl font-bold text-foreground">{mockEarningsOverview.conversionRate}%</p>
+                <p className="text-2xl font-bold text-foreground">{earningsData.conversionRate}%</p>
                 <p className="text-sm text-muted-foreground">Conversion Rate</p>
               </div>
             </div>
@@ -189,54 +288,55 @@ export default function EarningsPage() {
           </CardHeader>
           <CardContent className="space-y-6">
             {/* Last Payout */}
-            <div className="p-4 bg-green-50 dark:bg-green-950/20 rounded-lg border border-green-200 dark:border-green-900">
-              <div className="flex items-center gap-3">
-                <CheckCircle className="h-5 w-5 text-green-600" />
-                <div>
-                  <p className="font-medium text-green-800 dark:text-green-200">Last Payout Completed</p>
-                  <p className="text-sm text-green-600 dark:text-green-400">
-                    ${mockEarningsOverview.lastPayout.toFixed(2)} on {mockEarningsOverview.lastPayoutDate}
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            {/* Next Payout */}
-            <div className="p-4 bg-yellow-50 dark:bg-yellow-950/20 rounded-lg border border-yellow-200 dark:border-yellow-900">
-              <div className="flex items-center gap-3">
-                <Clock className="h-5 w-5 text-yellow-600" />
-                <div>
-                  <p className="font-medium text-yellow-800 dark:text-yellow-200">Pending Payout</p>
-                  <p className="text-sm text-yellow-600 dark:text-yellow-400">
-                    ${mockEarningsOverview.pendingPayout.toFixed(2)} • Processing by end of month
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            {/* Payment Methods */}
-            <div>
-              <h4 className="text-sm font-medium mb-3">Payment Methods</h4>
-              <div className="space-y-2">
-                {paymentMethods.map((method) => (
-                  <div key={method.id} className="flex items-center justify-between p-3 border rounded-lg">
-                    <div className="flex items-center gap-3">
-                      {method.type === 'bank' ? (
-                        <CreditCard className="h-5 w-5 text-muted-foreground" />
-                      ) : (
-                        <Wallet className="h-5 w-5 text-muted-foreground" />
-                      )}
-                      <span className="text-sm">{method.name}</span>
-                    </div>
-                    {method.isDefault && (
-                      <Badge variant="secondary" className="text-xs">Default</Badge>
-                    )}
+            {earningsData.lastPayout ? (
+              <div className="p-4 bg-green-50 dark:bg-green-950/20 rounded-lg border border-green-200 dark:border-green-900">
+                <div className="flex items-center gap-3">
+                  <CheckCircle className="h-5 w-5 text-green-600" />
+                  <div>
+                    <p className="font-medium text-green-800 dark:text-green-200">Last Payout Completed</p>
+                    <p className="text-sm text-green-600 dark:text-green-400">
+                      ${earningsData.lastPayout.amount.toFixed(2)} on {earningsData.lastPayout.date}
+                    </p>
                   </div>
-                ))}
+                </div>
               </div>
-              <Button variant="link" className="px-0 mt-2 text-sm" onClick={() => toast.info('Payment settings coming soon')}>
-                Manage payment methods
-              </Button>
+            ) : (
+              <div className="p-4 bg-secondary rounded-lg border">
+                <div className="flex items-center gap-3">
+                  <Clock className="h-5 w-5 text-muted-foreground" />
+                  <div>
+                    <p className="font-medium text-foreground">No Payouts Yet</p>
+                    <p className="text-sm text-muted-foreground">
+                      Your first payout will be processed once you reach the minimum threshold
+                    </p>
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {/* Pending Payout */}
+            {earningsData.pendingPayout > 0 && (
+              <div className="p-4 bg-yellow-50 dark:bg-yellow-950/20 rounded-lg border border-yellow-200 dark:border-yellow-900">
+                <div className="flex items-center gap-3">
+                  <Clock className="h-5 w-5 text-yellow-600" />
+                  <div>
+                    <p className="font-medium text-yellow-800 dark:text-yellow-200">Pending Payout</p>
+                    <p className="text-sm text-yellow-600 dark:text-yellow-400">
+                      ${earningsData.pendingPayout.toFixed(2)} • Processing by end of month
+                    </p>
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {/* Payment Methods Link */}
+            <div className="pt-2">
+              <Link href="/portal/payment-methods">
+                <Button variant="outline" className="w-full gap-2">
+                  <CreditCard className="h-4 w-4" />
+                  Manage Payment Methods
+                </Button>
+              </Link>
             </div>
           </CardContent>
         </Card>

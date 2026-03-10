@@ -88,6 +88,7 @@ export const REFERRAL_STATUS_MAP = {
   PROSPECT: { label: 'Prospect', color: 'bg-yellow-100 text-yellow-800' },
   DAMAGE_ASSESSMENT: { label: 'Damage Assessment', color: 'bg-orange-100 text-orange-800' },
   REPAIR_SCHEDULED: { label: 'Repair Scheduled', color: 'bg-purple-100 text-purple-800' },
+  REPAIRS_SCHEDULED: { label: 'Repair Scheduled', color: 'bg-purple-100 text-purple-800' },
   IN_PROGRESS: { label: 'In Progress', color: 'bg-indigo-100 text-indigo-800' },
   COMPLETED: { label: 'Completed', color: 'bg-green-100 text-green-800' },
   LOST: { label: 'Lost', color: 'bg-gray-100 text-gray-800' },

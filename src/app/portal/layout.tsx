@@ -12,7 +12,7 @@ import {
   Menu,
   ChevronDown,
   HelpCircle,
-  Settings,
+  CreditCard,
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
@@ -27,11 +27,12 @@ import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { useState } from 'react';
 import { SessionProvider } from 'next-auth/react';
 
-// Navigation items - Settings removed from sidebar
+// Navigation items
 const navItems = [
   { label: 'Dashboard', href: '/portal/dashboard', icon: LayoutDashboard },
   { label: 'Referrals', href: '/portal/referrals', icon: Users },
   { label: 'Earnings', href: '/portal/earnings', icon: DollarSign },
+  { label: 'Payment Methods', href: '/portal/payment-methods', icon: CreditCard },
 ];
 
 function PortalLayoutContent({ children }: { children: React.ReactNode }) {
