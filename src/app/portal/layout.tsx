@@ -2,6 +2,7 @@
 
 import { useSession, signOut } from 'next-auth/react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import {
   LayoutDashboard,
@@ -12,6 +13,7 @@ import {
   Menu,
   X,
   ChevronDown,
+  HelpCircle,
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
@@ -68,10 +70,19 @@ function PortalLayoutContent({ children }: { children: React.ReactNode }) {
               <SheetContent side="left" className="w-64 p-0">
                 <div className="flex flex-col h-full">
                   <div className="p-4 border-b border-border">
-                    <Link href="/" className="text-xl font-bold text-primary">
-                      Texas Dent Company
+                    <Link href="/" className="flex items-center gap-2">
+                      <Image
+                        src="/images/logo/Texas-Dent-Logo-Updated.png"
+                        alt="Texas Dent Company Logo"
+                        width={40}
+                        height={40}
+                        className="object-contain"
+                      />
+                      <span className="text-lg font-bold text-primary">
+                        Texas Dent Company
+                      </span>
                     </Link>
-                    <p className="text-xs text-muted-foreground">Partner Portal</p>
+                    <p className="text-xs text-muted-foreground mt-1">Partner Portal</p>
                   </div>
                   <nav className="flex-1 p-4 space-y-2">
                     {navItems.map((item) => (
@@ -95,6 +106,13 @@ function PortalLayoutContent({ children }: { children: React.ReactNode }) {
             </Sheet>
 
             <Link href="/" className="flex items-center gap-2">
+              <Image
+                src="/images/logo/Texas-Dent-Logo-Updated.png"
+                alt="Texas Dent Company Logo"
+                width={36}
+                height={36}
+                className="object-contain"
+              />
               <span className="text-xl font-bold text-primary hidden sm:block">
                 Texas Dent Company
               </span>
@@ -134,6 +152,13 @@ function PortalLayoutContent({ children }: { children: React.ReactNode }) {
                 <Settings className="mr-2 h-4 w-4" />
                 Settings
               </DropdownMenuItem>
+              <DropdownMenuItem
+                className="cursor-pointer"
+                onClick={() => window.open('https://support.razorsharpnetworks.com', '_blank')}
+              >
+                <HelpCircle className="mr-2 h-4 w-4" />
+                Contact Support
+              </DropdownMenuItem>
               <DropdownMenuSeparator />
               <DropdownMenuItem
                 className="cursor-pointer text-destructive focus:text-destructive"
@@ -150,6 +175,20 @@ function PortalLayoutContent({ children }: { children: React.ReactNode }) {
       <div className="flex">
         {/* Desktop Sidebar */}
         <aside className="hidden lg:block w-64 min-h-[calc(100vh-4rem)] bg-background border-r border-border">
+          <div className="p-4 border-b border-border">
+            <Link href="/" className="flex items-center gap-2">
+              <Image
+                src="/images/logo/Texas-Dent-Logo-Updated.png"
+                alt="Texas Dent Company Logo"
+                width={32}
+                height={32}
+                className="object-contain"
+              />
+              <span className="text-sm font-semibold text-foreground">
+                Partner Portal
+              </span>
+            </Link>
+          </div>
           <nav className="p-4 space-y-2">
             {navItems.map((item) => (
               <Link

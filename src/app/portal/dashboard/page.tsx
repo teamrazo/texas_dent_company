@@ -2,7 +2,7 @@
 
 import { useSession } from 'next-auth/react';
 import Link from 'next/link';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import {
   Users,
   UserPlus,
@@ -19,12 +19,17 @@ import {
   Share2,
   ChevronDown,
   ChevronUp,
+  Link2,
+  FolderOpen,
+  Check,
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Progress } from '@/components/ui/progress';
 import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
 import { toast } from 'sonner';
 import { REFERRAL_STATUS_MAP } from '@/lib/constants';
 
@@ -194,16 +199,34 @@ We are proud to partner with [Church Name] to help local families restore more t
 
 export default function PartnerDashboardPage() {
   const { data: session } = useSession();
-  const affiliateLink = `https://www.texasdentcompany.com/?ref=${session?.user?.partnerId || 'partner123'}`;
-  const [expandedResource, setExpandedResource] = useState<string | null>(null);
+  const [affiliateId, setAffiliateId] = useState('');
+  const [generatedLink, setGeneratedLink] = useState('');
+  const [copied, setCopied] = useState(false);
+
+  // Generate affiliate link when ID is entered
+  useEffect(() => {
+    if (affiliateId.trim()) {
+      setGeneratedLink(`https://texas-dent-company.vercel.app/?ref=${affiliateId.trim()}`);
+    } else {
+      setGeneratedLink('');
+    }
+  }, [affiliateId]);
 
   const copyAffiliateLink = () => {
-    navigator.clipboard.writeText(affiliateLink);
-    toast.success('Affiliate link copied to clipboard!');
+    if (generatedLink) {
+      navigator.clipboard.writeText(generatedLink);
+      setCopied(true);
+      toast.success('Affiliate link copied to clipboard!');
+      setTimeout(() => setCopied(false), 2000);
+    }
   };
 
   const copyTemplate = (content: string) => {
-    const personalizedContent = content.replace(/\[YourLink\]/g, affiliateLink);
+    if (!generatedLink) {
+      toast.error('Please generate your affiliate link first!');
+      return;
+    }
+    const personalizedContent = content.replace(/\[YourLink\]/g, generatedLink);
     navigator.clipboard.writeText(personalizedContent);
     toast.success('Template copied with your affiliate link!');
   };
@@ -232,30 +255,76 @@ export default function PartnerDashboardPage() {
         <p className="text-muted-foreground mt-1">Here is an overview of your referral activity.</p>
       </div>
 
-      {/* Affiliate Link Card */}
-      <Card className="border-primary/20 bg-primary/5">
+      {/* Affiliate Link Generator Card */}
+      <Card className="border-primary/20 bg-gradient-to-br from-primary/5 to-primary/10">
         <CardHeader className="pb-2">
-          <CardTitle className="text-lg">Your Affiliate Link</CardTitle>
-          <CardDescription>Share this link to earn commissions on referrals</CardDescription>
-        </CardHeader>
-        <CardContent>
-          <div className="flex flex-col sm:flex-row gap-3">
-            <div className="flex-1 bg-background rounded-lg border border-border px-4 py-2 text-sm font-mono truncate">
-              {affiliateLink}
-            </div>
-            <div className="flex gap-2">
-              <Button onClick={copyAffiliateLink} variant="outline" size="sm">
-                <Copy className="h-4 w-4 mr-2" />
-                Copy
-              </Button>
-              <a href={affiliateLink} target="_blank" rel="noopener noreferrer">
-                <Button variant="default" size="sm">
-                  <ExternalLink className="h-4 w-4 mr-2" />
-                  Preview
-                </Button>
-              </a>
-            </div>
+          <div className="flex items-center gap-2">
+            <Link2 className="h-5 w-5 text-primary" />
+            <CardTitle className="text-lg">Affiliate Link Generator</CardTitle>
           </div>
+          <CardDescription className="text-sm leading-relaxed">
+            Check your email and text messages for your unique Affiliate ID. Use this ID to generate trackable referral links to the Texas Dent Company website.
+          </CardDescription>
+        </CardHeader>
+        <CardContent className="space-y-4">
+          {/* Affiliate ID Input */}
+          <div className="space-y-2">
+            <Label htmlFor="affiliate-id" className="text-sm font-medium">
+              Enter Your Affiliate ID
+            </Label>
+            <Input
+              id="affiliate-id"
+              type="text"
+              placeholder="e.g., partner123 or your-unique-id"
+              value={affiliateId}
+              onChange={(e) => setAffiliateId(e.target.value)}
+              className="max-w-md bg-background"
+            />
+          </div>
+
+          {/* Generated Link Display */}
+          {generatedLink && (
+            <div className="space-y-2 animate-in fade-in slide-in-from-top-2 duration-300">
+              <Label className="text-sm font-medium text-primary">Your Generated Affiliate Link</Label>
+              <div className="flex flex-col sm:flex-row gap-3">
+                <div className="flex-1 bg-background rounded-lg border border-primary/30 px-4 py-3 text-sm font-mono truncate shadow-sm">
+                  {generatedLink}
+                </div>
+                <div className="flex gap-2">
+                  <Button 
+                    onClick={copyAffiliateLink} 
+                    variant={copied ? "default" : "outline"} 
+                    size="sm"
+                    className="min-w-[100px] transition-all"
+                  >
+                    {copied ? (
+                      <>
+                        <Check className="h-4 w-4 mr-2" />
+                        Copied!
+                      </>
+                    ) : (
+                      <>
+                        <Copy className="h-4 w-4 mr-2" />
+                        Copy
+                      </>
+                    )}
+                  </Button>
+                  <a href={generatedLink} target="_blank" rel="noopener noreferrer">
+                    <Button variant="default" size="sm">
+                      <ExternalLink className="h-4 w-4 mr-2" />
+                      Preview
+                    </Button>
+                  </a>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {!generatedLink && (
+            <p className="text-xs text-muted-foreground italic">
+              Enter your Affiliate ID above to generate your personalized tracking link.
+            </p>
+          )}
         </CardContent>
       </Card>
 
@@ -321,23 +390,41 @@ export default function PartnerDashboardPage() {
       {/* Marketing Resources */}
       <Card>
         <CardHeader>
-          <CardTitle>Marketing Resources</CardTitle>
-          <CardDescription>Ready-to-use templates for sharing with your network. Click to copy with your affiliate link included!</CardDescription>
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+            <div>
+              <CardTitle>Marketing Resources</CardTitle>
+              <CardDescription>Ready-to-use templates for sharing with your network. Click to copy with your affiliate link included!</CardDescription>
+            </div>
+            <a 
+              href="https://drive.google.com/drive/folders/1pqtiawo_EJbhtqdbwNr4nvtpV87n7EMd?usp=sharing" 
+              target="_blank" 
+              rel="noopener noreferrer"
+            >
+              <Button variant="outline" className="gap-2 border-primary/30 hover:bg-primary/5">
+                <FolderOpen className="h-4 w-4 text-primary" />
+                <span>Partner Media Pack</span>
+                <ExternalLink className="h-3 w-3 text-muted-foreground" />
+              </Button>
+            </a>
+          </div>
         </CardHeader>
         <CardContent>
           <Tabs defaultValue="text" className="w-full">
-            <TabsList className="grid w-full grid-cols-3">
-              <TabsTrigger value="text" className="flex items-center gap-2">
+            <TabsList className="grid w-full grid-cols-3 mb-4">
+              <TabsTrigger value="text" className="flex items-center gap-2 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">
                 <MessageSquare className="h-4 w-4" />
-                Text Messages
+                <span className="hidden sm:inline">Text Messages</span>
+                <span className="sm:hidden">Text</span>
               </TabsTrigger>
-              <TabsTrigger value="email" className="flex items-center gap-2">
+              <TabsTrigger value="email" className="flex items-center gap-2 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">
                 <Mail className="h-4 w-4" />
-                Emails
+                <span className="hidden sm:inline">Emails</span>
+                <span className="sm:hidden">Email</span>
               </TabsTrigger>
-              <TabsTrigger value="social" className="flex items-center gap-2">
+              <TabsTrigger value="social" className="flex items-center gap-2 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">
                 <Share2 className="h-4 w-4" />
-                Social Media
+                <span className="hidden sm:inline">Social Media</span>
+                <span className="sm:hidden">Social</span>
               </TabsTrigger>
             </TabsList>
             
@@ -506,22 +593,6 @@ export default function PartnerDashboardPage() {
               </div>
             ))}
           </div>
-        </CardContent>
-      </Card>
-
-      {/* Help Card */}
-      <Card>
-        <CardHeader>
-          <CardTitle className="text-lg">Need Help?</CardTitle>
-          <CardDescription>We are here to support you</CardDescription>
-        </CardHeader>
-        <CardContent>
-          <p className="text-sm text-muted-foreground mb-4">
-            Questions about the program or need assistance? Reach out to our support team.
-          </p>
-          <a href="https://support.razorsharpnetworks.com" target="_blank" rel="noopener noreferrer">
-            <Button variant="outline">Contact Support</Button>
-          </a>
         </CardContent>
       </Card>
     </div>
