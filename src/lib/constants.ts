@@ -70,6 +70,7 @@ export const NAV_LINKS = [
   { label: 'About Us', href: '/about', children: [
     { label: 'Our Story', href: '/about' },
     { label: 'Our Team', href: '/team' },
+    { label: 'Contact', href: '/contact' },
   ]},
   { label: 'Locations', href: '/frisco', children: [
     { label: 'Frisco (Home Office)', href: '/frisco' },
@@ -78,7 +79,6 @@ export const NAV_LINKS = [
   { label: 'FAQs', href: '/faqs' },
   { label: 'Blog', href: '/blog' },
   { label: 'Partner Program', href: '/partner-program' },
-  { label: 'Contact', href: '/contact' },
 ];
 
 // Referral Status Mapping (GHL Pipeline Stages)
