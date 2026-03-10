@@ -8,12 +8,11 @@ import {
   LayoutDashboard,
   Users,
   DollarSign,
-  Settings,
   LogOut,
   Menu,
-  X,
   ChevronDown,
   HelpCircle,
+  Settings,
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
@@ -28,11 +27,11 @@ import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { useState } from 'react';
 import { SessionProvider } from 'next-auth/react';
 
+// Navigation items - Settings removed from sidebar
 const navItems = [
   { label: 'Dashboard', href: '/portal/dashboard', icon: LayoutDashboard },
   { label: 'Referrals', href: '/portal/referrals', icon: Users },
   { label: 'Earnings', href: '/portal/earnings', icon: DollarSign },
-  { label: 'Settings', href: '/portal/settings', icon: Settings },
 ];
 
 function PortalLayoutContent({ children }: { children: React.ReactNode }) {
@@ -78,11 +77,13 @@ function PortalLayoutContent({ children }: { children: React.ReactNode }) {
                         height={40}
                         className="object-contain"
                       />
-                      <span className="text-lg font-bold text-primary">
-                        Texas Dent Company
-                      </span>
+                      <div>
+                        <span className="text-lg font-bold text-primary block">
+                          Texas Dent Company
+                        </span>
+                        <span className="text-xs text-muted-foreground">Partner Portal</span>
+                      </div>
                     </Link>
-                    <p className="text-xs text-muted-foreground mt-1">Partner Portal</p>
                   </div>
                   <nav className="flex-1 p-4 space-y-2">
                     {navItems.map((item) => (
@@ -105,7 +106,7 @@ function PortalLayoutContent({ children }: { children: React.ReactNode }) {
               </SheetContent>
             </Sheet>
 
-            <Link href="/" className="flex items-center gap-2">
+            <Link href="/portal/dashboard" className="flex items-center gap-2">
               <Image
                 src="/images/logo/Texas-Dent-Logo-Updated.png"
                 alt="Texas Dent Company Logo"
@@ -114,13 +115,10 @@ function PortalLayoutContent({ children }: { children: React.ReactNode }) {
                 className="object-contain"
               />
               <span className="text-xl font-bold text-primary hidden sm:block">
-                Texas Dent Company
+                Partner Portal
               </span>
               <span className="text-xl font-bold text-primary sm:hidden">TDC</span>
             </Link>
-            <span className="text-xs bg-primary/10 text-primary px-2 py-1 rounded hidden sm:block">
-              Partner Portal
-            </span>
           </div>
 
           {/* User Menu */}
@@ -147,13 +145,6 @@ function PortalLayoutContent({ children }: { children: React.ReactNode }) {
               <DropdownMenuSeparator />
               <DropdownMenuItem
                 className="cursor-pointer"
-                onClick={() => window.location.href = '/portal/settings'}
-              >
-                <Settings className="mr-2 h-4 w-4" />
-                Settings
-              </DropdownMenuItem>
-              <DropdownMenuItem
-                className="cursor-pointer"
                 onClick={() => window.open('https://support.razorsharpnetworks.com', '_blank')}
               >
                 <HelpCircle className="mr-2 h-4 w-4" />
@@ -175,20 +166,6 @@ function PortalLayoutContent({ children }: { children: React.ReactNode }) {
       <div className="flex">
         {/* Desktop Sidebar */}
         <aside className="hidden lg:block w-64 min-h-[calc(100vh-4rem)] bg-background border-r border-border">
-          <div className="p-4 border-b border-border">
-            <Link href="/" className="flex items-center gap-2">
-              <Image
-                src="/images/logo/Texas-Dent-Logo-Updated.png"
-                alt="Texas Dent Company Logo"
-                width={32}
-                height={32}
-                className="object-contain"
-              />
-              <span className="text-sm font-semibold text-foreground">
-                Partner Portal
-              </span>
-            </Link>
-          </div>
           <nav className="p-4 space-y-2">
             {navItems.map((item) => (
               <Link

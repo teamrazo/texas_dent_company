@@ -22,6 +22,7 @@ import {
   Link2,
   FolderOpen,
   Check,
+  Globe,
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
@@ -30,6 +31,7 @@ import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
+import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { toast } from 'sonner';
 import { REFERRAL_STATUS_MAP } from '@/lib/constants';
 
@@ -52,6 +54,12 @@ const mockRecentReferrals = [
   { id: '2', name: 'Sarah M.', status: 'LEAD', date: '2026-03-04' },
   { id: '3', name: 'Michael R.', status: 'COMPLETED', date: '2026-03-01' },
   { id: '4', name: 'Emily K.', status: 'DAMAGE_ASSESSMENT', date: '2026-02-28' },
+];
+
+// Domain options for affiliate links
+const domainOptions = [
+  { value: 'https://hail.texasdentcompany.com', label: 'hail.texasdentcompany.com', description: 'Hail damage landing page' },
+  { value: 'https://texasdentcompany.com', label: 'texasdentcompany.com', description: 'Main website' },
 ];
 
 // Outreach Templates
@@ -200,17 +208,19 @@ We are proud to partner with [Church Name] to help local families restore more t
 export default function PartnerDashboardPage() {
   const { data: session } = useSession();
   const [affiliateId, setAffiliateId] = useState('');
+  const [selectedDomain, setSelectedDomain] = useState(domainOptions[0].value);
   const [generatedLink, setGeneratedLink] = useState('');
   const [copied, setCopied] = useState(false);
+  const [activeTab, setActiveTab] = useState('text');
 
-  // Generate affiliate link when ID is entered
+  // Generate affiliate link when ID or domain changes
   useEffect(() => {
     if (affiliateId.trim()) {
-      setGeneratedLink(`https://texas-dent-company.vercel.app/?ref=${affiliateId.trim()}`);
+      setGeneratedLink(`${selectedDomain}/?ref=${affiliateId.trim()}`);
     } else {
       setGeneratedLink('');
     }
-  }, [affiliateId]);
+  }, [affiliateId, selectedDomain]);
 
   const copyAffiliateLink = () => {
     if (generatedLink) {
@@ -267,6 +277,36 @@ export default function PartnerDashboardPage() {
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">
+          {/* Domain Selection */}
+          <div className="space-y-3">
+            <Label className="text-sm font-medium flex items-center gap-2">
+              <Globe className="h-4 w-4 text-primary" />
+              Select Destination Website
+            </Label>
+            <RadioGroup
+              value={selectedDomain}
+              onValueChange={setSelectedDomain}
+              className="grid grid-cols-1 sm:grid-cols-2 gap-3"
+            >
+              {domainOptions.map((option) => (
+                <div key={option.value} className="relative">
+                  <RadioGroupItem
+                    value={option.value}
+                    id={option.value}
+                    className="peer sr-only"
+                  />
+                  <Label
+                    htmlFor={option.value}
+                    className="flex flex-col gap-1 rounded-lg border-2 border-muted bg-background p-4 cursor-pointer transition-all hover:bg-secondary/50 peer-data-[state=checked]:border-primary peer-data-[state=checked]:bg-primary/5"
+                  >
+                    <span className="font-medium text-sm">{option.label}</span>
+                    <span className="text-xs text-muted-foreground">{option.description}</span>
+                  </Label>
+                </div>
+              ))}
+            </RadioGroup>
+          </div>
+
           {/* Affiliate ID Input */}
           <div className="space-y-2">
             <Label htmlFor="affiliate-id" className="text-sm font-medium">
@@ -322,7 +362,7 @@ export default function PartnerDashboardPage() {
 
           {!generatedLink && (
             <p className="text-xs text-muted-foreground italic">
-              Enter your Affiliate ID above to generate your personalized tracking link.
+              Select a website and enter your Affiliate ID above to generate your personalized tracking link.
             </p>
           )}
         </CardContent>
@@ -387,6 +427,32 @@ export default function PartnerDashboardPage() {
         </Card>
       </div>
 
+      {/* Quick Tips - Moved after Stats Grid */}
+      <Card>
+        <CardHeader>
+          <CardTitle>Quick Tips for Success</CardTitle>
+          <CardDescription>Maximize your earnings with these proven strategies</CardDescription>
+        </CardHeader>
+        <CardContent>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {[
+              { tip: 'Start with people you know', desc: 'Text friends, family, or coworkers who had hail damage.' },
+              { tip: 'Share your story', desc: 'Tell them how fast or easy your repair was - people trust real stories.' },
+              { tip: 'Post once a week', desc: 'Stay consistent - it only takes a minute to share.' },
+              { tip: 'Follow the 1-2-1 rhythm', desc: 'Intro, reminder after 2-3 days, then one follow-up if needed.' },
+            ].map((item, index) => (
+              <div key={index} className="flex items-start gap-3 p-3 bg-secondary/50 rounded-lg">
+                <CheckCircle className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
+                <div>
+                  <p className="font-medium text-foreground text-sm">{item.tip}</p>
+                  <p className="text-xs text-muted-foreground">{item.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </CardContent>
+      </Card>
+
       {/* Marketing Resources */}
       <Card>
         <CardHeader>
@@ -409,26 +475,35 @@ export default function PartnerDashboardPage() {
           </div>
         </CardHeader>
         <CardContent>
-          <Tabs defaultValue="text" className="w-full">
-            <TabsList className="grid w-full grid-cols-3 mb-4">
-              <TabsTrigger value="text" className="flex items-center gap-2 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">
+          <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
+            <TabsList className="grid w-full grid-cols-3 mb-4 bg-muted/50">
+              <TabsTrigger 
+                value="text" 
+                className="flex items-center gap-2 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground transition-all"
+              >
                 <MessageSquare className="h-4 w-4" />
                 <span className="hidden sm:inline">Text Messages</span>
                 <span className="sm:hidden">Text</span>
               </TabsTrigger>
-              <TabsTrigger value="email" className="flex items-center gap-2 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">
+              <TabsTrigger 
+                value="email" 
+                className="flex items-center gap-2 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground transition-all"
+              >
                 <Mail className="h-4 w-4" />
                 <span className="hidden sm:inline">Emails</span>
                 <span className="sm:hidden">Email</span>
               </TabsTrigger>
-              <TabsTrigger value="social" className="flex items-center gap-2 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">
+              <TabsTrigger 
+                value="social" 
+                className="flex items-center gap-2 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground transition-all"
+              >
                 <Share2 className="h-4 w-4" />
                 <span className="hidden sm:inline">Social Media</span>
                 <span className="sm:hidden">Social</span>
               </TabsTrigger>
             </TabsList>
             
-            <TabsContent value="text" className="mt-4 space-y-3">
+            <TabsContent value="text" className="mt-4 space-y-3 animate-in fade-in-50 duration-200">
               {textTemplates.map((template, index) => (
                 <div key={index} className="border rounded-lg p-4 hover:bg-secondary/50 transition-colors">
                   <div className="flex items-center justify-between mb-2">
@@ -447,7 +522,7 @@ export default function PartnerDashboardPage() {
               ))}
             </TabsContent>
             
-            <TabsContent value="email" className="mt-4 space-y-3">
+            <TabsContent value="email" className="mt-4 space-y-3 animate-in fade-in-50 duration-200">
               {emailTemplates.map((template, index) => (
                 <div key={index} className="border rounded-lg p-4 hover:bg-secondary/50 transition-colors">
                   <div className="flex items-center justify-between mb-2">
@@ -469,7 +544,7 @@ export default function PartnerDashboardPage() {
               ))}
             </TabsContent>
             
-            <TabsContent value="social" className="mt-4 space-y-3">
+            <TabsContent value="social" className="mt-4 space-y-3 animate-in fade-in-50 duration-200">
               {socialPosts.map((post, index) => (
                 <div key={index} className="border rounded-lg p-4 hover:bg-secondary/50 transition-colors">
                   <div className="flex items-center justify-between mb-2">
@@ -566,32 +641,6 @@ export default function PartnerDashboardPage() {
                 </div>
               );
             })}
-          </div>
-        </CardContent>
-      </Card>
-
-      {/* Quick Tips */}
-      <Card>
-        <CardHeader>
-          <CardTitle>Quick Tips for Success</CardTitle>
-          <CardDescription>Maximize your earnings with these proven strategies</CardDescription>
-        </CardHeader>
-        <CardContent>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {[
-              { tip: 'Start with people you know', desc: 'Text friends, family, or coworkers who had hail damage.' },
-              { tip: 'Share your story', desc: 'Tell them how fast or easy your repair was - people trust real stories.' },
-              { tip: 'Post once a week', desc: 'Stay consistent - it only takes a minute to share.' },
-              { tip: 'Follow the 1-2-1 rhythm', desc: 'Intro, reminder after 2-3 days, then one follow-up if needed.' },
-            ].map((item, index) => (
-              <div key={index} className="flex items-start gap-3 p-3 bg-secondary/50 rounded-lg">
-                <CheckCircle className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
-                <div>
-                  <p className="font-medium text-foreground text-sm">{item.tip}</p>
-                  <p className="text-xs text-muted-foreground">{item.desc}</p>
-                </div>
-              </div>
-            ))}
           </div>
         </CardContent>
       </Card>
