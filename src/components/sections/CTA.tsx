@@ -1,7 +1,6 @@
 import Link from 'next/link';
-import { Phone, ArrowRight } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { COMPANY } from '@/lib/constants';
 
 interface CTAProps {
   title?: string;
@@ -22,27 +21,17 @@ export function CTA({
         <div className="max-w-3xl mx-auto text-center space-y-6">
           <h2 className="heading-2 text-primary-foreground">{title}</h2>
           <p className="body-large text-primary-foreground/90">{description}</p>
-          <div className="flex flex-col sm:flex-row justify-center gap-4 pt-4">
+          <div className="flex justify-center pt-4">
             <Link href={ctaLink}>
               <Button
                 size="lg"
                 variant="secondary"
-                className="w-full sm:w-auto text-lg px-8"
+                className="w-full sm:w-auto text-lg px-8 uppercase tracking-wide"
               >
                 {ctaText}
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
             </Link>
-            <a href={`tel:${COMPANY.phone}`}>
-              <Button
-                size="lg"
-                variant="outline"
-                className="w-full sm:w-auto text-lg px-8 bg-transparent border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary"
-              >
-                <Phone className="h-5 w-5 mr-2" />
-                {COMPANY.phone}
-              </Button>
-            </a>
           </div>
         </div>
       </div>

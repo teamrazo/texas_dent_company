@@ -1,9 +1,8 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
-import { ArrowRight, Phone } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
-import { COMPANY } from '@/lib/constants';
 
 export const metadata: Metadata = {
   title: 'FAQs | Paintless Dent Repair Questions | Texas Dent Company',
@@ -252,18 +251,12 @@ export default function FAQsPage() {
               Our team is here to help. Contact us for personalized guidance on your 
               specific situation.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex justify-center">
               <Link href="/contact">
-                <Button size="lg" className="text-lg px-8">
+                <Button size="lg" variant="glow" className="text-lg px-8 uppercase tracking-wide">
                   Contact Us <ArrowRight className="h-5 w-5 ml-2" />
                 </Button>
               </Link>
-              <a href={`tel:${COMPANY.phone}`}>
-                <Button variant="outline" size="lg" className="text-lg px-8">
-                  <Phone className="h-5 w-5 mr-2" />
-                  {COMPANY.phone}
-                </Button>
-              </a>
             </div>
           </div>
         </div>

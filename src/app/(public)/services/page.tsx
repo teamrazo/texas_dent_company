@@ -3,12 +3,11 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { 
   CheckCircle, Shield, Clock, Wrench, FileText, Car, 
-  Sparkles, Search, Star, ArrowRight, Phone 
+  Sparkles, Search, Star, ArrowRight 
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { BeforeAfterGallery } from '@/components/sections/BeforeAfterGallery';
-import { COMPANY } from '@/lib/constants';
 
 export const metadata: Metadata = {
   title: 'Services | Professional Hail Damage Repair | Texas Dent Company',
@@ -131,18 +130,12 @@ export default function ServicesPage() {
               organization. We compete on quality of repair, professional execution, 
               customer experience, and claims knowledge - not price or shortcuts.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex justify-center">
               <Link href="/contact">
-                <button className="inline-flex items-center gap-2 px-8 py-4 bg-[#BD3728] text-white font-bold rounded hover:bg-[#a32f22] transition-colors uppercase tracking-wide">
+                <button className="cta-glow inline-flex items-center gap-2 px-8 py-4 bg-[#BD3728] text-white font-bold rounded uppercase tracking-wide">
                   Schedule Inspection <ArrowRight className="h-5 w-5" />
                 </button>
               </Link>
-              <a href={`tel:${COMPANY.phone}`}>
-                <button className="inline-flex items-center gap-2 px-8 py-4 bg-white text-[#BD3728] font-bold rounded hover:bg-gray-100 transition-colors">
-                  <Phone className="h-5 w-5" />
-                  {COMPANY.phone}
-                </button>
-              </a>
             </div>
           </div>
         </div>

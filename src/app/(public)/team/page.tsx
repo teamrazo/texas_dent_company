@@ -2,109 +2,24 @@ import { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Mail, Phone, ArrowRight } from 'lucide-react';
-import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { CTA } from '@/components/sections';
+import { teamMembers } from '@/lib/team-data';
 
 export const metadata: Metadata = {
   title: 'Our Team | Texas Dent Company',
   description: 'Meet the dedicated professionals at Texas Dent Company. Our team of experienced PDR technicians and claims specialists are committed to delivering exceptional hail damage repair.',
 };
 
-const teamMembers = [
-  {
-    name: 'Cody Wilson',
-    role: 'Owner',
-    slug: 'cody-wilson',
-    image: '/images/team/cody-wilson.jpg',
-    phone: '469-966-7937',
-    email: 'cwilson@texasdentcompany.com',
-    shortBio: 'Texas native and proud father of Easton and Remi. Co-founded Texas Dent Company in 2017.',
-  },
-  {
-    name: 'Kailey Wilson',
-    role: 'Owner',
-    slug: 'kailey-wilson',
-    image: '/images/team/kailey-wilson.jpg',
-    phone: '469-883-4084',
-    email: 'kailey@texasdentcompany.com',
-    shortBio: 'Mother of two and Texas native. Passionate about storm restoration and helping families recover.',
-  },
-  {
-    name: 'Fritz Torres',
-    role: 'Auto Hail Claim Specialist',
-    slug: 'fritz-torres',
-    image: '/images/team/fritz-torres.jpg',
-    phone: '469-888-8635',
-    email: 'ftorres@texasdentcompany.com',
-    shortBio: 'God-fearing Christian with 20+ years in customer service and 10+ years in the PDR industry.',
-  },
-  {
-    name: 'Willian Soares',
-    role: 'Auto Hail Claim Specialist',
-    slug: 'willian-soares',
-    image: '/images/team/willian-soares.jpg',
-    phone: '469-888-8674',
-    email: 'wsoares@texasdentcompany.com',
-    shortBio: 'Technician with passion for learning from industry experts. Fluent in English, Spanish, and Portuguese.',
-  },
-  {
-    name: 'Roy Harbin',
-    role: 'Auto Hail Claim Specialist',
-    slug: 'roy-harbin',
-    image: '/images/team/roy-harbin.jpg',
-    phone: '432-535-4048',
-    email: 'roy@texasdentcompany.com',
-    shortBio: 'Extensive experience in customer service and PDR auto repair across Texas.',
-  },
-  {
-    name: 'Nicole Muro',
-    role: 'Administrative Assistant',
-    slug: 'nicole-muro',
-    image: '/images/team/nicole-muro.jpg',
-    phone: '469-966-7937',
-    email: 'estimates@texasdentcompany.com',
-    shortBio: 'Specializes in insurance-claim processes and customer support.',
-  },
-  {
-    name: 'Kelly Flanery',
-    role: 'Shop Coordinator',
-    slug: 'kelly-flanery',
-    image: '/images/team/kelly-flanery.jpg',
-    phone: '469-966-7937',
-    email: 'estimates@texasdentcompany.com',
-    shortBio: 'Former baseball player turned coordinator. Ensures smooth shop operations.',
-  },
-  {
-    name: 'Nelson Hsaio',
-    role: 'Shop Coordinator & Claims Specialist',
-    slug: 'nelson-hsaio',
-    image: '/images/team/nelson-hsaio.jpg',
-    phone: '469-966-7937',
-    email: 'estimates@texasdentcompany.com',
-    shortBio: 'Six+ years in customer service. Dedicated to excellent client experiences.',
-  },
-  {
-    name: 'Tim Toshbekov',
-    role: 'Shop Coordinator and R&I Specialist',
-    slug: 'tim-toshbekov',
-    image: '/images/team/tim-toshbekov.jpg',
-    phone: '469-966-7937',
-    email: 'estimates@texasdentcompany.com',
-    shortBio: 'Four+ years in automotive repair. Expert in remove and install procedures.',
-  },
-  {
-    name: 'Laurie Denton',
-    role: 'Administrative Coordinator',
-    slug: 'laurie-denton',
-    image: '/images/team/laurie-denton.jpg',
-    phone: '469-966-7937',
-    email: 'estimates@texasdentcompany.com',
-    shortBio: 'Sets high standards through customer service expertise and attention to detail.',
-  },
-];
-
 export default function TeamPage() {
+  // Separate leadership (first 2) from rest of team
+  const leadership = teamMembers.slice(0, 2);
+  const claimsSpecialists = teamMembers.filter(m => m.role.includes('Claim Specialist')).slice(0, 3);
+  const operationsTeam = teamMembers.filter(m => 
+    !m.role.includes('Owner') && 
+    !claimsSpecialists.some(cs => cs.slug === m.slug)
+  );
+
   return (
     <>
       {/* Hero Section */}
@@ -128,39 +43,41 @@ export default function TeamPage() {
           <h2 className="heading-2 text-foreground mb-12 text-center">Leadership</h2>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto mb-16">
-            {teamMembers.slice(0, 2).map((member) => (
-              <Card key={member.slug} className="overflow-hidden hover:shadow-lg transition-shadow">
-                <div className="aspect-[4/3] relative">
-                  <Image
-                    src={member.image}
-                    alt={member.name}
-                    fill
-                    className="object-cover object-top"
-                  />
-                </div>
-                <CardContent className="p-6">
-                  <h3 className="heading-3 text-foreground mb-1">{member.name}</h3>
-                  <p className="text-primary font-semibold mb-3">{member.role}</p>
-                  <p className="text-muted-foreground text-sm mb-4">{member.shortBio}</p>
-                  
-                  <div className="space-y-2 mb-4">
-                    <a 
-                      href={`tel:${member.phone.replace(/-/g, '')}`}
-                      className="flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors"
-                    >
-                      <Phone className="h-4 w-4" />
-                      {member.phone}
-                    </a>
-                    <a 
-                      href={`mailto:${member.email}`}
-                      className="flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors"
-                    >
-                      <Mail className="h-4 w-4" />
-                      {member.email}
-                    </a>
+            {leadership.map((member) => (
+              <Link key={member.slug} href={`/${member.slug}`}>
+                <Card className="overflow-hidden hover:shadow-xl transition-all duration-300 cursor-pointer group">
+                  <div className="aspect-[4/3] relative overflow-hidden">
+                    <Image
+                      src={member.image}
+                      alt={member.name}
+                      fill
+                      className="object-cover object-top group-hover:scale-105 transition-transform duration-300"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                    <div className="absolute bottom-4 left-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      <span className="inline-flex items-center gap-1 text-white text-sm font-medium">
+                        View Profile <ArrowRight className="h-4 w-4" />
+                      </span>
+                    </div>
                   </div>
-                </CardContent>
-              </Card>
+                  <CardContent className="p-6">
+                    <h3 className="heading-3 text-foreground mb-1">{member.name}</h3>
+                    <p className="text-primary font-semibold mb-3">{member.role}</p>
+                    <p className="text-muted-foreground text-sm mb-4">{member.shortBio}</p>
+                    
+                    <div className="space-y-2">
+                      <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                        <Phone className="h-4 w-4" />
+                        {member.phone}
+                      </div>
+                      <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                        <Mail className="h-4 w-4" />
+                        {member.email}
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              </Link>
             ))}
           </div>
 
@@ -168,22 +85,30 @@ export default function TeamPage() {
           <h2 className="heading-2 text-foreground mb-12 text-center">Claims Specialists</h2>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
-            {teamMembers.slice(2, 5).map((member) => (
-              <Card key={member.slug} className="overflow-hidden hover:shadow-lg transition-shadow">
-                <div className="aspect-square relative">
-                  <Image
-                    src={member.image}
-                    alt={member.name}
-                    fill
-                    className="object-cover object-top"
-                  />
-                </div>
-                <CardContent className="p-5">
-                  <h3 className="heading-4 text-foreground mb-1">{member.name}</h3>
-                  <p className="text-primary font-medium text-sm mb-3">{member.role}</p>
-                  <p className="text-muted-foreground text-sm mb-4">{member.shortBio}</p>
-                </CardContent>
-              </Card>
+            {claimsSpecialists.map((member) => (
+              <Link key={member.slug} href={`/${member.slug}`}>
+                <Card className="overflow-hidden hover:shadow-xl transition-all duration-300 cursor-pointer group h-full">
+                  <div className="aspect-square relative overflow-hidden">
+                    <Image
+                      src={member.image}
+                      alt={member.name}
+                      fill
+                      className="object-cover object-top group-hover:scale-105 transition-transform duration-300"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                    <div className="absolute bottom-4 left-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      <span className="inline-flex items-center gap-1 text-white text-sm font-medium">
+                        View Profile <ArrowRight className="h-4 w-4" />
+                      </span>
+                    </div>
+                  </div>
+                  <CardContent className="p-5">
+                    <h3 className="heading-4 text-foreground mb-1">{member.name}</h3>
+                    <p className="text-primary font-medium text-sm mb-3">{member.role}</p>
+                    <p className="text-muted-foreground text-sm">{member.shortBio}</p>
+                  </CardContent>
+                </Card>
+              </Link>
             ))}
           </div>
 
@@ -191,21 +116,29 @@ export default function TeamPage() {
           <h2 className="heading-2 text-foreground mb-12 text-center">Operations Team</h2>
           
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
-            {teamMembers.slice(5).map((member) => (
-              <Card key={member.slug} className="overflow-hidden hover:shadow-lg transition-shadow">
-                <div className="aspect-square relative">
-                  <Image
-                    src={member.image}
-                    alt={member.name}
-                    fill
-                    className="object-cover object-top"
-                  />
-                </div>
-                <CardContent className="p-4">
-                  <h3 className="font-semibold text-foreground mb-1 text-sm">{member.name}</h3>
-                  <p className="text-primary text-xs font-medium">{member.role}</p>
-                </CardContent>
-              </Card>
+            {operationsTeam.map((member) => (
+              <Link key={member.slug} href={`/${member.slug}`}>
+                <Card className="overflow-hidden hover:shadow-xl transition-all duration-300 cursor-pointer group h-full">
+                  <div className="aspect-square relative overflow-hidden">
+                    <Image
+                      src={member.image}
+                      alt={member.name}
+                      fill
+                      className="object-cover object-top group-hover:scale-105 transition-transform duration-300"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                    <div className="absolute bottom-4 left-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      <span className="inline-flex items-center gap-1 text-white text-sm font-medium">
+                        View Profile <ArrowRight className="h-4 w-4" />
+                      </span>
+                    </div>
+                  </div>
+                  <CardContent className="p-4">
+                    <h3 className="font-semibold text-foreground mb-1 text-sm">{member.name}</h3>
+                    <p className="text-primary text-xs font-medium">{member.role}</p>
+                  </CardContent>
+                </Card>
+              </Link>
             ))}
           </div>
         </div>

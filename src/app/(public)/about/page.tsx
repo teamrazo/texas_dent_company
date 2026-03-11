@@ -1,11 +1,10 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
 import Image from 'next/image';
-import { CheckCircle, Shield, Star, Users, ArrowRight, Phone, MapPin } from 'lucide-react';
+import { CheckCircle, Shield, Star, Users, ArrowRight, MapPin } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { CTA } from '@/components/sections';
-import { COMPANY } from '@/lib/constants';
 
 export const metadata: Metadata = {
   title: 'About Us | Texas Dent Company',
@@ -62,16 +61,10 @@ export default function AboutPage() {
               </p>
               <div className="flex flex-col sm:flex-row gap-4 pt-4">
                 <Link href="/team">
-                  <Button size="lg" className="w-full sm:w-auto text-lg px-8">
+                  <Button size="lg" variant="glow" className="w-full sm:w-auto text-lg px-8 uppercase tracking-wide">
                     Meet Our Team <ArrowRight className="h-5 w-5 ml-2" />
                   </Button>
                 </Link>
-                <a href={`tel:${COMPANY.phone}`}>
-                  <Button variant="outline" size="lg" className="w-full sm:w-auto text-lg px-8">
-                    <Phone className="h-5 w-5 mr-2" />
-                    {COMPANY.phone}
-                  </Button>
-                </a>
               </div>
             </div>
             

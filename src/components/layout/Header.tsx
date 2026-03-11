@@ -27,7 +27,7 @@ export function Header() {
           {/* Phone Number Button */}
           <a 
             href={`tel:${COMPANY.phone}`} 
-            className="inline-flex items-center gap-2 px-4 py-1.5 bg-[#BD3728] text-white text-sm font-semibold rounded hover:bg-[#a32f22] transition-colors"
+            className="cta-glow inline-flex items-center gap-2 px-4 py-1.5 bg-[#BD3728] text-white text-sm font-semibold rounded uppercase tracking-wide"
           >
             <Phone className="h-4 w-4" />
             <span className="hidden sm:inline">{COMPANY.phone}</span>

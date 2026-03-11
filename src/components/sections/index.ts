@@ -10,3 +10,4 @@ export { FacilitySection } from './FacilitySection';
 export { RentalSection } from './RentalSection';
 export { ReadyToGetStarted } from './ReadyToGetStarted';
 export { ServiceAreaWithMaps } from './ServiceAreaWithMaps';
+export { TeamMemberProfile } from './TeamMemberProfile';

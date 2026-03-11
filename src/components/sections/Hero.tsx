@@ -1,7 +1,7 @@
 import Link from 'next/link';
-import { Phone, CheckCircle } from 'lucide-react';
+import { CheckCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { COMPANY, TRUST_BADGES } from '@/lib/constants';
+import { TRUST_BADGES } from '@/lib/constants';
 
 interface HeroProps {
   title: string;
@@ -9,7 +9,6 @@ interface HeroProps {
   description?: string;
   ctaText?: string;
   ctaLink?: string;
-  showPhone?: boolean;
   showBadges?: boolean;
   backgroundImage?: string;
 }
@@ -20,7 +19,6 @@ export function Hero({
   description,
   ctaText = 'Get Started',
   ctaLink = '/contact',
-  showPhone = true,
   showBadges = true,
   backgroundImage,
 }: HeroProps) {
@@ -61,18 +59,10 @@ export function Hero({
           {/* CTAs */}
           <div className="flex flex-col sm:flex-row justify-center gap-4 pt-6">
             <Link href={ctaLink}>
-              <Button size="lg" className="w-full sm:w-auto text-lg px-8">
+              <Button size="lg" variant="glow" className="w-full sm:w-auto text-lg px-8 uppercase tracking-wide">
                 {ctaText}
               </Button>
             </Link>
-            {showPhone && (
-              <a href={`tel:${COMPANY.phone}`}>
-                <Button variant="outline" size="lg" className="w-full sm:w-auto text-lg px-8">
-                  <Phone className="h-5 w-5 mr-2" />
-                  {COMPANY.phone}
-                </Button>
-              </a>
-            )}
           </div>
         </div>
       </div>
