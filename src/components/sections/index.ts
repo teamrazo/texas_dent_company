@@ -5,3 +5,8 @@ export { Stats } from './Stats';
 export { Testimonials } from './Testimonials';
 export { CTA } from './CTA';
 export { LocationCard } from './LocationCard';
+export { BeforeAfterGallery } from './BeforeAfterGallery';
+export { FacilitySection } from './FacilitySection';
+export { RentalSection } from './RentalSection';
+export { ReadyToGetStarted } from './ReadyToGetStarted';
+export { ServiceAreaWithMaps } from './ServiceAreaWithMaps';
