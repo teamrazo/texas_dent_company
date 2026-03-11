@@ -637,18 +637,18 @@ export default function PartnerDashboardPage() {
 
       {/* 6. Marketing Resources - Last */}
       <Card>
-        <CardHeader>
-          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+        <CardHeader className="pb-3">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
             <div>
               <CardTitle>Marketing Resources</CardTitle>
-              <CardDescription>Ready-to-use templates for sharing with your network. Click to copy with your affiliate link included!</CardDescription>
+              <CardDescription className="text-sm">Ready-to-use templates. Click to copy with your affiliate link!</CardDescription>
             </div>
             <a 
               href="https://drive.google.com/drive/folders/1pqtiawo_EJbhtqdbwNr4nvtpV87n7EMd?usp=sharing" 
               target="_blank" 
               rel="noopener noreferrer"
             >
-              <Button variant="outline" className="gap-2 border-primary/30 hover:bg-primary/5">
+              <Button variant="outline" size="sm" className="gap-2 border-primary/30 hover:bg-primary/5">
                 <FolderOpen className="h-4 w-4 text-primary" />
                 <span>Partner Media Pack</span>
                 <ExternalLink className="h-3 w-3 text-muted-foreground" />
@@ -656,69 +656,68 @@ export default function PartnerDashboardPage() {
             </a>
           </div>
         </CardHeader>
-        <CardContent>
+        <CardContent className="pt-0">
           <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-            <TabsList className="w-full justify-start border-b border-border bg-transparent p-0 h-auto rounded-none mb-6">
+            <TabsList className="w-full justify-start border-b border-border bg-transparent p-0 h-auto rounded-none mb-4">
               <TabsTrigger 
                 value="text" 
-                className="relative flex items-center gap-2 px-4 py-3 bg-transparent data-[state=active]:bg-transparent data-[state=active]:shadow-none border-b-2 border-transparent data-[state=active]:border-primary rounded-none transition-all"
+                className="relative flex items-center gap-1.5 px-3 py-2 text-sm bg-transparent data-[state=active]:bg-transparent data-[state=active]:shadow-none border-b-2 border-transparent data-[state=active]:border-primary rounded-none transition-all"
               >
-                <MessageSquare className="h-4 w-4" />
+                <MessageSquare className="h-3.5 w-3.5" />
                 <span>Text Messages</span>
               </TabsTrigger>
               <TabsTrigger 
                 value="email" 
-                className="relative flex items-center gap-2 px-4 py-3 bg-transparent data-[state=active]:bg-transparent data-[state=active]:shadow-none border-b-2 border-transparent data-[state=active]:border-primary rounded-none transition-all"
+                className="relative flex items-center gap-1.5 px-3 py-2 text-sm bg-transparent data-[state=active]:bg-transparent data-[state=active]:shadow-none border-b-2 border-transparent data-[state=active]:border-primary rounded-none transition-all"
               >
-                <Mail className="h-4 w-4" />
+                <Mail className="h-3.5 w-3.5" />
                 <span>Emails</span>
               </TabsTrigger>
               <TabsTrigger 
                 value="social" 
-                className="relative flex items-center gap-2 px-4 py-3 bg-transparent data-[state=active]:bg-transparent data-[state=active]:shadow-none border-b-2 border-transparent data-[state=active]:border-primary rounded-none transition-all"
+                className="relative flex items-center gap-1.5 px-3 py-2 text-sm bg-transparent data-[state=active]:bg-transparent data-[state=active]:shadow-none border-b-2 border-transparent data-[state=active]:border-primary rounded-none transition-all"
               >
-                <Share2 className="h-4 w-4" />
+                <Share2 className="h-3.5 w-3.5" />
                 <span>Social Media</span>
               </TabsTrigger>
             </TabsList>
             
-            <TabsContent value="text" className="mt-0 space-y-4 animate-in fade-in-50 duration-200">
+            <TabsContent value="text" className="mt-0 space-y-3 animate-in fade-in-50 duration-200">
               {textTemplates.map((template, index) => (
                 <div key={index} className="border rounded-lg overflow-hidden">
-                  <div className="p-4 hover:bg-secondary/30 transition-colors">
-                    <div className="flex items-center justify-between mb-3">
-                      <h4 className="font-semibold text-foreground">{template.title}</h4>
-                      <Button 
-                        size="sm" 
-                        variant="default"
-                        onClick={() => copyTemplate(template.content)}
-                      >
-                        <Copy className="h-4 w-4 mr-2" />
-                        Copy Template
-                      </Button>
-                    </div>
-                    <p className="text-sm text-muted-foreground whitespace-pre-line">{template.content}</p>
+                  <div className="p-3">
+                    <h4 className="font-semibold text-foreground text-base mb-2">{template.title}</h4>
+                    <p className="text-sm text-muted-foreground whitespace-pre-line leading-relaxed mb-3">{template.content}</p>
+                    <Button 
+                      size="sm" 
+                      variant="default"
+                      onClick={() => copyTemplate(template.content)}
+                      className="w-full sm:w-auto"
+                    >
+                      <Copy className="h-3.5 w-3.5 mr-1.5" />
+                      Copy
+                    </Button>
                   </div>
                   
                   {/* Example Section */}
                   <div className="border-t border-border">
                     <button
                       onClick={() => toggleExample(`text-${index}`)}
-                      className="w-full flex items-center justify-between px-4 py-3 text-sm font-medium text-primary hover:bg-primary/5 transition-colors"
+                      className="w-full flex items-center justify-between px-3 py-2 text-xs font-medium text-primary hover:bg-primary/5 transition-colors"
                     >
-                      <span className="flex items-center gap-2">
-                        <Lightbulb className="h-4 w-4" />
+                      <span className="flex items-center gap-1.5">
+                        <Lightbulb className="h-3.5 w-3.5" />
                         View Example
                       </span>
                       {expandedExamples[`text-${index}`] ? (
-                        <ChevronUp className="h-4 w-4" />
+                        <ChevronUp className="h-3.5 w-3.5" />
                       ) : (
-                        <ChevronDown className="h-4 w-4" />
+                        <ChevronDown className="h-3.5 w-3.5" />
                       )}
                     </button>
                     {expandedExamples[`text-${index}`] && (
-                      <div className="px-4 pb-4 bg-primary/5 animate-in fade-in slide-in-from-top-2 duration-200">
-                        <p className="text-sm text-foreground/80 whitespace-pre-line italic">{template.example}</p>
+                      <div className="px-3 pb-3 bg-primary/5 animate-in fade-in slide-in-from-top-2 duration-200">
+                        <p className="text-sm text-foreground/80 whitespace-pre-line italic leading-relaxed">{template.example}</p>
                       </div>
                     )}
                   </div>
@@ -726,46 +725,43 @@ export default function PartnerDashboardPage() {
               ))}
             </TabsContent>
             
-            <TabsContent value="email" className="mt-0 space-y-4 animate-in fade-in-50 duration-200">
+            <TabsContent value="email" className="mt-0 space-y-3 animate-in fade-in-50 duration-200">
               {emailTemplates.map((template, index) => (
                 <div key={index} className="border rounded-lg overflow-hidden">
-                  <div className="p-4 hover:bg-secondary/30 transition-colors">
-                    <div className="flex items-center justify-between mb-3">
-                      <div>
-                        <h4 className="font-semibold text-foreground">{template.title}</h4>
-                        <p className="text-xs text-muted-foreground mt-1">Subject: {template.subject}</p>
-                      </div>
-                      <Button 
-                        size="sm" 
-                        variant="default"
-                        onClick={() => copyTemplate(`Subject: ${template.subject}\n\n${template.content}`)}
-                      >
-                        <Copy className="h-4 w-4 mr-2" />
-                        Copy Template
-                      </Button>
-                    </div>
-                    <p className="text-sm text-muted-foreground whitespace-pre-line mt-2">{template.content}</p>
+                  <div className="p-3">
+                    <h4 className="font-semibold text-foreground text-base">{template.title}</h4>
+                    <p className="text-xs text-muted-foreground mt-0.5 mb-2">Subject: {template.subject}</p>
+                    <p className="text-sm text-muted-foreground whitespace-pre-line leading-relaxed mb-3">{template.content}</p>
+                    <Button 
+                      size="sm" 
+                      variant="default"
+                      onClick={() => copyTemplate(`Subject: ${template.subject}\n\n${template.content}`)}
+                      className="w-full sm:w-auto"
+                    >
+                      <Copy className="h-3.5 w-3.5 mr-1.5" />
+                      Copy
+                    </Button>
                   </div>
                   
                   {/* Example Section */}
                   <div className="border-t border-border">
                     <button
                       onClick={() => toggleExample(`email-${index}`)}
-                      className="w-full flex items-center justify-between px-4 py-3 text-sm font-medium text-primary hover:bg-primary/5 transition-colors"
+                      className="w-full flex items-center justify-between px-3 py-2 text-xs font-medium text-primary hover:bg-primary/5 transition-colors"
                     >
-                      <span className="flex items-center gap-2">
-                        <Lightbulb className="h-4 w-4" />
+                      <span className="flex items-center gap-1.5">
+                        <Lightbulb className="h-3.5 w-3.5" />
                         View Example
                       </span>
                       {expandedExamples[`email-${index}`] ? (
-                        <ChevronUp className="h-4 w-4" />
+                        <ChevronUp className="h-3.5 w-3.5" />
                       ) : (
-                        <ChevronDown className="h-4 w-4" />
+                        <ChevronDown className="h-3.5 w-3.5" />
                       )}
                     </button>
                     {expandedExamples[`email-${index}`] && (
-                      <div className="px-4 pb-4 bg-primary/5 animate-in fade-in slide-in-from-top-2 duration-200">
-                        <p className="text-sm text-foreground/80 whitespace-pre-line italic">{template.example}</p>
+                      <div className="px-3 pb-3 bg-primary/5 animate-in fade-in slide-in-from-top-2 duration-200">
+                        <p className="text-sm text-foreground/80 whitespace-pre-line italic leading-relaxed">{template.example}</p>
                       </div>
                     )}
                   </div>
@@ -773,43 +769,42 @@ export default function PartnerDashboardPage() {
               ))}
             </TabsContent>
             
-            <TabsContent value="social" className="mt-0 space-y-4 animate-in fade-in-50 duration-200">
+            <TabsContent value="social" className="mt-0 space-y-3 animate-in fade-in-50 duration-200">
               {socialPosts.map((post, index) => (
                 <div key={index} className="border rounded-lg overflow-hidden">
-                  <div className="p-4 hover:bg-secondary/30 transition-colors">
-                    <div className="flex items-center justify-between mb-3">
-                      <h4 className="font-semibold text-foreground">{post.title}</h4>
-                      <Button 
-                        size="sm" 
-                        variant="default"
-                        onClick={() => copyTemplate(post.content)}
-                      >
-                        <Copy className="h-4 w-4 mr-2" />
-                        Copy Template
-                      </Button>
-                    </div>
-                    <p className="text-sm text-muted-foreground whitespace-pre-line">{post.content}</p>
+                  <div className="p-3">
+                    <h4 className="font-semibold text-foreground text-base mb-2">{post.title}</h4>
+                    <p className="text-sm text-muted-foreground whitespace-pre-line leading-relaxed mb-3">{post.content}</p>
+                    <Button 
+                      size="sm" 
+                      variant="default"
+                      onClick={() => copyTemplate(post.content)}
+                      className="w-full sm:w-auto"
+                    >
+                      <Copy className="h-3.5 w-3.5 mr-1.5" />
+                      Copy
+                    </Button>
                   </div>
                   
                   {/* Example Section */}
                   <div className="border-t border-border">
                     <button
                       onClick={() => toggleExample(`social-${index}`)}
-                      className="w-full flex items-center justify-between px-4 py-3 text-sm font-medium text-primary hover:bg-primary/5 transition-colors"
+                      className="w-full flex items-center justify-between px-3 py-2 text-xs font-medium text-primary hover:bg-primary/5 transition-colors"
                     >
-                      <span className="flex items-center gap-2">
-                        <Lightbulb className="h-4 w-4" />
+                      <span className="flex items-center gap-1.5">
+                        <Lightbulb className="h-3.5 w-3.5" />
                         View Example
                       </span>
                       {expandedExamples[`social-${index}`] ? (
-                        <ChevronUp className="h-4 w-4" />
+                        <ChevronUp className="h-3.5 w-3.5" />
                       ) : (
-                        <ChevronDown className="h-4 w-4" />
+                        <ChevronDown className="h-3.5 w-3.5" />
                       )}
                     </button>
                     {expandedExamples[`social-${index}`] && (
-                      <div className="px-4 pb-4 bg-primary/5 animate-in fade-in slide-in-from-top-2 duration-200">
-                        <p className="text-sm text-foreground/80 whitespace-pre-line italic">{post.example}</p>
+                      <div className="px-3 pb-3 bg-primary/5 animate-in fade-in slide-in-from-top-2 duration-200">
+                        <p className="text-sm text-foreground/80 whitespace-pre-line italic leading-relaxed">{post.example}</p>
                       </div>
                     )}
                   </div>
