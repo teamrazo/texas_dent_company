@@ -23,6 +23,7 @@ import {
   FolderOpen,
   Check,
   Globe,
+  Lightbulb,
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
@@ -62,27 +63,32 @@ const domainOptions = [
   { value: 'https://texasdentcompany.com', label: 'texasdentcompany.com', description: 'Main website' },
 ];
 
-// Outreach Templates
+// Outreach Templates with Examples
 const textTemplates = [
   {
     title: 'Personal Introduction',
     content: 'Hey [Name], this is [Your Name] - I wanted to personally introduce you to Texas Dent Company.\n\nThey are helping families in DFW get quick, professional hail repair after the storm.\n\nBook your free inspection here 👉 [YourLink]',
+    example: 'Hey Maria, this is Sarah - I wanted to personally introduce you to Texas Dent Company.\n\nThey are helping families in DFW get quick, professional hail repair after the storm.\n\nBook your free inspection here 👉 https://hail.texasdentcompany.com/?ref=sarah123',
   },
   {
     title: 'After the Storm',
     content: 'Hey [Name], if your car got caught in that last hailstorm, Texas Dent Company can help.\n\nThey are quick, local, and reliable - plus they support DFW nonprofits with every repair.\n\nFree estimate link 👉 [YourLink]',
+    example: 'Hey Tom, if your car got caught in that last hailstorm, Texas Dent Company can help.\n\nThey are quick, local, and reliable - plus they support DFW nonprofits with every repair.\n\nFree estimate link 👉 https://hail.texasdentcompany.com/?ref=sarah123',
   },
   {
     title: 'Faith & Family',
     content: 'Hey [Name], I am part of the new outreach with Texas Dent Company - they are partnering with local churches to help families get back on the road.\n\nEvery repair helps support community programs.\n\nHere is where you can book: [YourLink]',
+    example: 'Hey Lisa, I am part of the new outreach with Texas Dent Company - they are partnering with local churches to help families get back on the road.\n\nEvery repair helps support community programs.\n\nHere is where you can book: https://hail.texasdentcompany.com/?ref=sarah123',
   },
   {
     title: 'Quick Follow-Up',
     content: 'Hey [Name], just checking back - have you had your hail damage inspected yet?\n\nTexas Dent Company is offering free inspections this week.\n\nHere is the booking link again 👉 [YourLink]',
+    example: 'Hey Mike, just checking back - have you had your hail damage inspected yet?\n\nTexas Dent Company is offering free inspections this week.\n\nHere is the booking link again 👉 https://hail.texasdentcompany.com/?ref=sarah123',
   },
   {
     title: 'Texas Strong',
     content: 'Hi [Name], Texas Dent Company is leading local recovery after the storm.\n\nFast service, fair prices, and they give back to DFW families.\n\nSchedule here and be part of the impact 💪 [YourLink]',
+    example: 'Hi Rachel, Texas Dent Company is leading local recovery after the storm.\n\nFast service, fair prices, and they give back to DFW families.\n\nSchedule here and be part of the impact 💪 https://hail.texasdentcompany.com/?ref=sarah123',
   },
 ];
 
@@ -103,6 +109,19 @@ Book your hail repair and support [Organization Name] today: [YourLink]
 
 Best regards,
 [Your Name]`,
+    example: `Hello James,
+
+We are honored to announce our partnership with First Baptist Church of Frisco to help DFW families get back on the road quickly after hail events - without compromising quality or integrity.
+
+What makes us different:
+• Trusted, insurance-approved hail repair
+• Local technicians with a reputation for excellence
+• Every appointment supports First Baptist Church of Frisco's mission
+
+Book your hail repair and support First Baptist Church of Frisco today: https://hail.texasdentcompany.com/?ref=sarah123
+
+Best regards,
+Sarah Johnson`,
   },
   {
     title: 'Together We Rebuild',
@@ -122,6 +141,21 @@ Schedule now and make your repair count: [YourLink]
 
 Thanks,
 [Your Name]`,
+    example: `Hi Amanda,
+
+When storms hit Texas, we stand together - and rebuild together.
+
+We have teamed up with Hope Community Center to deliver fast, high-quality hail repair that funds local initiatives.
+
+Why choose Texas Dent Company:
+• Quick turnaround, expert workmanship
+• Clear communication from estimate to completion
+• Your repair helps rebuild our community
+
+Schedule now and make your repair count: https://hail.texasdentcompany.com/?ref=sarah123
+
+Thanks,
+Sarah Johnson`,
   },
   {
     title: 'After Storm Alert',
@@ -141,6 +175,21 @@ Claim your appointment now: [YourLink]
 
 Best,
 [Your Name]`,
+    example: `Hi David,
+
+Hail is stressful - your repair should not be.
+
+Use our partner link for priority scheduling, free assessments, and guidance on insurance claims.
+
+What we offer:
+• Quick estimates
+• Clear timelines
+• Community support with every booking
+
+Claim your appointment now: https://hail.texasdentcompany.com/?ref=sarah123
+
+Best,
+Sarah Johnson`,
   },
 ];
 
@@ -158,6 +207,17 @@ Texas Dent Company is honored to join forces with [Organization Name] - working 
 👉 Book your repair & support your community: [YourLink]
 
 #TexasDentCompany #DFWCommunity #HailRepairTX #TexasStrong`,
+    example: `🤝 Proud to Partner with the Heart of Our Community
+
+Texas Dent Company is honored to join forces with Grace Fellowship Church - working together to support local families and restore what matters most.
+
+✅ Built on integrity and trust
+✅ Local experts in hail damage repair
+✅ Committed to DFW families
+
+👉 Book your repair & support your community: https://hail.texasdentcompany.com/?ref=sarah123
+
+#TexasDentCompany #DFWCommunity #HailRepairTX #TexasStrong`,
   },
   {
     title: 'After Storm Post',
@@ -170,6 +230,17 @@ Storm season is tough - but Texans are tougher.
 ✅ Support local recovery with every repair
 
 👉 Book your appointment: [YourLink]
+
+#HailDamage #TexasStrong #AutoRepair`,
+    example: `☔ Hit by Hail? We Have Got You Covered.
+
+Storm season is tough - but Texans are tougher.
+
+✅ Free hail damage inspections
+✅ Fast turnaround
+✅ Support local recovery with every repair
+
+👉 Book your appointment: https://hail.texasdentcompany.com/?ref=sarah123
 
 #HailDamage #TexasStrong #AutoRepair`,
   },
@@ -188,6 +259,19 @@ Our partnership with [Nonprofit] means every repair helps a neighbor take the ne
 👉 Make your repair matter: [YourLink]
 
 #CommunityFirst #TexasHelpsTexas`,
+    example: `❤️ Repairing Cars, Restoring Hope
+
+A repaired car gets someone back to work, to church, to life.
+
+Our partnership with DFW Food Bank means every repair helps a neighbor take the next step.
+
+✅ Thorough inspection and fair recommendations
+✅ Streamlined insurance coordination
+✅ Funds directed to local programs
+
+👉 Make your repair matter: https://hail.texasdentcompany.com/?ref=sarah123
+
+#CommunityFirst #TexasHelpsTexas`,
   },
   {
     title: 'Faith Partnership',
@@ -202,6 +286,17 @@ We are proud to partner with [Church Name] to help local families restore more t
 👉 Schedule your appointment: [YourLink]
 
 #FaithInAction #CommunityPartnership`,
+    example: `🙏 Faith Drives Us Forward
+
+We are proud to partner with Covenant Community Church to help local families restore more than their vehicles - restoring peace of mind.
+
+✅ Family-focused hail repair
+✅ Integrity in every interaction
+✅ Give back with every booking
+
+👉 Schedule your appointment: https://hail.texasdentcompany.com/?ref=sarah123
+
+#FaithInAction #CommunityPartnership`,
   },
 ];
 
@@ -212,6 +307,7 @@ export default function PartnerDashboardPage() {
   const [generatedLink, setGeneratedLink] = useState('');
   const [copied, setCopied] = useState(false);
   const [activeTab, setActiveTab] = useState('text');
+  const [expandedExamples, setExpandedExamples] = useState<Record<string, boolean>>({});
 
   // Generate affiliate link when ID or domain changes
   useEffect(() => {
@@ -241,6 +337,13 @@ export default function PartnerDashboardPage() {
     toast.success('Template copied with your affiliate link!');
   };
 
+  const toggleExample = (key: string) => {
+    setExpandedExamples(prev => ({
+      ...prev,
+      [key]: !prev[key]
+    }));
+  };
+
   // Calculate pipeline progress
   const pipelineStages = [
     { label: 'Leads', count: mockStats.leads, color: 'bg-[#BD3728]' },
@@ -265,7 +368,92 @@ export default function PartnerDashboardPage() {
         <p className="text-muted-foreground mt-1">Here is an overview of your referral activity.</p>
       </div>
 
-      {/* Affiliate Link Generator Card */}
+      {/* 1. Stats Grid - Top */}
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <Card>
+          <CardContent className="pt-6">
+            <div className="flex items-center gap-4">
+              <div className="w-12 h-12 rounded-full bg-[#BD3728]/10 text-[#BD3728] flex items-center justify-center">
+                <Users className="h-6 w-6" />
+              </div>
+              <div>
+                <p className="text-2xl font-bold text-foreground">{mockStats.totalReferrals}</p>
+                <p className="text-sm text-muted-foreground">Total Referrals</p>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardContent className="pt-6">
+            <div className="flex items-center gap-4">
+              <div className="w-12 h-12 rounded-full bg-yellow-100 text-yellow-600 flex items-center justify-center">
+                <TrendingUp className="h-6 w-6" />
+              </div>
+              <div>
+                <p className="text-2xl font-bold text-foreground">{totalActive}</p>
+                <p className="text-sm text-muted-foreground">Active Pipeline</p>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardContent className="pt-6">
+            <div className="flex items-center gap-4">
+              <div className="w-12 h-12 rounded-full bg-green-100 text-green-600 flex items-center justify-center">
+                <DollarSign className="h-6 w-6" />
+              </div>
+              <div>
+                <p className="text-2xl font-bold text-foreground">${mockStats.earnedCommissions.toFixed(2)}</p>
+                <p className="text-sm text-muted-foreground">Total Earned</p>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardContent className="pt-6">
+            <div className="flex items-center gap-4">
+              <div className="w-12 h-12 rounded-full bg-orange-100 text-orange-600 flex items-center justify-center">
+                <Clock className="h-6 w-6" />
+              </div>
+              <div>
+                <p className="text-2xl font-bold text-foreground">${mockStats.pendingPayout.toFixed(2)}</p>
+                <p className="text-sm text-muted-foreground">Pending Payout</p>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+
+      {/* 2. Quick Tips for Success */}
+      <Card>
+        <CardHeader>
+          <CardTitle>Quick Tips for Success</CardTitle>
+          <CardDescription>Maximize your earnings with these proven strategies</CardDescription>
+        </CardHeader>
+        <CardContent>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {[
+              { tip: 'Start with people you know', desc: 'Text friends, family, or coworkers who had hail damage.' },
+              { tip: 'Share your story', desc: 'Tell them how fast or easy your repair was - people trust real stories.' },
+              { tip: 'Post once a week', desc: 'Stay consistent - it only takes a minute to share.' },
+              { tip: 'Follow the 1-2-1 rhythm', desc: 'Intro, reminder after 2-3 days, then one follow-up if needed.' },
+            ].map((item, index) => (
+              <div key={index} className="flex items-start gap-3 p-3 bg-secondary/50 rounded-lg">
+                <CheckCircle className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
+                <div>
+                  <p className="font-medium text-foreground text-sm">{item.tip}</p>
+                  <p className="text-xs text-muted-foreground">{item.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </CardContent>
+      </Card>
+
+      {/* 3. Affiliate Link Generator Card */}
       <Card className="border-primary/20 bg-gradient-to-br from-primary/5 to-primary/10">
         <CardHeader className="pb-2">
           <div className="flex items-center gap-2">
@@ -368,205 +556,7 @@ export default function PartnerDashboardPage() {
         </CardContent>
       </Card>
 
-      {/* Stats Grid */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-        <Card>
-          <CardContent className="pt-6">
-            <div className="flex items-center gap-4">
-              <div className="w-12 h-12 rounded-full bg-[#BD3728]/10 text-[#BD3728] flex items-center justify-center">
-                <Users className="h-6 w-6" />
-              </div>
-              <div>
-                <p className="text-2xl font-bold text-foreground">{mockStats.totalReferrals}</p>
-                <p className="text-sm text-muted-foreground">Total Referrals</p>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
-
-        <Card>
-          <CardContent className="pt-6">
-            <div className="flex items-center gap-4">
-              <div className="w-12 h-12 rounded-full bg-yellow-100 text-yellow-600 flex items-center justify-center">
-                <TrendingUp className="h-6 w-6" />
-              </div>
-              <div>
-                <p className="text-2xl font-bold text-foreground">{totalActive}</p>
-                <p className="text-sm text-muted-foreground">Active Pipeline</p>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
-
-        <Card>
-          <CardContent className="pt-6">
-            <div className="flex items-center gap-4">
-              <div className="w-12 h-12 rounded-full bg-green-100 text-green-600 flex items-center justify-center">
-                <DollarSign className="h-6 w-6" />
-              </div>
-              <div>
-                <p className="text-2xl font-bold text-foreground">${mockStats.earnedCommissions.toFixed(2)}</p>
-                <p className="text-sm text-muted-foreground">Total Earned</p>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
-
-        <Card>
-          <CardContent className="pt-6">
-            <div className="flex items-center gap-4">
-              <div className="w-12 h-12 rounded-full bg-orange-100 text-orange-600 flex items-center justify-center">
-                <Clock className="h-6 w-6" />
-              </div>
-              <div>
-                <p className="text-2xl font-bold text-foreground">${mockStats.pendingPayout.toFixed(2)}</p>
-                <p className="text-sm text-muted-foreground">Pending Payout</p>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
-      </div>
-
-      {/* Quick Tips - Moved after Stats Grid */}
-      <Card>
-        <CardHeader>
-          <CardTitle>Quick Tips for Success</CardTitle>
-          <CardDescription>Maximize your earnings with these proven strategies</CardDescription>
-        </CardHeader>
-        <CardContent>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {[
-              { tip: 'Start with people you know', desc: 'Text friends, family, or coworkers who had hail damage.' },
-              { tip: 'Share your story', desc: 'Tell them how fast or easy your repair was - people trust real stories.' },
-              { tip: 'Post once a week', desc: 'Stay consistent - it only takes a minute to share.' },
-              { tip: 'Follow the 1-2-1 rhythm', desc: 'Intro, reminder after 2-3 days, then one follow-up if needed.' },
-            ].map((item, index) => (
-              <div key={index} className="flex items-start gap-3 p-3 bg-secondary/50 rounded-lg">
-                <CheckCircle className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
-                <div>
-                  <p className="font-medium text-foreground text-sm">{item.tip}</p>
-                  <p className="text-xs text-muted-foreground">{item.desc}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </CardContent>
-      </Card>
-
-      {/* Marketing Resources */}
-      <Card>
-        <CardHeader>
-          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-            <div>
-              <CardTitle>Marketing Resources</CardTitle>
-              <CardDescription>Ready-to-use templates for sharing with your network. Click to copy with your affiliate link included!</CardDescription>
-            </div>
-            <a 
-              href="https://drive.google.com/drive/folders/1pqtiawo_EJbhtqdbwNr4nvtpV87n7EMd?usp=sharing" 
-              target="_blank" 
-              rel="noopener noreferrer"
-            >
-              <Button variant="outline" className="gap-2 border-primary/30 hover:bg-primary/5">
-                <FolderOpen className="h-4 w-4 text-primary" />
-                <span>Partner Media Pack</span>
-                <ExternalLink className="h-3 w-3 text-muted-foreground" />
-              </Button>
-            </a>
-          </div>
-        </CardHeader>
-        <CardContent>
-          <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-            <TabsList className="grid w-full grid-cols-3 mb-4 bg-muted/50">
-              <TabsTrigger 
-                value="text" 
-                className="flex items-center gap-2 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground transition-all"
-              >
-                <MessageSquare className="h-4 w-4" />
-                <span className="hidden sm:inline">Text Messages</span>
-                <span className="sm:hidden">Text</span>
-              </TabsTrigger>
-              <TabsTrigger 
-                value="email" 
-                className="flex items-center gap-2 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground transition-all"
-              >
-                <Mail className="h-4 w-4" />
-                <span className="hidden sm:inline">Emails</span>
-                <span className="sm:hidden">Email</span>
-              </TabsTrigger>
-              <TabsTrigger 
-                value="social" 
-                className="flex items-center gap-2 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground transition-all"
-              >
-                <Share2 className="h-4 w-4" />
-                <span className="hidden sm:inline">Social Media</span>
-                <span className="sm:hidden">Social</span>
-              </TabsTrigger>
-            </TabsList>
-            
-            <TabsContent value="text" className="mt-4 space-y-3 animate-in fade-in-50 duration-200">
-              {textTemplates.map((template, index) => (
-                <div key={index} className="border rounded-lg p-4 hover:bg-secondary/50 transition-colors">
-                  <div className="flex items-center justify-between mb-2">
-                    <h4 className="font-medium text-foreground">{template.title}</h4>
-                    <Button 
-                      size="sm" 
-                      variant="outline"
-                      onClick={() => copyTemplate(template.content)}
-                    >
-                      <Copy className="h-4 w-4 mr-2" />
-                      Copy
-                    </Button>
-                  </div>
-                  <p className="text-sm text-muted-foreground whitespace-pre-line">{template.content}</p>
-                </div>
-              ))}
-            </TabsContent>
-            
-            <TabsContent value="email" className="mt-4 space-y-3 animate-in fade-in-50 duration-200">
-              {emailTemplates.map((template, index) => (
-                <div key={index} className="border rounded-lg p-4 hover:bg-secondary/50 transition-colors">
-                  <div className="flex items-center justify-between mb-2">
-                    <div>
-                      <h4 className="font-medium text-foreground">{template.title}</h4>
-                      <p className="text-xs text-muted-foreground">Subject: {template.subject}</p>
-                    </div>
-                    <Button 
-                      size="sm" 
-                      variant="outline"
-                      onClick={() => copyTemplate(`Subject: ${template.subject}\n\n${template.content}`)}
-                    >
-                      <Copy className="h-4 w-4 mr-2" />
-                      Copy
-                    </Button>
-                  </div>
-                  <p className="text-sm text-muted-foreground whitespace-pre-line mt-2">{template.content}</p>
-                </div>
-              ))}
-            </TabsContent>
-            
-            <TabsContent value="social" className="mt-4 space-y-3 animate-in fade-in-50 duration-200">
-              {socialPosts.map((post, index) => (
-                <div key={index} className="border rounded-lg p-4 hover:bg-secondary/50 transition-colors">
-                  <div className="flex items-center justify-between mb-2">
-                    <h4 className="font-medium text-foreground">{post.title}</h4>
-                    <Button 
-                      size="sm" 
-                      variant="outline"
-                      onClick={() => copyTemplate(post.content)}
-                    >
-                      <Copy className="h-4 w-4 mr-2" />
-                      Copy
-                    </Button>
-                  </div>
-                  <p className="text-sm text-muted-foreground whitespace-pre-line">{post.content}</p>
-                </div>
-              ))}
-            </TabsContent>
-          </Tabs>
-        </CardContent>
-      </Card>
-
-      {/* Pipeline Progress */}
+      {/* 4. Pipeline Progress */}
       <Card>
         <CardHeader>
           <CardTitle>Pipeline Progress</CardTitle>
@@ -603,7 +593,7 @@ export default function PartnerDashboardPage() {
         </CardContent>
       </Card>
 
-      {/* Recent Referrals */}
+      {/* 5. Recent Referrals */}
       <Card>
         <CardHeader>
           <div className="flex items-center justify-between">
@@ -642,6 +632,191 @@ export default function PartnerDashboardPage() {
               );
             })}
           </div>
+        </CardContent>
+      </Card>
+
+      {/* 6. Marketing Resources - Last */}
+      <Card>
+        <CardHeader>
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+            <div>
+              <CardTitle>Marketing Resources</CardTitle>
+              <CardDescription>Ready-to-use templates for sharing with your network. Click to copy with your affiliate link included!</CardDescription>
+            </div>
+            <a 
+              href="https://drive.google.com/drive/folders/1pqtiawo_EJbhtqdbwNr4nvtpV87n7EMd?usp=sharing" 
+              target="_blank" 
+              rel="noopener noreferrer"
+            >
+              <Button variant="outline" className="gap-2 border-primary/30 hover:bg-primary/5">
+                <FolderOpen className="h-4 w-4 text-primary" />
+                <span>Partner Media Pack</span>
+                <ExternalLink className="h-3 w-3 text-muted-foreground" />
+              </Button>
+            </a>
+          </div>
+        </CardHeader>
+        <CardContent>
+          <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
+            <TabsList className="w-full justify-start border-b border-border bg-transparent p-0 h-auto rounded-none mb-6">
+              <TabsTrigger 
+                value="text" 
+                className="relative flex items-center gap-2 px-4 py-3 bg-transparent data-[state=active]:bg-transparent data-[state=active]:shadow-none border-b-2 border-transparent data-[state=active]:border-primary rounded-none transition-all"
+              >
+                <MessageSquare className="h-4 w-4" />
+                <span>Text Messages</span>
+              </TabsTrigger>
+              <TabsTrigger 
+                value="email" 
+                className="relative flex items-center gap-2 px-4 py-3 bg-transparent data-[state=active]:bg-transparent data-[state=active]:shadow-none border-b-2 border-transparent data-[state=active]:border-primary rounded-none transition-all"
+              >
+                <Mail className="h-4 w-4" />
+                <span>Emails</span>
+              </TabsTrigger>
+              <TabsTrigger 
+                value="social" 
+                className="relative flex items-center gap-2 px-4 py-3 bg-transparent data-[state=active]:bg-transparent data-[state=active]:shadow-none border-b-2 border-transparent data-[state=active]:border-primary rounded-none transition-all"
+              >
+                <Share2 className="h-4 w-4" />
+                <span>Social Media</span>
+              </TabsTrigger>
+            </TabsList>
+            
+            <TabsContent value="text" className="mt-0 space-y-4 animate-in fade-in-50 duration-200">
+              {textTemplates.map((template, index) => (
+                <div key={index} className="border rounded-lg overflow-hidden">
+                  <div className="p-4 hover:bg-secondary/30 transition-colors">
+                    <div className="flex items-center justify-between mb-3">
+                      <h4 className="font-semibold text-foreground">{template.title}</h4>
+                      <Button 
+                        size="sm" 
+                        variant="default"
+                        onClick={() => copyTemplate(template.content)}
+                      >
+                        <Copy className="h-4 w-4 mr-2" />
+                        Copy Template
+                      </Button>
+                    </div>
+                    <p className="text-sm text-muted-foreground whitespace-pre-line">{template.content}</p>
+                  </div>
+                  
+                  {/* Example Section */}
+                  <div className="border-t border-border">
+                    <button
+                      onClick={() => toggleExample(`text-${index}`)}
+                      className="w-full flex items-center justify-between px-4 py-3 text-sm font-medium text-primary hover:bg-primary/5 transition-colors"
+                    >
+                      <span className="flex items-center gap-2">
+                        <Lightbulb className="h-4 w-4" />
+                        View Example
+                      </span>
+                      {expandedExamples[`text-${index}`] ? (
+                        <ChevronUp className="h-4 w-4" />
+                      ) : (
+                        <ChevronDown className="h-4 w-4" />
+                      )}
+                    </button>
+                    {expandedExamples[`text-${index}`] && (
+                      <div className="px-4 pb-4 bg-primary/5 animate-in fade-in slide-in-from-top-2 duration-200">
+                        <p className="text-sm text-foreground/80 whitespace-pre-line italic">{template.example}</p>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              ))}
+            </TabsContent>
+            
+            <TabsContent value="email" className="mt-0 space-y-4 animate-in fade-in-50 duration-200">
+              {emailTemplates.map((template, index) => (
+                <div key={index} className="border rounded-lg overflow-hidden">
+                  <div className="p-4 hover:bg-secondary/30 transition-colors">
+                    <div className="flex items-center justify-between mb-3">
+                      <div>
+                        <h4 className="font-semibold text-foreground">{template.title}</h4>
+                        <p className="text-xs text-muted-foreground mt-1">Subject: {template.subject}</p>
+                      </div>
+                      <Button 
+                        size="sm" 
+                        variant="default"
+                        onClick={() => copyTemplate(`Subject: ${template.subject}\n\n${template.content}`)}
+                      >
+                        <Copy className="h-4 w-4 mr-2" />
+                        Copy Template
+                      </Button>
+                    </div>
+                    <p className="text-sm text-muted-foreground whitespace-pre-line mt-2">{template.content}</p>
+                  </div>
+                  
+                  {/* Example Section */}
+                  <div className="border-t border-border">
+                    <button
+                      onClick={() => toggleExample(`email-${index}`)}
+                      className="w-full flex items-center justify-between px-4 py-3 text-sm font-medium text-primary hover:bg-primary/5 transition-colors"
+                    >
+                      <span className="flex items-center gap-2">
+                        <Lightbulb className="h-4 w-4" />
+                        View Example
+                      </span>
+                      {expandedExamples[`email-${index}`] ? (
+                        <ChevronUp className="h-4 w-4" />
+                      ) : (
+                        <ChevronDown className="h-4 w-4" />
+                      )}
+                    </button>
+                    {expandedExamples[`email-${index}`] && (
+                      <div className="px-4 pb-4 bg-primary/5 animate-in fade-in slide-in-from-top-2 duration-200">
+                        <p className="text-sm text-foreground/80 whitespace-pre-line italic">{template.example}</p>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              ))}
+            </TabsContent>
+            
+            <TabsContent value="social" className="mt-0 space-y-4 animate-in fade-in-50 duration-200">
+              {socialPosts.map((post, index) => (
+                <div key={index} className="border rounded-lg overflow-hidden">
+                  <div className="p-4 hover:bg-secondary/30 transition-colors">
+                    <div className="flex items-center justify-between mb-3">
+                      <h4 className="font-semibold text-foreground">{post.title}</h4>
+                      <Button 
+                        size="sm" 
+                        variant="default"
+                        onClick={() => copyTemplate(post.content)}
+                      >
+                        <Copy className="h-4 w-4 mr-2" />
+                        Copy Template
+                      </Button>
+                    </div>
+                    <p className="text-sm text-muted-foreground whitespace-pre-line">{post.content}</p>
+                  </div>
+                  
+                  {/* Example Section */}
+                  <div className="border-t border-border">
+                    <button
+                      onClick={() => toggleExample(`social-${index}`)}
+                      className="w-full flex items-center justify-between px-4 py-3 text-sm font-medium text-primary hover:bg-primary/5 transition-colors"
+                    >
+                      <span className="flex items-center gap-2">
+                        <Lightbulb className="h-4 w-4" />
+                        View Example
+                      </span>
+                      {expandedExamples[`social-${index}`] ? (
+                        <ChevronUp className="h-4 w-4" />
+                      ) : (
+                        <ChevronDown className="h-4 w-4" />
+                      )}
+                    </button>
+                    {expandedExamples[`social-${index}`] && (
+                      <div className="px-4 pb-4 bg-primary/5 animate-in fade-in slide-in-from-top-2 duration-200">
+                        <p className="text-sm text-foreground/80 whitespace-pre-line italic">{post.example}</p>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              ))}
+            </TabsContent>
+          </Tabs>
         </CardContent>
       </Card>
     </div>
