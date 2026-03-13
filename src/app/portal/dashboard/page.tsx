@@ -661,21 +661,21 @@ export default function PartnerDashboardPage() {
             <TabsList className="w-full justify-start border-b border-border bg-transparent p-0 h-auto rounded-none mb-4">
               <TabsTrigger 
                 value="text" 
-                className="relative flex items-center gap-1.5 px-3 py-2 text-sm bg-transparent data-[state=active]:bg-transparent data-[state=active]:shadow-none border-b-2 border-transparent data-[state=active]:border-primary rounded-none transition-all"
+                className="relative flex items-center gap-1.5 px-3 py-2 text-sm bg-transparent data-active:bg-transparent data-active:shadow-none border-b-2 border-transparent data-active:border-primary rounded-none transition-all"
               >
                 <MessageSquare className="h-3.5 w-3.5" />
                 <span>Text Messages</span>
               </TabsTrigger>
               <TabsTrigger 
                 value="email" 
-                className="relative flex items-center gap-1.5 px-3 py-2 text-sm bg-transparent data-[state=active]:bg-transparent data-[state=active]:shadow-none border-b-2 border-transparent data-[state=active]:border-primary rounded-none transition-all"
+                className="relative flex items-center gap-1.5 px-3 py-2 text-sm bg-transparent data-active:bg-transparent data-active:shadow-none border-b-2 border-transparent data-active:border-primary rounded-none transition-all"
               >
                 <Mail className="h-3.5 w-3.5" />
                 <span>Emails</span>
               </TabsTrigger>
               <TabsTrigger 
                 value="social" 
-                className="relative flex items-center gap-1.5 px-3 py-2 text-sm bg-transparent data-[state=active]:bg-transparent data-[state=active]:shadow-none border-b-2 border-transparent data-[state=active]:border-primary rounded-none transition-all"
+                className="relative flex items-center gap-1.5 px-3 py-2 text-sm bg-transparent data-active:bg-transparent data-active:shadow-none border-b-2 border-transparent data-active:border-primary rounded-none transition-all"
               >
                 <Share2 className="h-3.5 w-3.5" />
                 <span>Social Media</span>
