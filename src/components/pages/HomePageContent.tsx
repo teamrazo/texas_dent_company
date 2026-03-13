@@ -45,8 +45,8 @@ export function HomePageContent() {
         {/* Background Image Layer */}
         <div className="absolute inset-0">
           <Image
-            src="/images/facility/tesla-in-shop.png"
-            alt="Texas Dent Company Shop"
+            src="/images/hero-shop-interior.webp"
+            alt="Texas Dent Company shop interior with hexagonal lighting and PDR tools"
             fill
             className="object-cover object-center"
             priority
