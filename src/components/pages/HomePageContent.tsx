@@ -153,8 +153,8 @@ export function HomePageContent() {
             <div className={`reveal-right ${processSection.isVisible ? 'visible' : ''}`}>
               <div className="image-container relative h-[350px] md:h-[450px] shadow-xl rounded-2xl overflow-hidden">
                 <Image 
-                  src="/images/facility/shop-bmw-2.webp" 
-                  alt="Professional hail inspection"
+                  src="/images/facility/landrover.webp" 
+                  alt="Land Rover Defender in shop - professional hail inspection"
                   fill
                   className="object-cover image-hover"
                 />
