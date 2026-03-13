@@ -28,18 +28,18 @@ const facilityFeatures = [
 
 const facilityImages = [
   {
-    src: '/images/facility/tesla-in-shop.png',
-    alt: 'Tesla in shop with hexagon lighting',
+    src: '/images/facility/bmw-shop.webp',
+    alt: 'BMW in shop with hexagon lighting',
     priority: true,
   },
   {
-    src: '/images/facility/shop-bmw-1.webp',
-    alt: 'BMW in shop bay',
+    src: '/images/facility/tesla-in-shop.png',
+    alt: 'Tesla in shop bay',
     priority: false,
   },
   {
-    src: '/images/facility/shop-bmw-2.webp',
-    alt: 'BMW professional repair',
+    src: '/images/facility/landrover.webp',
+    alt: 'Land Rover Defender professional repair',
     priority: false,
   },
 ];
@@ -69,7 +69,7 @@ export function FacilitySection() {
               src={facilityImages[0].src}
               alt={facilityImages[0].alt}
               fill
-              className="object-cover transition-transform duration-700 group-hover:scale-105"
+              className="object-cover object-center transition-transform duration-700 group-hover:scale-105"
               priority={facilityImages[0].priority}
               sizes="(max-width: 768px) 100vw, 66vw"
             />
@@ -87,7 +87,7 @@ export function FacilitySection() {
                 src={facilityImages[1].src}
                 alt={facilityImages[1].alt}
                 fill
-                className="object-cover transition-transform duration-700 group-hover:scale-105"
+                className="object-cover object-center transition-transform duration-700 group-hover:scale-105"
                 sizes="(max-width: 768px) 100vw, 33vw"
               />
             </div>
@@ -96,7 +96,7 @@ export function FacilitySection() {
                 src={facilityImages[2].src}
                 alt={facilityImages[2].alt}
                 fill
-                className="object-cover transition-transform duration-700 group-hover:scale-105"
+                className="object-cover object-center transition-transform duration-700 group-hover:scale-105"
                 sizes="(max-width: 768px) 100vw, 33vw"
               />
             </div>
