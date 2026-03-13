@@ -8,6 +8,7 @@ import {
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { BeforeAfterGallery } from '@/components/sections/BeforeAfterGallery';
+import { ServicesPageClient } from '@/components/pages/ServicesPageClient';
 
 export const metadata: Metadata = {
   title: 'Services | Professional Hail Damage Repair | Texas Dent Company',
@@ -107,10 +108,10 @@ export default function ServicesPage() {
     <>
       {/* Hero Section */}
       <section className="bg-black py-16 md:py-20 relative overflow-hidden">
-        <div className="absolute inset-0">
+        <div className="absolute inset-0 parallax-hero" data-parallax-speed="0.3">
           <Image
-            src="/images/facility/tesla-in-shop.png"
-            alt="Texas Dent Company Shop"
+            src="/images/facility/tdc-hero-kia.webp"
+            alt="Texas Dent Company Kia in professional shop"
             fill
             className="object-cover opacity-30"
             priority
@@ -122,8 +123,8 @@ export default function ServicesPage() {
             <p className="text-[#BD3728] uppercase tracking-[0.2em] text-sm font-semibold mb-4">
               Premium PDR Services
             </p>
-            <h1 className="text-4xl md:text-5xl font-bold text-white mb-6" style={{ fontFamily: 'var(--font-montserrat)' }}>
-              Professional Hail Damage <span className="text-[#BD3728]">Repair Services</span>
+            <h1 className="text-4xl md:text-5xl font-bold text-white mb-6 heading-glow" style={{ fontFamily: 'var(--font-montserrat)' }}>
+              Professional Hail Damage <span className="text-shimmer">Repair Services</span>
             </h1>
             <p className="text-gray-300 text-lg mb-8">
               Texas Dent Company is a premium, professional paintless dent repair 
@@ -296,12 +297,12 @@ export default function ServicesPage() {
               </div>
             </div>
             
-            <div className="relative h-[400px] rounded-2xl overflow-hidden">
+            <div className="relative h-[400px] rounded-2xl overflow-hidden image-container">
               <Image
-                src="/images/facility/shop-bmw-2.webp"
-                alt="Texas Dent Company professional repair"
+                src="/images/facility/gwagon.webp"
+                alt="Mercedes G-Wagon in Texas Dent Company shop"
                 fill
-                className="object-cover"
+                className="object-cover object-center image-hover"
               />
             </div>
           </div>
@@ -335,8 +336,13 @@ export default function ServicesPage() {
       <section className="py-16 md:py-20 bg-white">
         <div className="container mx-auto px-4">
           <div className="max-w-2xl mx-auto text-center">
-            <div className="w-20 h-20 bg-[#BD3728] rounded-lg flex items-center justify-center text-white font-bold text-3xl mx-auto mb-6" style={{ fontFamily: 'var(--font-montserrat)' }}>
-              TD
+            <div className="w-20 h-20 mx-auto mb-6 relative">
+              <Image
+                src="/images/logo/Texas-Dent-Logo-Updated.png"
+                alt="Texas Dent Company Logo"
+                fill
+                className="object-contain"
+              />
             </div>
             <p className="text-[#BD3728] uppercase tracking-[0.2em] text-sm font-semibold mb-4">
               Ready To Get Started?
@@ -348,7 +354,7 @@ export default function ServicesPage() {
               30-45 minute comprehensive inspection. No obligation.
             </p>
             <Link href="/contact">
-              <button className="inline-flex items-center gap-2 px-8 py-4 bg-[#BD3728] text-white font-bold rounded hover:bg-[#a32f22] transition-colors uppercase tracking-wide text-lg">
+              <button className="cta-glow inline-flex items-center gap-2 px-8 py-4 bg-[#BD3728] text-white font-bold rounded uppercase tracking-wide text-lg">
                 <FileText className="h-5 w-5" />
                 Schedule Your Inspection
               </button>
@@ -356,6 +362,9 @@ export default function ServicesPage() {
           </div>
         </div>
       </section>
+
+      {/* Client-side animations */}
+      <ServicesPageClient />
     </>
   );
 }

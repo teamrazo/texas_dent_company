@@ -42,11 +42,11 @@ export function HomePageContent() {
 
       {/* Hero Section - Dark with background image and 3-stop gradient overlay */}
       <section className="relative min-h-[85vh] flex items-center justify-center bg-black overflow-hidden">
-        {/* Background Image Layer */}
-        <div className="absolute inset-0">
+        {/* Background Image Layer with Parallax */}
+        <div className="absolute inset-0 parallax-hero" data-parallax-speed="0.3">
           <Image
-            src="/images/facility/tesla-in-shop.png"
-            alt="Texas Dent Company Shop"
+            src="/images/hero-shop-interior.webp"
+            alt="Texas Dent Company shop interior with hexagonal lighting and PDR tools"
             fill
             className="object-cover object-center"
             priority
@@ -67,10 +67,10 @@ export function HomePageContent() {
             </p>
             
             {/* Main Heading */}
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight animate-hero-heading" style={{ fontFamily: 'var(--font-montserrat)' }}>
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight animate-hero-heading heading-glow" style={{ fontFamily: 'var(--font-montserrat)' }}>
               Professional Hail Repair In{' '}
-              <span className="text-[#BD3728]">North Texas</span> And{' '}
-              <span className="text-[#BD3728]">West Texas</span>
+              <span className="text-shimmer">North Texas</span> And{' '}
+              <span className="text-shimmer">West Texas</span>
             </h1>
             
             {/* Subtext */}
@@ -178,7 +178,7 @@ export function HomePageContent() {
         ref={qualitySection.ref}
         className="py-16 md:py-20 bg-black text-white relative overflow-hidden"
       >
-        <div className="absolute inset-0">
+        <div className="absolute inset-0" data-parallax-speed="0.15">
           <Image
             src="/images/facility/shop-bmw-1.webp"
             alt="Shop background"

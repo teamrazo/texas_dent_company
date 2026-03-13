@@ -1,4 +1,5 @@
 import { Header, Footer } from '@/components/layout';
+import { AnimationProvider } from '@/components/animations/AnimationProvider';
 
 export default function PublicLayout({
   children,
@@ -8,7 +9,9 @@ export default function PublicLayout({
   return (
     <>
       <Header />
-      <main className="flex-1">{children}</main>
+      <AnimationProvider>
+        <main className="flex-1">{children}</main>
+      </AnimationProvider>
       <Footer />
     </>
   );

@@ -768,3 +768,402 @@ html {
   animation: skeleton-pulse 1.5s ease-in-out infinite;
   background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
 }
+
+
+
+/* =============================================================================
+   PHASE 2: ADVANCED ANIMATION EFFECTS
+   ============================================================================= */
+
+/* -----------------------------------------------------------------------------
+   PARALLAX HERO - Overflow buffer for smooth parallax
+   ----------------------------------------------------------------------------- */
+.parallax-hero {
+  will-change: transform;
+  /* Extra height to prevent gap during parallax movement */
+  top: -10%;
+  bottom: -10%;
+  height: 120%;
+}
+
+/* -----------------------------------------------------------------------------
+   SCROLL-TRIGGERED SECTION ANIMATIONS (via AnimationProvider)
+   ----------------------------------------------------------------------------- */
+.scroll-animate {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.scroll-animate.animate-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Data-animate variants for AnimationProvider */
+[data-animate="fade-up"] {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s var(--ease-expo), transform 0.8s var(--ease-expo);
+}
+[data-animate="fade-up"].is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+[data-animate="fade-left"] {
+  opacity: 0;
+  transform: translateX(-40px);
+  transition: opacity 0.8s var(--ease-expo), transform 0.8s var(--ease-expo);
+}
+[data-animate="fade-left"].is-visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+[data-animate="fade-right"] {
+  opacity: 0;
+  transform: translateX(40px);
+  transition: opacity 0.8s var(--ease-expo), transform 0.8s var(--ease-expo);
+}
+[data-animate="fade-right"].is-visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+[data-animate="scale-in"] {
+  opacity: 0;
+  transform: scale(0.85);
+  transition: opacity 0.7s var(--ease-expo), transform 0.7s var(--ease-expo);
+}
+[data-animate="scale-in"].is-visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+[data-animate="blur-in"] {
+  opacity: 0;
+  filter: blur(8px);
+  transform: translateY(20px);
+  transition: opacity 0.8s var(--ease-expo), filter 0.8s var(--ease-expo), transform 0.8s var(--ease-expo);
+}
+[data-animate="blur-in"].is-visible {
+  opacity: 1;
+  filter: blur(0);
+  transform: translateY(0);
+}
+
+/* -----------------------------------------------------------------------------
+   MICRO-INTERACTIONS - Enhanced Button Effects
+   ----------------------------------------------------------------------------- */
+
+/* Enhanced button hover with magnetic feel */
+.btn-magnetic {
+  transition: transform 0.4s var(--ease-expo), box-shadow 0.4s var(--ease-expo);
+}
+.btn-magnetic:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 12px 28px -8px rgba(189, 55, 40, 0.35);
+}
+.btn-magnetic:active {
+  transform: translateY(0) scale(0.98);
+  box-shadow: 0 4px 12px -4px rgba(189, 55, 40, 0.2);
+}
+
+/* Ripple effect on click */
+.btn-ripple {
+  position: relative;
+  overflow: hidden;
+}
+.btn-ripple::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s ease, height 0.6s ease, opacity 0.6s ease;
+  opacity: 0;
+}
+.btn-ripple:active::after {
+  width: 300px;
+  height: 300px;
+  opacity: 1;
+  transition: width 0s, height 0s, opacity 0s;
+}
+
+/* Card 3D tilt on hover */
+.card-3d {
+  transition: transform 0.5s var(--ease-expo), box-shadow 0.5s var(--ease-expo);
+  transform-style: preserve-3d;
+  perspective: 1000px;
+}
+.card-3d:hover {
+  transform: perspective(1000px) rotateX(2deg) rotateY(-2deg) translateY(-8px);
+  box-shadow: 
+    0 20px 40px -12px rgba(0, 0, 0, 0.12),
+    0 4px 8px -2px rgba(0, 0, 0, 0.06);
+}
+
+/* Image reveal on scroll - clip-path animation */
+.image-reveal {
+  clip-path: inset(0 100% 0 0);
+  transition: clip-path 1s var(--ease-expo);
+}
+.image-reveal.is-visible {
+  clip-path: inset(0 0 0 0);
+}
+
+/* -----------------------------------------------------------------------------
+   KINETIC TYPOGRAPHY - Subtle text animations
+   ----------------------------------------------------------------------------- */
+
+/* Gradient text shimmer effect */
+.text-shimmer {
+  background: linear-gradient(
+    90deg,
+    #BD3728 0%,
+    #ff6b5a 25%,
+    #BD3728 50%,
+    #ff6b5a 75%,
+    #BD3728 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: text-shimmer-move 4s linear infinite;
+}
+
+@keyframes text-shimmer-move {
+  0% { background-position: 0% center; }
+  100% { background-position: 200% center; }
+}
+
+/* Heading hover glow effect */
+.heading-glow {
+  transition: text-shadow 0.4s ease;
+}
+.heading-glow:hover {
+  text-shadow: 0 0 20px rgba(189, 55, 40, 0.3), 0 0 40px rgba(189, 55, 40, 0.1);
+}
+
+/* Split letter animation for hero text */
+@keyframes letter-slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Text highlight sweep */
+.text-highlight-sweep {
+  position: relative;
+  display: inline;
+}
+.text-highlight-sweep::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 3px;
+  background: #BD3728;
+  transition: width 0.6s var(--ease-expo);
+}
+.text-highlight-sweep:hover::after,
+.text-highlight-sweep.is-visible::after {
+  width: 100%;
+}
+
+/* -----------------------------------------------------------------------------
+   DYNAMIC BACKGROUNDS
+   ----------------------------------------------------------------------------- */
+
+/* Animated gradient background */
+@keyframes gradient-shift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.bg-gradient-animated {
+  background: linear-gradient(-45deg, #000000, #1a0a08, #0a0a0a, #1a0505);
+  background-size: 400% 400%;
+  animation: gradient-shift 15s ease infinite;
+}
+
+/* Subtle noise texture overlay */
+.bg-noise::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  opacity: 0.03;
+  background: repeating-conic-gradient(rgba(0,0,0,0.06) 0% 25%, transparent 0% 50%) 0 0 / 4px 4px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Animated mesh gradient */
+@keyframes mesh-rotate {
+  0% { transform: rotate(0deg) scale(1); }
+  50% { transform: rotate(180deg) scale(1.1); }
+  100% { transform: rotate(360deg) scale(1); }
+}
+
+.bg-mesh-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.08;
+  animation: mesh-rotate 20s ease-in-out infinite;
+  pointer-events: none;
+}
+
+/* -----------------------------------------------------------------------------
+   3D TRANSFORMS & DEPTH EFFECTS
+   ----------------------------------------------------------------------------- */
+
+/* Card with depth shadow layers */
+.depth-card {
+  transition: transform 0.5s var(--ease-expo), box-shadow 0.5s var(--ease-expo);
+}
+.depth-card:hover {
+  transform: translateY(-6px) translateZ(20px);
+  box-shadow:
+    0 2px 4px rgba(0,0,0,0.04),
+    0 4px 8px rgba(0,0,0,0.06),
+    0 8px 16px rgba(0,0,0,0.08),
+    0 16px 32px rgba(0,0,0,0.1);
+}
+
+/* Perspective container for child 3D effects */
+.perspective-container {
+  perspective: 1200px;
+  transform-style: preserve-3d;
+}
+
+/* Image parallax tilt on hover */
+.tilt-hover {
+  transition: transform 0.6s var(--ease-expo);
+  transform-style: preserve-3d;
+}
+.tilt-hover:hover {
+  transform: perspective(800px) rotateX(3deg) rotateY(-3deg) scale(1.02);
+}
+
+/* Glassmorphism card */
+.glass-card {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  transition: background 0.3s ease, border-color 0.3s ease, transform 0.4s var(--ease-expo);
+}
+.glass-card:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.2);
+  transform: translateY(-4px);
+}
+
+/* -----------------------------------------------------------------------------
+   COUNT-UP NUMBER ANIMATION SUPPORT
+   ----------------------------------------------------------------------------- */
+.count-up {
+  display: inline-block;
+  font-variant-numeric: tabular-nums;
+}
+
+/* -----------------------------------------------------------------------------
+   LINE / BORDER REVEAL ANIMATIONS
+   ----------------------------------------------------------------------------- */
+@keyframes line-grow {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+.line-reveal {
+  position: relative;
+}
+.line-reveal::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  height: 2px;
+  width: 0;
+  background: #BD3728;
+  transition: width 1s var(--ease-expo);
+}
+.line-reveal.is-visible::after {
+  width: 60px;
+}
+
+/* -----------------------------------------------------------------------------
+   ACCESSIBILITY: Respect prefers-reduced-motion
+   ----------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .parallax-hero {
+    top: 0;
+    bottom: 0;
+    height: 100%;
+  }
+
+  .scroll-animate,
+  .reveal,
+  .reveal-left,
+  .reveal-right,
+  .reveal-scale,
+  .reveal-rotate,
+  [data-animate] {
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+  }
+
+  .stagger-children > * {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .text-shimmer {
+    -webkit-text-fill-color: currentColor;
+    background: none;
+  }
+}
+
+/* -----------------------------------------------------------------------------
+   PROGRESSIVE ENHANCEMENT - GPU ACCELERATION HINTS
+   ----------------------------------------------------------------------------- */
+.gpu-accelerated {
+  will-change: transform;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+/* Ensure smooth rendering for animated elements */
+.cta-glow,
+.card-hover,
+.card-3d,
+.depth-card,
+.tilt-hover,
+.image-hover,
+.trust-badge-hover {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
