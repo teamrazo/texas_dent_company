@@ -1,10 +1,11 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
 import Image from 'next/image';
-import { CheckCircle, Shield, Star, Users, ArrowRight, MapPin } from 'lucide-react';
+import { CheckCircle, Shield, Star, Users, ArrowRight, MapPin, ExternalLink } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { CTA } from '@/components/sections';
+import { LOCATIONS } from '@/lib/constants';
 
 export const metadata: Metadata = {
   title: 'About Us | Texas Dent Company',
@@ -192,47 +193,84 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Locations */}
-      <section className="py-16 md:py-24">
-        <div className="container-xl">
-          <h2 className="heading-2 text-foreground mb-12 text-center">Our Locations</h2>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            <Card>
-              <CardContent className="p-6">
-                <div className="flex items-center gap-3 mb-4">
-                  <MapPin className="h-6 w-6 text-primary" />
-                  <h3 className="heading-4 text-foreground">Frisco, TX (Home Office)</h3>
+      {/* Locations - Matching home page ServiceAreaWithMaps style */}
+      <section className="py-14 md:py-20 bg-white">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <p className="text-[#BD3728] font-semibold text-sm uppercase tracking-[0.2em] mb-3">
+              Our Locations
+            </p>
+            <h2 className="text-3xl md:text-4xl font-bold text-black" style={{ fontFamily: 'var(--font-montserrat)' }}>
+              Service <span className="text-[#BD3728]">Areas</span>
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+            {/* Frisco */}
+            <div className="card-hover group rounded-xl border border-gray-200 bg-white p-5 sm:p-6 shadow-sm overflow-hidden">
+              <div className="mb-4">
+                <h3 className="text-xl font-bold text-[#BD3728] uppercase tracking-wide mb-2" style={{ fontFamily: 'var(--font-montserrat)' }}>
+                  Frisco
+                </h3>
+                <div className="flex items-start gap-2 text-gray-700 mb-2">
+                  <MapPin className="h-4 w-4 text-[#BD3728] flex-shrink-0 mt-1" />
+                  <div className="text-sm">
+                    <p className="font-medium">{LOCATIONS.frisco.address}</p>
+                    <p>{LOCATIONS.frisco.city}, {LOCATIONS.frisco.state} {LOCATIONS.frisco.zip}</p>
+                  </div>
                 </div>
-                <p className="text-muted-foreground mb-2">122 Rose Lane, Suite 801</p>
-                <p className="text-muted-foreground mb-4">Frisco, TX 75036</p>
-                <p className="text-sm text-muted-foreground">
-                  Serving the DFW metro including Frisco, Plano, McKinney, Allen, 
-                  The Colony, Prosper, Celina, Little Elm, and surrounding areas.
-                </p>
-                <Link href="/frisco" className="text-primary font-medium text-sm mt-4 inline-block hover:underline">
-                  Learn more about our Frisco location →
+                <p className="text-sm text-gray-500">Serving North Texas (approximately 25-mile radius)</p>
+              </div>
+              <div className="relative h-48 rounded-lg overflow-hidden mb-4 bg-gray-100">
+                <iframe
+                  src="https://i.pinimg.com/474x/96/f3/93/96f3931fc4e5e3e767fe16b0aaa0586a.jpg"
+                  width="100%" height="100%" style={{ border: 0 }} allowFullScreen loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade" title="Frisco location map" className="absolute inset-0"
+                />
+              </div>
+              <div className="flex items-center justify-between">
+                <a href="https://maps.app.goo.gl/vW3ESUUQqNNuU3Uh9" target="_blank" rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 text-[#BD3728] font-semibold text-sm hover:text-[#a32f22] transition-colors">
+                  Maps <ExternalLink className="h-3.5 w-3.5" />
+                </a>
+                <Link href="/frisco" className="text-[#BD3728] font-medium text-sm hover:text-[#a32f22] transition-colors">
+                  Learn more →
                 </Link>
-              </CardContent>
-            </Card>
-            
-            <Card>
-              <CardContent className="p-6">
-                <div className="flex items-center gap-3 mb-4">
-                  <MapPin className="h-6 w-6 text-primary" />
-                  <h3 className="heading-4 text-foreground">Odessa, TX (Satellite Shop)</h3>
+              </div>
+            </div>
+
+            {/* Odessa */}
+            <div className="card-hover group rounded-xl border border-gray-200 bg-white p-5 sm:p-6 shadow-sm overflow-hidden">
+              <div className="mb-4">
+                <h3 className="text-xl font-bold text-[#BD3728] uppercase tracking-wide mb-2" style={{ fontFamily: 'var(--font-montserrat)' }}>
+                  Odessa
+                </h3>
+                <div className="flex items-start gap-2 text-gray-700 mb-2">
+                  <MapPin className="h-4 w-4 text-[#BD3728] flex-shrink-0 mt-1" />
+                  <div className="text-sm">
+                    <p className="font-medium">{LOCATIONS.odessa.address}</p>
+                    <p>{LOCATIONS.odessa.city}, {LOCATIONS.odessa.state} {LOCATIONS.odessa.zip}</p>
+                  </div>
                 </div>
-                <p className="text-muted-foreground mb-2">4111 S County Rd 1297</p>
-                <p className="text-muted-foreground mb-4">Odessa, TX 79765</p>
-                <p className="text-sm text-muted-foreground">
-                  Serving West Texas including Odessa, Midland, Fort Stockton, 
-                  Big Spring, Pecos, Crane, and surrounding areas.
-                </p>
-                <Link href="/odessa" className="text-primary font-medium text-sm mt-4 inline-block hover:underline">
-                  Learn more about our Odessa location →
+                <p className="text-sm text-gray-500">Serving Midland, Fort Stockton, Big Spring, Pecos, Crane</p>
+              </div>
+              <div className="relative h-48 rounded-lg overflow-hidden mb-4 bg-gray-100">
+                <iframe
+                  src="https://i.pinimg.com/474x/a3/3e/49/a33e49a9e0585b6c8c7b15da0883e2f6.jpg"
+                  width="100%" height="100%" style={{ border: 0 }} allowFullScreen loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade" title="Odessa location map" className="absolute inset-0"
+                />
+              </div>
+              <div className="flex items-center justify-between">
+                <a href="https://maps.app.goo.gl/98iPqSTQtAaCYudx7" target="_blank" rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 text-[#BD3728] font-semibold text-sm hover:text-[#a32f22] transition-colors">
+                  Maps <ExternalLink className="h-3.5 w-3.5" />
+                </a>
+                <Link href="/odessa" className="text-[#BD3728] font-medium text-sm hover:text-[#a32f22] transition-colors">
+                  Learn more →
                 </Link>
-              </CardContent>
-            </Card>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -261,7 +299,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <CTA />
+      <CTA variant="dark" />
     </>
   );
 }
