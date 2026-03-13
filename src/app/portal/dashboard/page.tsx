@@ -682,134 +682,140 @@ export default function PartnerDashboardPage() {
               </TabsTrigger>
             </TabsList>
             
-            <TabsContent value="text" className="mt-0 space-y-3 animate-in fade-in-50 duration-200">
-              {textTemplates.map((template, index) => (
-                <div key={index} className="border rounded-lg overflow-hidden">
-                  <div className="p-3">
-                    <h4 className="font-semibold text-foreground text-base mb-2">{template.title}</h4>
-                    <p className="text-sm text-muted-foreground whitespace-pre-line leading-relaxed mb-3">{template.content}</p>
-                    <Button 
-                      size="sm" 
-                      variant="default"
-                      onClick={() => copyTemplate(template.content)}
-                      className="w-full sm:w-auto"
-                    >
-                      <Copy className="h-3.5 w-3.5 mr-1.5" />
-                      Copy
-                    </Button>
-                  </div>
-                  
-                  {/* Example Section */}
-                  <div className="border-t border-border">
-                    <button
-                      onClick={() => toggleExample(`text-${index}`)}
-                      className="w-full flex items-center justify-between px-3 py-2 text-xs font-medium text-primary hover:bg-primary/5 transition-colors"
-                    >
-                      <span className="flex items-center gap-1.5">
-                        <Lightbulb className="h-3.5 w-3.5" />
-                        View Example
-                      </span>
-                      {expandedExamples[`text-${index}`] ? (
-                        <ChevronUp className="h-3.5 w-3.5" />
-                      ) : (
-                        <ChevronDown className="h-3.5 w-3.5" />
+            <TabsContent value="text" className="mt-0 animate-in fade-in-50 duration-200">
+              <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
+                {textTemplates.map((template, index) => (
+                  <div key={index} className="border rounded-lg overflow-hidden flex flex-col">
+                    <div className="p-3 flex-1 flex flex-col">
+                      <h4 className="font-semibold text-foreground text-base mb-2">{template.title}</h4>
+                      <p className="text-sm text-muted-foreground whitespace-pre-line leading-relaxed mb-3 flex-1">{template.content}</p>
+                      <Button 
+                        size="sm" 
+                        variant="default"
+                        onClick={() => copyTemplate(template.content)}
+                        className="w-full sm:w-auto"
+                      >
+                        <Copy className="h-3.5 w-3.5 mr-1.5" />
+                        Copy
+                      </Button>
+                    </div>
+                    
+                    {/* Example Section */}
+                    <div className="border-t border-border mt-auto">
+                      <button
+                        onClick={() => toggleExample(`text-${index}`)}
+                        className="w-full flex items-center justify-between px-3 py-2 text-xs font-medium text-primary hover:bg-primary/5 transition-colors"
+                      >
+                        <span className="flex items-center gap-1.5">
+                          <Lightbulb className="h-3.5 w-3.5" />
+                          View Example
+                        </span>
+                        {expandedExamples[`text-${index}`] ? (
+                          <ChevronUp className="h-3.5 w-3.5" />
+                        ) : (
+                          <ChevronDown className="h-3.5 w-3.5" />
+                        )}
+                      </button>
+                      {expandedExamples[`text-${index}`] && (
+                        <div className="px-3 pb-3 bg-primary/5 animate-in fade-in slide-in-from-top-2 duration-200">
+                          <p className="text-sm text-foreground/80 whitespace-pre-line italic leading-relaxed">{template.example}</p>
+                        </div>
                       )}
-                    </button>
-                    {expandedExamples[`text-${index}`] && (
-                      <div className="px-3 pb-3 bg-primary/5 animate-in fade-in slide-in-from-top-2 duration-200">
-                        <p className="text-sm text-foreground/80 whitespace-pre-line italic leading-relaxed">{template.example}</p>
-                      </div>
-                    )}
+                    </div>
                   </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </TabsContent>
             
-            <TabsContent value="email" className="mt-0 space-y-3 animate-in fade-in-50 duration-200">
-              {emailTemplates.map((template, index) => (
-                <div key={index} className="border rounded-lg overflow-hidden">
-                  <div className="p-3">
-                    <h4 className="font-semibold text-foreground text-base">{template.title}</h4>
-                    <p className="text-xs text-muted-foreground mt-0.5 mb-2">Subject: {template.subject}</p>
-                    <p className="text-sm text-muted-foreground whitespace-pre-line leading-relaxed mb-3">{template.content}</p>
-                    <Button 
-                      size="sm" 
-                      variant="default"
-                      onClick={() => copyTemplate(`Subject: ${template.subject}\n\n${template.content}`)}
-                      className="w-full sm:w-auto"
-                    >
-                      <Copy className="h-3.5 w-3.5 mr-1.5" />
-                      Copy
-                    </Button>
-                  </div>
-                  
-                  {/* Example Section */}
-                  <div className="border-t border-border">
-                    <button
-                      onClick={() => toggleExample(`email-${index}`)}
-                      className="w-full flex items-center justify-between px-3 py-2 text-xs font-medium text-primary hover:bg-primary/5 transition-colors"
-                    >
-                      <span className="flex items-center gap-1.5">
-                        <Lightbulb className="h-3.5 w-3.5" />
-                        View Example
-                      </span>
-                      {expandedExamples[`email-${index}`] ? (
-                        <ChevronUp className="h-3.5 w-3.5" />
-                      ) : (
-                        <ChevronDown className="h-3.5 w-3.5" />
+            <TabsContent value="email" className="mt-0 animate-in fade-in-50 duration-200">
+              <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
+                {emailTemplates.map((template, index) => (
+                  <div key={index} className="border rounded-lg overflow-hidden flex flex-col">
+                    <div className="p-3 flex-1 flex flex-col">
+                      <h4 className="font-semibold text-foreground text-base">{template.title}</h4>
+                      <p className="text-xs text-muted-foreground mt-0.5 mb-2">Subject: {template.subject}</p>
+                      <p className="text-sm text-muted-foreground whitespace-pre-line leading-relaxed mb-3 flex-1">{template.content}</p>
+                      <Button 
+                        size="sm" 
+                        variant="default"
+                        onClick={() => copyTemplate(`Subject: ${template.subject}\n\n${template.content}`)}
+                        className="w-full sm:w-auto"
+                      >
+                        <Copy className="h-3.5 w-3.5 mr-1.5" />
+                        Copy
+                      </Button>
+                    </div>
+                    
+                    {/* Example Section */}
+                    <div className="border-t border-border mt-auto">
+                      <button
+                        onClick={() => toggleExample(`email-${index}`)}
+                        className="w-full flex items-center justify-between px-3 py-2 text-xs font-medium text-primary hover:bg-primary/5 transition-colors"
+                      >
+                        <span className="flex items-center gap-1.5">
+                          <Lightbulb className="h-3.5 w-3.5" />
+                          View Example
+                        </span>
+                        {expandedExamples[`email-${index}`] ? (
+                          <ChevronUp className="h-3.5 w-3.5" />
+                        ) : (
+                          <ChevronDown className="h-3.5 w-3.5" />
+                        )}
+                      </button>
+                      {expandedExamples[`email-${index}`] && (
+                        <div className="px-3 pb-3 bg-primary/5 animate-in fade-in slide-in-from-top-2 duration-200">
+                          <p className="text-sm text-foreground/80 whitespace-pre-line italic leading-relaxed">{template.example}</p>
+                        </div>
                       )}
-                    </button>
-                    {expandedExamples[`email-${index}`] && (
-                      <div className="px-3 pb-3 bg-primary/5 animate-in fade-in slide-in-from-top-2 duration-200">
-                        <p className="text-sm text-foreground/80 whitespace-pre-line italic leading-relaxed">{template.example}</p>
-                      </div>
-                    )}
+                    </div>
                   </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </TabsContent>
             
-            <TabsContent value="social" className="mt-0 space-y-3 animate-in fade-in-50 duration-200">
-              {socialPosts.map((post, index) => (
-                <div key={index} className="border rounded-lg overflow-hidden">
-                  <div className="p-3">
-                    <h4 className="font-semibold text-foreground text-base mb-2">{post.title}</h4>
-                    <p className="text-sm text-muted-foreground whitespace-pre-line leading-relaxed mb-3">{post.content}</p>
-                    <Button 
-                      size="sm" 
-                      variant="default"
-                      onClick={() => copyTemplate(post.content)}
-                      className="w-full sm:w-auto"
-                    >
-                      <Copy className="h-3.5 w-3.5 mr-1.5" />
-                      Copy
-                    </Button>
-                  </div>
-                  
-                  {/* Example Section */}
-                  <div className="border-t border-border">
-                    <button
-                      onClick={() => toggleExample(`social-${index}`)}
-                      className="w-full flex items-center justify-between px-3 py-2 text-xs font-medium text-primary hover:bg-primary/5 transition-colors"
-                    >
-                      <span className="flex items-center gap-1.5">
-                        <Lightbulb className="h-3.5 w-3.5" />
-                        View Example
-                      </span>
-                      {expandedExamples[`social-${index}`] ? (
-                        <ChevronUp className="h-3.5 w-3.5" />
-                      ) : (
-                        <ChevronDown className="h-3.5 w-3.5" />
+            <TabsContent value="social" className="mt-0 animate-in fade-in-50 duration-200">
+              <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
+                {socialPosts.map((post, index) => (
+                  <div key={index} className="border rounded-lg overflow-hidden flex flex-col">
+                    <div className="p-3 flex-1 flex flex-col">
+                      <h4 className="font-semibold text-foreground text-base mb-2">{post.title}</h4>
+                      <p className="text-sm text-muted-foreground whitespace-pre-line leading-relaxed mb-3 flex-1">{post.content}</p>
+                      <Button 
+                        size="sm" 
+                        variant="default"
+                        onClick={() => copyTemplate(post.content)}
+                        className="w-full sm:w-auto"
+                      >
+                        <Copy className="h-3.5 w-3.5 mr-1.5" />
+                        Copy
+                      </Button>
+                    </div>
+                    
+                    {/* Example Section */}
+                    <div className="border-t border-border mt-auto">
+                      <button
+                        onClick={() => toggleExample(`social-${index}`)}
+                        className="w-full flex items-center justify-between px-3 py-2 text-xs font-medium text-primary hover:bg-primary/5 transition-colors"
+                      >
+                        <span className="flex items-center gap-1.5">
+                          <Lightbulb className="h-3.5 w-3.5" />
+                          View Example
+                        </span>
+                        {expandedExamples[`social-${index}`] ? (
+                          <ChevronUp className="h-3.5 w-3.5" />
+                        ) : (
+                          <ChevronDown className="h-3.5 w-3.5" />
+                        )}
+                      </button>
+                      {expandedExamples[`social-${index}`] && (
+                        <div className="px-3 pb-3 bg-primary/5 animate-in fade-in slide-in-from-top-2 duration-200">
+                          <p className="text-sm text-foreground/80 whitespace-pre-line italic leading-relaxed">{post.example}</p>
+                        </div>
                       )}
-                    </button>
-                    {expandedExamples[`social-${index}`] && (
-                      <div className="px-3 pb-3 bg-primary/5 animate-in fade-in slide-in-from-top-2 duration-200">
-                        <p className="text-sm text-foreground/80 whitespace-pre-line italic leading-relaxed">{post.example}</p>
-                      </div>
-                    )}
+                    </div>
                   </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </TabsContent>
           </Tabs>
         </CardContent>
