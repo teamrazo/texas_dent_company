@@ -14,7 +14,7 @@ export function ServiceAreaWithMaps() {
       city: `${LOCATIONS.frisco.city}, ${LOCATIONS.frisco.state} ${LOCATIONS.frisco.zip}`,
       subtitle: 'Serving North Texas (approximately 25-mile radius)',
       mapEmbed: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3997.441963489425!2d-96.917428423956!3d33.14518499523824!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x864c230917b4eac1%3A0xdf8baddb9e033235!2sTexas%20Dent%20Company%20-%20Frisco%20TX%2C%20Auto%20Hail%20Removal!5e1!3m2!1sen!2sus!4v1773413356698!5m2!1sen!2sus',
-      mapsLink: LOCATIONS.frisco.googleMapsUrl || 'https://maps.app.goo.gl/hSgXAppY9CtthMLw6',
+      mapsLink: LOCATIONS.frisco.googleMapsUrl || 'https://maps.app.goo.gl/vW3ESUUQqNNuU3Uh9',
     },
     {
       name: 'Odessa',
@@ -22,7 +22,7 @@ export function ServiceAreaWithMaps() {
       city: `${LOCATIONS.odessa.city}, ${LOCATIONS.odessa.state} ${LOCATIONS.odessa.zip}`,
       subtitle: 'Serving Midland, Fort Stockton, Big Spring, Pecos, Crane',
       mapEmbed: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4052.807104049742!2d-102.24872312386152!3d31.909469327814396!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x86fbd02577ce7737%3A0x62f47db68e23c795!2s4111%20S%20County%20Rd%201297%2C%20Odessa%2C%20TX%2079765!5e1!3m2!1sen!2sus!4v1773413295588!5m2!1sen!2sus',
-      mapsLink: LOCATIONS.odessa.googleMapsUrl || 'https://maps.app.goo.gl/tJCLNN9bFYieLKV68',
+      mapsLink: LOCATIONS.odessa.googleMapsUrl || 'https://maps.app.goo.gl/98iPqSTQtAaCYudx7',
     },
   ];
 
