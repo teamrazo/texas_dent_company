@@ -120,20 +120,20 @@ export default function ServicesPage() {
         </div>
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-3xl mx-auto text-center">
-            <p className="text-[#BD3728] uppercase tracking-[0.2em] text-sm font-semibold mb-4">
+            <p className="text-[#BD3728] uppercase tracking-[0.2em] text-sm font-semibold mb-4" data-animate="fade-up">
               Premium PDR Services
             </p>
-            <h1 className="text-4xl md:text-5xl font-bold text-white mb-6 heading-glow" style={{ fontFamily: 'var(--font-montserrat)' }}>
+            <h1 className="text-4xl md:text-5xl font-bold text-white mb-6 heading-glow" style={{ fontFamily: 'var(--font-montserrat)' }} data-animate="fade-up" data-animate-delay="100">
               Professional Hail Damage <span className="text-shimmer">Repair Services</span>
             </h1>
-            <p className="text-gray-300 text-lg mb-8">
+            <p className="text-gray-300 text-lg mb-8" data-animate="fade-up" data-animate-delay="200">
               Texas Dent Company is a premium, professional paintless dent repair 
               organization. We compete on quality of repair, professional execution, 
               customer experience, and claims knowledge - not price or shortcuts.
             </p>
-            <div className="flex justify-center">
+            <div className="flex justify-center" data-animate="fade-up" data-animate-delay="300">
               <Link href="/contact">
-                <button className="cta-glow inline-flex items-center gap-2 px-8 py-4 bg-[#BD3728] text-white font-bold rounded uppercase tracking-wide">
+                <button className="cta-glow btn-magnetic inline-flex items-center gap-2 px-8 py-4 bg-[#BD3728] text-white font-bold rounded uppercase tracking-wide">
                   Schedule Inspection <ArrowRight className="h-5 w-5" />
                 </button>
               </Link>
@@ -145,12 +145,12 @@ export default function ServicesPage() {
       {/* Core Value Pillars */}
       <section className="py-16 md:py-20 bg-gray-50">
         <div className="container mx-auto px-4">
-          <div className="text-center max-w-2xl mx-auto mb-12">
+          <div className="text-center max-w-2xl mx-auto mb-12" data-animate="fade-up">
             <p className="text-[#BD3728] uppercase tracking-[0.2em] text-sm font-semibold mb-3">
               Why Choose Us
             </p>
-            <h2 className="text-3xl md:text-4xl font-bold text-black mb-4" style={{ fontFamily: 'var(--font-montserrat)' }}>
-              Our <span className="text-[#BD3728]">Value</span> Framework
+            <h2 className="text-3xl md:text-4xl font-bold text-black mb-4 heading-glow" style={{ fontFamily: 'var(--font-montserrat)' }}>
+              Our <span className="text-[#BD3728] text-shimmer">Value</span> Framework
             </h2>
             <p className="text-gray-600">
               Everything we offer supports professional-grade repairs, claims expertise, 
@@ -160,7 +160,7 @@ export default function ServicesPage() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {valuePillars.map((pillar, index) => (
-              <div key={index} className="bg-white rounded-xl p-6 border border-gray-200 hover:shadow-lg transition-shadow">
+              <div key={index} className="depth-card bg-white rounded-xl p-6 border border-gray-200 hover:shadow-lg transition-shadow" data-animate="fade-up" data-animate-delay={`${index * 100}`}>
                 <h3 className="font-bold text-black mb-3" style={{ fontFamily: 'var(--font-montserrat)' }}>{pillar.title}</h3>
                 <p className="text-gray-600">{pillar.description}</p>
               </div>
@@ -172,12 +172,12 @@ export default function ServicesPage() {
       {/* Main Services */}
       <section className="py-16 md:py-20 bg-white">
         <div className="container mx-auto px-4">
-          <div className="text-center max-w-2xl mx-auto mb-12">
+          <div className="text-center max-w-2xl mx-auto mb-12" data-animate="fade-up">
             <p className="text-[#BD3728] uppercase tracking-[0.2em] text-sm font-semibold mb-3">
               What We Offer
             </p>
-            <h2 className="text-3xl md:text-4xl font-bold text-black mb-4" style={{ fontFamily: 'var(--font-montserrat)' }}>
-              Our <span className="text-[#BD3728]">Services</span>
+            <h2 className="text-3xl md:text-4xl font-bold text-black mb-4 heading-glow" style={{ fontFamily: 'var(--font-montserrat)' }}>
+              Our <span className="text-[#BD3728] text-shimmer">Services</span>
             </h2>
             <p className="text-gray-600">
               Comprehensive hail damage repair from inspection to delivery
@@ -186,8 +186,8 @@ export default function ServicesPage() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {services.map((service, index) => (
-              <div key={index} className="bg-gray-50 rounded-xl p-6 border border-gray-200 hover:shadow-lg transition-shadow h-full">
-                <div className="w-14 h-14 rounded-xl bg-[#BD3728]/10 flex items-center justify-center mb-4">
+              <div key={index} className="card-hover bg-gray-50 rounded-xl p-6 border border-gray-200 hover:shadow-lg transition-shadow h-full" data-animate="fade-up" data-animate-delay={`${index * 100}`}>
+                <div className="w-14 h-14 rounded-xl bg-[#BD3728]/10 flex items-center justify-center mb-4 icon-hover">
                   <service.icon className="h-7 w-7 text-[#BD3728]" />
                 </div>
                 <h3 className="text-xl font-bold text-black mb-3" style={{ fontFamily: 'var(--font-montserrat)' }}>{service.title}</h3>
@@ -212,12 +212,12 @@ export default function ServicesPage() {
       {/* Added Value Services */}
       <section className="py-16 md:py-20 bg-white">
         <div className="container mx-auto px-4">
-          <div className="text-center max-w-2xl mx-auto mb-12">
+          <div className="text-center max-w-2xl mx-auto mb-12" data-animate="fade-up">
             <p className="text-[#BD3728] uppercase tracking-[0.2em] text-sm font-semibold mb-3">
               Extra Value
             </p>
-            <h2 className="text-3xl md:text-4xl font-bold text-black mb-4" style={{ fontFamily: 'var(--font-montserrat)' }}>
-              Added Value <span className="text-[#BD3728]">Services</span>
+            <h2 className="text-3xl md:text-4xl font-bold text-black mb-4 heading-glow" style={{ fontFamily: 'var(--font-montserrat)' }}>
+              Added Value <span className="text-[#BD3728] text-shimmer">Services</span>
             </h2>
             <p className="text-gray-600">
               Extra services that enhance your final result and customer experience
@@ -226,8 +226,8 @@ export default function ServicesPage() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {addedValueServices.map((service, index) => (
-              <div key={index} className="bg-gray-50 rounded-xl p-6 text-center border border-gray-200 hover:shadow-lg transition-shadow">
-                <div className="w-16 h-16 rounded-full bg-[#BD3728]/10 flex items-center justify-center mx-auto mb-4">
+              <div key={index} className="glass-card bg-gray-50 rounded-xl p-6 text-center border border-gray-200 hover:shadow-lg transition-shadow" data-animate="scale-in" data-animate-delay={`${index * 150}`}>
+                <div className="w-16 h-16 rounded-full bg-[#BD3728]/10 flex items-center justify-center mx-auto mb-4 icon-hover">
                   <service.icon className="h-8 w-8 text-[#BD3728]" />
                 </div>
                 <h3 className="font-bold text-black mb-2" style={{ fontFamily: 'var(--font-montserrat)' }}>{service.title}</h3>
@@ -243,61 +243,33 @@ export default function ServicesPage() {
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
-              <p className="text-[#BD3728] uppercase tracking-[0.2em] text-sm font-semibold mb-4">
+              <p className="text-[#BD3728] uppercase tracking-[0.2em] text-sm font-semibold mb-4" data-animate="fade-right">
                 Trusted By Thousands
               </p>
-              <h2 className="text-3xl md:text-4xl font-bold text-white mb-8" style={{ fontFamily: 'var(--font-montserrat)' }}>
-                What Sets Us <span className="text-[#BD3728]">Apart</span>
+              <h2 className="text-3xl md:text-4xl font-bold text-white mb-8 heading-glow" style={{ fontFamily: 'var(--font-montserrat)' }} data-animate="fade-right" data-animate-delay="100">
+                What Sets Us <span className="text-[#BD3728] text-shimmer">Apart</span>
               </h2>
               <div className="space-y-6">
-                <div className="flex gap-4">
-                  <div className="w-12 h-12 rounded-full bg-[#BD3728]/20 flex items-center justify-center flex-shrink-0">
-                    <Star className="h-6 w-6 text-[#BD3728]" />
+                {[
+                  { icon: Star, title: '600+ Five-Star Reviews', desc: 'Trusted by thousands of Texas customers across Google, Facebook, and BBB.' },
+                  { icon: Shield, title: 'A+ BBB Rating', desc: 'Recognized for our commitment to quality and customer satisfaction.' },
+                  { icon: Clock, title: 'Lifetime Warranty', desc: 'We stand behind our work with a lifetime warranty on repaired dents.' },
+                  { icon: FileText, title: 'Trusted by Fleets', desc: 'Trusted by school districts and government fleets for professional service.' },
+                ].map((item, index) => (
+                  <div key={index} className="flex gap-4" data-animate="fade-right" data-animate-delay={`${(index + 2) * 100}`}>
+                    <div className="w-12 h-12 rounded-full bg-[#BD3728]/20 flex items-center justify-center flex-shrink-0 icon-hover">
+                      <item.icon className="h-6 w-6 text-[#BD3728]" />
+                    </div>
+                    <div>
+                      <h3 className="font-bold text-white mb-1">{item.title}</h3>
+                      <p className="text-gray-400 text-sm">{item.desc}</p>
+                    </div>
                   </div>
-                  <div>
-                    <h3 className="font-bold text-white mb-1">600+ Five-Star Reviews</h3>
-                    <p className="text-gray-400 text-sm">
-                      Trusted by thousands of Texas customers across Google, Facebook, and BBB.
-                    </p>
-                  </div>
-                </div>
-                <div className="flex gap-4">
-                  <div className="w-12 h-12 rounded-full bg-[#BD3728]/20 flex items-center justify-center flex-shrink-0">
-                    <Shield className="h-6 w-6 text-[#BD3728]" />
-                  </div>
-                  <div>
-                    <h3 className="font-bold text-white mb-1">A+ BBB Rating</h3>
-                    <p className="text-gray-400 text-sm">
-                      Recognized for our commitment to quality and customer satisfaction.
-                    </p>
-                  </div>
-                </div>
-                <div className="flex gap-4">
-                  <div className="w-12 h-12 rounded-full bg-[#BD3728]/20 flex items-center justify-center flex-shrink-0">
-                    <Clock className="h-6 w-6 text-[#BD3728]" />
-                  </div>
-                  <div>
-                    <h3 className="font-bold text-white mb-1">Lifetime Warranty</h3>
-                    <p className="text-gray-400 text-sm">
-                      We stand behind our work with a lifetime warranty on repaired dents.
-                    </p>
-                  </div>
-                </div>
-                <div className="flex gap-4">
-                  <div className="w-12 h-12 rounded-full bg-[#BD3728]/20 flex items-center justify-center flex-shrink-0">
-                    <FileText className="h-6 w-6 text-[#BD3728]" />
-                  </div>
-                  <div>
-                    <h3 className="font-bold text-white mb-1">Trusted by Fleets</h3>
-                    <p className="text-gray-400 text-sm">
-                      Trusted by school districts and government fleets for professional service.
-                    </p>
-                  </div>
-                </div>
+                ))}
               </div>
             </div>
             
-            <div className="relative h-[400px] rounded-2xl overflow-hidden image-container">
+            <div className="relative h-[400px] rounded-2xl overflow-hidden image-container" data-animate="fade-left" data-animate-delay="200">
               <Image
                 src="/images/facility/gwagon.webp"
                 alt="Mercedes G-Wagon in Texas Dent Company shop"
@@ -312,10 +284,10 @@ export default function ServicesPage() {
       {/* Deductible Note */}
       <section className="py-16 md:py-20 bg-gray-50">
         <div className="container mx-auto px-4">
-          <div className="bg-white rounded-xl border-2 border-[#BD3728]/20 p-8 md:p-12">
+          <div className="bg-white rounded-xl border-2 border-[#BD3728]/20 p-8 md:p-12" data-animate="blur-in">
             <div className="max-w-3xl mx-auto text-center">
-              <h2 className="text-2xl md:text-3xl font-bold text-black mb-4" style={{ fontFamily: 'var(--font-montserrat)' }}>
-                Our Approach to <span className="text-[#BD3728]">Deductibles</span>
+              <h2 className="text-2xl md:text-3xl font-bold text-black mb-4 heading-glow" style={{ fontFamily: 'var(--font-montserrat)' }}>
+                Our Approach to <span className="text-[#BD3728] text-shimmer">Deductibles</span>
               </h2>
               <p className="text-gray-600 mb-6">
                 Insurance deductibles are often unavoidable. Our approach focuses on proper 
@@ -335,7 +307,7 @@ export default function ServicesPage() {
       {/* Final CTA */}
       <section className="py-16 md:py-20 bg-white">
         <div className="container mx-auto px-4">
-          <div className="max-w-2xl mx-auto text-center">
+          <div className="max-w-2xl mx-auto text-center" data-animate="fade-up">
             <div className="w-20 h-20 mx-auto mb-6 relative">
               <Image
                 src="/images/logo/Texas-Dent-Logo-Updated.png"
@@ -347,14 +319,14 @@ export default function ServicesPage() {
             <p className="text-[#BD3728] uppercase tracking-[0.2em] text-sm font-semibold mb-4">
               Ready To Get Started?
             </p>
-            <h2 className="text-3xl md:text-4xl font-bold text-black mb-4" style={{ fontFamily: 'var(--font-montserrat)' }}>
-              Schedule Your <span className="text-[#BD3728]">Free Inspection</span>
+            <h2 className="text-3xl md:text-4xl font-bold text-black mb-4 heading-glow" style={{ fontFamily: 'var(--font-montserrat)' }}>
+              Schedule Your <span className="text-[#BD3728] text-shimmer">Free Inspection</span>
             </h2>
             <p className="text-gray-600 mb-8">
               30-45 minute comprehensive inspection. No obligation.
             </p>
             <Link href="/contact">
-              <button className="cta-glow inline-flex items-center gap-2 px-8 py-4 bg-[#BD3728] text-white font-bold rounded uppercase tracking-wide text-lg">
+              <button className="cta-glow btn-magnetic btn-ripple inline-flex items-center gap-2 px-8 py-4 bg-[#BD3728] text-white font-bold rounded uppercase tracking-wide text-lg">
                 <FileText className="h-5 w-5" />
                 Schedule Your Inspection
               </button>

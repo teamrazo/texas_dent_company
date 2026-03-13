@@ -6,7 +6,6 @@ import { useEffect, useRef, useCallback } from 'react';
  * Global animation provider that initializes:
  * - Parallax scrolling on [data-parallax-speed] elements
  * - Scroll-triggered reveal animations on [data-animate] elements
- * - Dynamic gradient backgrounds on [data-dynamic-bg] elements
  * - Cursor-reactive effects on [data-cursor-reactive] elements
  * 
  * All effects respect prefers-reduced-motion.
@@ -18,7 +17,6 @@ export function AnimationProvider({ children }: { children: React.ReactNode }) {
   // Parallax effect handler
   const updateParallax = useCallback(() => {
     const elements = document.querySelectorAll<HTMLElement>('[data-parallax-speed]');
-    const scrollY = window.scrollY;
 
     elements.forEach((el) => {
       const speed = parseFloat(el.dataset.parallaxSpeed || '0.3');
@@ -68,7 +66,7 @@ export function AnimationProvider({ children }: { children: React.ReactNode }) {
       requestAnimationFrame(updateCursorEffects);
     };
 
-    // Scroll-triggered reveal animations
+    // Scroll-triggered reveal animations for [data-animate] elements
     const revealObserver = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -84,9 +82,36 @@ export function AnimationProvider({ children }: { children: React.ReactNode }) {
       { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }
     );
 
-    // Observe all [data-animate] elements
-    document.querySelectorAll('[data-animate]').forEach((el) => {
-      revealObserver.observe(el);
+    // Function to observe all [data-animate] elements
+    const observeAnimateElements = () => {
+      document.querySelectorAll('[data-animate]').forEach((el) => {
+        // Only observe if not already visible
+        if (!el.classList.contains('is-visible')) {
+          revealObserver.observe(el);
+        }
+      });
+    };
+
+    // Initial observation
+    observeAnimateElements();
+
+    // Use MutationObserver to catch dynamically added elements (e.g. Next.js navigation)
+    const mutationObserver = new MutationObserver((mutations) => {
+      let hasNewNodes = false;
+      mutations.forEach((mutation) => {
+        if (mutation.addedNodes.length > 0) {
+          hasNewNodes = true;
+        }
+      });
+      if (hasNewNodes) {
+        // Re-observe after a short delay to allow DOM to settle
+        requestAnimationFrame(observeAnimateElements);
+      }
+    });
+
+    mutationObserver.observe(document.body, {
+      childList: true,
+      subtree: true,
     });
 
     window.addEventListener('scroll', onScroll, { passive: true });
@@ -99,6 +124,7 @@ export function AnimationProvider({ children }: { children: React.ReactNode }) {
       window.removeEventListener('scroll', onScroll);
       window.removeEventListener('mousemove', onMouseMove);
       revealObserver.disconnect();
+      mutationObserver.disconnect();
     };
   }, [updateParallax, updateCursorEffects]);
 

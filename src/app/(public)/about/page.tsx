@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { CTA } from '@/components/sections';
 import { LOCATIONS } from '@/lib/constants';
+import { AboutPageClient } from '@/components/pages/AboutPageClient';
 
 export const metadata: Metadata = {
   title: 'About Us | Texas Dent Company',
@@ -43,15 +44,15 @@ export default function AboutPage() {
   return (
     <>
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-secondary to-background py-16 md:py-24">
+      <section className="bg-gradient-to-br from-secondary to-background py-16 md:py-24 overflow-hidden">
         <div className="container-xl">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div className="space-y-6">
-              <h1 className="heading-1 text-foreground">
+            <div className="space-y-6" data-animate="fade-right">
+              <h1 className="heading-1 text-foreground heading-glow">
                 A High-Trust, Process-Driven Hail Repair Partner
               </h1>
               <p className="body-large text-muted-foreground">
-                Texas Dent Company is not positioned as a generic "dent repair shop." 
+                Texas Dent Company is not positioned as a generic &quot;dent repair shop.&quot; 
                 We are a high-trust, process-driven hail damage repair partner specializing 
                 in Paintless Dent Repair (PDR), repair-side insurance coordination, and 
                 vehicle value preservation.
@@ -62,19 +63,19 @@ export default function AboutPage() {
               </p>
               <div className="flex flex-col sm:flex-row gap-4 pt-4">
                 <Link href="/team">
-                  <Button size="lg" variant="glow" className="w-full sm:w-auto text-lg px-8 uppercase tracking-wide">
+                  <Button size="lg" variant="glow" className="btn-magnetic w-full sm:w-auto text-lg px-8 uppercase tracking-wide">
                     Meet Our Team <ArrowRight className="h-5 w-5 ml-2" />
                   </Button>
                 </Link>
               </div>
             </div>
             
-            <div className="relative aspect-[4/3] rounded-xl overflow-hidden">
+            <div className="relative aspect-[4/3] rounded-xl overflow-hidden" data-animate="fade-left" data-animate-delay="200">
               <Image
                 src="/images/locations/frisco-shop.jpg"
                 alt="Texas Dent Company Frisco Location"
                 fill
-                className="object-cover"
+                className="object-cover image-hover"
               />
             </div>
           </div>
@@ -84,8 +85,8 @@ export default function AboutPage() {
       {/* Our Story */}
       <section className="py-16 md:py-24">
         <div className="container-xl">
-          <div className="max-w-3xl mx-auto">
-            <h2 className="heading-2 text-foreground mb-8 text-center">Our Story</h2>
+          <div className="max-w-3xl mx-auto" data-animate="fade-up">
+            <h2 className="heading-2 text-foreground mb-8 text-center heading-glow">Our Story</h2>
             
             <div className="prose prose-lg max-w-none text-muted-foreground">
               <p>
@@ -121,12 +122,12 @@ export default function AboutPage() {
       {/* Timeline */}
       <section className="py-16 md:py-24 bg-secondary">
         <div className="container-xl">
-          <h2 className="heading-2 text-foreground mb-12 text-center">Our Journey</h2>
+          <h2 className="heading-2 text-foreground mb-12 text-center heading-glow" data-animate="fade-up">Our Journey</h2>
           
           <div className="max-w-3xl mx-auto">
             <div className="space-y-8">
               {milestones.map((milestone, index) => (
-                <div key={index} className="flex gap-6">
+                <div key={index} className="flex gap-6" data-animate="fade-left" data-animate-delay={`${index * 100}`}>
                   <div className="w-20 flex-shrink-0">
                     <span className="text-2xl font-bold text-primary">{milestone.year}</span>
                   </div>
@@ -145,8 +146,8 @@ export default function AboutPage() {
       {/* Our Values */}
       <section className="py-16 md:py-24">
         <div className="container-xl">
-          <div className="text-center max-w-2xl mx-auto mb-12">
-            <h2 className="heading-2 text-foreground mb-4">Our Values</h2>
+          <div className="text-center max-w-2xl mx-auto mb-12" data-animate="fade-up">
+            <h2 className="heading-2 text-foreground mb-4 heading-glow">Our Values</h2>
             <p className="body-large text-muted-foreground">
               These principles guide everything we do at Texas Dent Company
             </p>
@@ -154,7 +155,7 @@ export default function AboutPage() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {values.map((value, index) => (
-              <Card key={index}>
+              <Card key={index} className="card-hover" data-animate="fade-up" data-animate-delay={`${index * 100}`}>
                 <CardContent className="p-6">
                   <h3 className="heading-4 text-foreground mb-3">{value.title}</h3>
                   <p className="text-muted-foreground">{value.description}</p>
@@ -169,9 +170,9 @@ export default function AboutPage() {
       <section className="py-16 md:py-24 bg-secondary">
         <div className="container-xl">
           <div className="max-w-3xl mx-auto text-center">
-            <h2 className="heading-2 text-foreground mb-6">What We Actually Deliver</h2>
-            <p className="body-large text-muted-foreground mb-8">
-              We do not "sell dent removal." We deliver:
+            <h2 className="heading-2 text-foreground mb-6 heading-glow" data-animate="fade-up">What We Actually Deliver</h2>
+            <p className="body-large text-muted-foreground mb-8" data-animate="fade-up" data-animate-delay="100">
+              We do not &quot;sell dent removal.&quot; We deliver:
             </p>
             
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 text-left">
@@ -183,7 +184,7 @@ export default function AboutPage() {
                 'Reduced customer stress',
                 'Clean, documented, verified repair delivery',
               ].map((item, index) => (
-                <div key={index} className="flex items-center gap-3 p-4 bg-background rounded-xl">
+                <div key={index} className="flex items-center gap-3 p-4 bg-background rounded-xl card-hover" data-animate="fade-up" data-animate-delay={`${index * 80}`}>
                   <CheckCircle className="h-5 w-5 text-primary flex-shrink-0" />
                   <span className="text-foreground font-medium">{item}</span>
                 </div>
@@ -196,18 +197,18 @@ export default function AboutPage() {
       {/* Locations - Matching home page ServiceAreaWithMaps style */}
       <section className="py-14 md:py-20 bg-white">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
+          <div className="text-center mb-12" data-animate="fade-up">
             <p className="text-[#BD3728] font-semibold text-sm uppercase tracking-[0.2em] mb-3">
               Our Locations
             </p>
-            <h2 className="text-3xl md:text-4xl font-bold text-black" style={{ fontFamily: 'var(--font-montserrat)' }}>
-              Service <span className="text-[#BD3728]">Areas</span>
+            <h2 className="text-3xl md:text-4xl font-bold text-black heading-glow" style={{ fontFamily: 'var(--font-montserrat)' }}>
+              Service <span className="text-[#BD3728] text-shimmer">Areas</span>
             </h2>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
             {/* Frisco */}
-            <div className="card-hover group rounded-xl border border-gray-200 bg-white p-5 sm:p-6 shadow-sm overflow-hidden">
+            <div className="card-hover group rounded-xl border border-gray-200 bg-white p-5 sm:p-6 shadow-sm overflow-hidden" data-animate="fade-right">
               <div className="mb-4">
                 <h3 className="text-xl font-bold text-[#BD3728] uppercase tracking-wide mb-2" style={{ fontFamily: 'var(--font-montserrat)' }}>
                   Frisco
@@ -240,7 +241,7 @@ export default function AboutPage() {
             </div>
 
             {/* Odessa */}
-            <div className="card-hover group rounded-xl border border-gray-200 bg-white p-5 sm:p-6 shadow-sm overflow-hidden">
+            <div className="card-hover group rounded-xl border border-gray-200 bg-white p-5 sm:p-6 shadow-sm overflow-hidden" data-animate="fade-left" data-animate-delay="150">
               <div className="mb-4">
                 <h3 className="text-xl font-bold text-[#BD3728] uppercase tracking-wide mb-2" style={{ fontFamily: 'var(--font-montserrat)' }}>
                   Odessa
@@ -275,23 +276,23 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Stats */}
+      {/* Stats - with count-up animation */}
       <section className="py-16 md:py-24 bg-primary text-primary-foreground">
         <div className="container-xl">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-            <div>
+            <div data-animate="scale-in" data-animate-delay="0">
               <div className="text-4xl md:text-5xl font-bold mb-2">600+</div>
               <div className="text-primary-foreground/80">5-Star Reviews</div>
             </div>
-            <div>
+            <div data-animate="scale-in" data-animate-delay="100">
               <div className="text-4xl md:text-5xl font-bold mb-2">A+</div>
               <div className="text-primary-foreground/80">BBB Rating</div>
             </div>
-            <div>
+            <div data-animate="scale-in" data-animate-delay="200">
               <div className="text-4xl md:text-5xl font-bold mb-2">1000s</div>
               <div className="text-primary-foreground/80">Vehicles Repaired</div>
             </div>
-            <div>
+            <div data-animate="scale-in" data-animate-delay="300">
               <div className="text-4xl md:text-5xl font-bold mb-2">2</div>
               <div className="text-primary-foreground/80">Texas Locations</div>
             </div>
@@ -300,6 +301,9 @@ export default function AboutPage() {
       </section>
 
       <CTA variant="dark" />
+
+      {/* Client-side animation enhancements */}
+      <AboutPageClient />
     </>
   );
 }

@@ -26,12 +26,12 @@ export function RentalSection() {
     <section className="py-16 sm:py-20 bg-gray-50">
       <div className="container mx-auto px-4">
         {/* Section Header */}
-        <div className="text-center mb-12">
+        <div className="text-center mb-12" data-animate="fade-up">
           <p className="text-[#BD3728] font-semibold text-sm uppercase tracking-[0.2em] mb-3">
             While We Work
           </p>
-          <h2 className="text-3xl sm:text-4xl font-bold text-black mb-4" style={{ fontFamily: 'var(--font-montserrat)' }}>
-            Rental Vehicle <span className="text-[#BD3728]">Options</span>
+          <h2 className="text-3xl sm:text-4xl font-bold text-black mb-4 heading-glow" style={{ fontFamily: 'var(--font-montserrat)' }}>
+            Rental Vehicle <span className="text-[#BD3728] text-shimmer">Options</span>
           </h2>
           <p className="text-gray-600 max-w-2xl mx-auto">
             18+ vehicles available for our customers. If your insurance covers rental, we coordinate everything for you.
@@ -43,16 +43,18 @@ export function RentalSection() {
           {rentalVehicles.map((vehicle, index) => (
             <div
               key={index}
-              className={`bg-white rounded-2xl shadow-md overflow-hidden transition-all duration-500 hover:shadow-xl hover:scale-105 hover:-translate-y-2 ${
+              className={`card-hover bg-white rounded-2xl shadow-md overflow-hidden transition-all duration-500 hover:shadow-xl hover:scale-105 hover:-translate-y-2 ${
                 index === 1 ? 'sm:-translate-y-4' : ''
               }`}
+              data-animate="fade-up"
+              data-animate-delay={`${index * 150}`}
             >
               <div className="relative h-44 sm:h-52 overflow-hidden">
                 <Image
                   src={vehicle.image}
                   alt={vehicle.name}
                   fill
-                  className="object-cover transition-transform duration-700 hover:scale-110"
+                  className="object-cover image-hover"
                   sizes="(max-width: 640px) 100vw, 33vw"
                 />
               </div>
@@ -68,7 +70,7 @@ export function RentalSection() {
         </div>
 
         {/* Note */}
-        <p className="text-center text-gray-500 text-sm mt-8">
+        <p className="text-center text-gray-500 text-sm mt-8" data-animate="fade-up">
           Rental coordination included with your repair. We handle the logistics.
         </p>
       </div>
