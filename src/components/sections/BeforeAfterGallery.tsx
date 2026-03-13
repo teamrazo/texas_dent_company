@@ -43,12 +43,14 @@ const beforeAfterPairs: BeforeAfterPair[] = [
   },
 ];
 
-function BeforeAfterCard({ pair }: { pair: BeforeAfterPair }) {
+function BeforeAfterCard({ pair, index }: { pair: BeforeAfterPair; index: number }) {
   const [isHovered, setIsHovered] = useState(false);
 
   return (
     <div
-      className="group relative overflow-hidden rounded-2xl shadow-lg cursor-pointer"
+      className="group relative overflow-hidden rounded-2xl shadow-lg cursor-pointer card-hover"
+      data-animate="fade-up"
+      data-animate-delay={`${index * 100}`}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
@@ -95,12 +97,12 @@ export function BeforeAfterGallery() {
     <section className="py-16 sm:py-20 bg-gray-50">
       <div className="container mx-auto px-4">
         {/* Section Header */}
-        <div className="text-center mb-12">
+        <div className="text-center mb-12" data-animate="fade-up">
           <p className="text-[#BD3728] font-semibold text-sm uppercase tracking-[0.2em] mb-3">
             Our Results
           </p>
-          <h2 className="text-3xl sm:text-4xl font-bold text-black mb-4" style={{ fontFamily: 'var(--font-montserrat)' }}>
-            Before & After <span className="text-[#BD3728]">Gallery</span>
+          <h2 className="text-3xl sm:text-4xl font-bold text-black mb-4 heading-glow" style={{ fontFamily: 'var(--font-montserrat)' }}>
+            Before & After <span className="text-[#BD3728] text-shimmer">Gallery</span>
           </h2>
           <p className="text-gray-600 max-w-2xl mx-auto">
             Hover over each image to see the professional PDR transformation. Our technicians restore vehicles to their factory finish without repainting.
@@ -109,13 +111,13 @@ export function BeforeAfterGallery() {
 
         {/* Gallery Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {beforeAfterPairs.map((pair) => (
-            <BeforeAfterCard key={pair.id} pair={pair} />
+          {beforeAfterPairs.map((pair, index) => (
+            <BeforeAfterCard key={pair.id} pair={pair} index={index} />
           ))}
         </div>
 
         {/* Trust Indicator */}
-        <div className="text-center mt-12">
+        <div className="text-center mt-12" data-animate="fade-up">
           <p className="text-gray-500 text-sm">
             Over <span className="text-[#BD3728] font-semibold">500+ vehicles</span> restored to factory condition
           </p>

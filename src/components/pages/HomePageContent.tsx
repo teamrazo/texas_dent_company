@@ -82,7 +82,7 @@ export function HomePageContent() {
             <div className="animate-hero-cta mb-12">
               <button 
                 onClick={() => setIsLeadFormOpen(true)}
-                className="cta-glow inline-flex items-center gap-2 px-8 py-4 bg-[#BD3728] text-white font-bold rounded hover:bg-[#a32f22] uppercase tracking-wide text-base md:text-lg"
+                className="cta-glow btn-magnetic btn-ripple inline-flex items-center gap-2 px-8 py-4 bg-[#BD3728] text-white font-bold rounded hover:bg-[#a32f22] uppercase tracking-wide text-base md:text-lg"
               >
                 <FileText className="h-5 w-5" />
                 SCHEDULE YOUR INSPECTION
@@ -141,7 +141,7 @@ export function HomePageContent() {
               <div className="pt-4">
                 <button 
                   onClick={() => setIsLeadFormOpen(true)}
-                  className="cta-glow inline-flex items-center gap-2 px-6 py-3 bg-[#BD3728] text-white font-semibold rounded hover:bg-[#a32f22] uppercase tracking-wide text-sm"
+                  className="cta-glow btn-magnetic inline-flex items-center gap-2 px-6 py-3 bg-[#BD3728] text-white font-semibold rounded hover:bg-[#a32f22] uppercase tracking-wide text-sm"
                 >
                   <FileText className="h-4 w-4" />
                   SCHEDULE YOUR INSPECTION

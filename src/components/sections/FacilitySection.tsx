@@ -49,12 +49,12 @@ export function FacilitySection() {
     <section className="py-16 sm:py-20 bg-black text-white overflow-hidden">
       <div className="container mx-auto px-4">
         {/* Section Header */}
-        <div className="text-center mb-12">
+        <div className="text-center mb-12" data-animate="fade-up">
           <p className="text-[#BD3728] font-semibold text-sm uppercase tracking-[0.2em] mb-3">
             Where The Magic Happens
           </p>
-          <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4" style={{ fontFamily: 'var(--font-montserrat)' }}>
-            State-Of-The-Art <span className="text-[#BD3728]">Facility</span>
+          <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4 heading-glow" style={{ fontFamily: 'var(--font-montserrat)' }}>
+            State-Of-The-Art <span className="text-[#BD3728] text-shimmer">Facility</span>
           </h2>
           <p className="text-gray-400 max-w-2xl mx-auto">
             Purpose-built for precision dent repair with professional-grade tools, specialized lighting systems, and climate-controlled bays.
@@ -62,7 +62,7 @@ export function FacilitySection() {
         </div>
 
         {/* Image Gallery */}
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-4 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-4 mb-12" data-animate="scale-in">
           {/* Main Large Image */}
           <div className="md:col-span-8 relative h-72 sm:h-96 rounded-2xl overflow-hidden group">
             <Image
@@ -82,7 +82,7 @@ export function FacilitySection() {
 
           {/* Stacked Images */}
           <div className="md:col-span-4 flex flex-col gap-4">
-            <div className="relative h-44 sm:h-[calc(50%-0.5rem)] rounded-2xl overflow-hidden group">
+            <div className="relative h-44 sm:h-[calc(50%-0.5rem)] rounded-2xl overflow-hidden group" data-animate="fade-right" data-animate-delay="200">
               <Image
                 src={facilityImages[1].src}
                 alt={facilityImages[1].alt}
@@ -91,7 +91,7 @@ export function FacilitySection() {
                 sizes="(max-width: 768px) 100vw, 33vw"
               />
             </div>
-            <div className="relative h-44 sm:h-[calc(50%-0.5rem)] rounded-2xl overflow-hidden group">
+            <div className="relative h-44 sm:h-[calc(50%-0.5rem)] rounded-2xl overflow-hidden group" data-animate="fade-right" data-animate-delay="400">
               <Image
                 src={facilityImages[2].src}
                 alt={facilityImages[2].alt}
@@ -108,9 +108,11 @@ export function FacilitySection() {
           {facilityFeatures.map((feature, index) => (
             <div
               key={index}
-              className="bg-white/5 border border-white/10 rounded-xl p-4 sm:p-6 text-center hover:bg-white/10 transition-colors duration-300"
+              className="depth-card bg-white/5 border border-white/10 rounded-xl p-4 sm:p-6 text-center hover:bg-white/10 transition-colors duration-300"
+              data-animate="fade-up"
+              data-animate-delay={`${index * 100}`}
             >
-              <div className="w-12 h-12 bg-[#BD3728]/20 rounded-full flex items-center justify-center mx-auto mb-4">
+              <div className="w-12 h-12 bg-[#BD3728]/20 rounded-full flex items-center justify-center mx-auto mb-4 icon-hover">
                 <feature.icon className="w-6 h-6 text-[#BD3728]" />
               </div>
               <h3 className="text-white font-semibold mb-2">{feature.title}</h3>

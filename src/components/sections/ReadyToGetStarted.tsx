@@ -46,7 +46,7 @@ export function ReadyToGetStarted({ onOpenLeadForm }: ReadyToGetStartedProps) {
         
         <button 
           onClick={onOpenLeadForm}
-          className="cta-glow btn-ripple inline-flex items-center gap-2 px-8 py-4 bg-[#BD3728] text-white font-bold rounded hover:bg-[#a32f22] uppercase tracking-wide text-lg"
+          className="cta-glow btn-magnetic btn-ripple inline-flex items-center gap-2 px-8 py-4 bg-[#BD3728] text-white font-bold rounded hover:bg-[#a32f22] uppercase tracking-wide text-lg"
         >
           <FileText className="h-5 w-5" />
           SCHEDULE YOUR INSPECTION
