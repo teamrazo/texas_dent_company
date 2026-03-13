@@ -40,7 +40,7 @@ export const LOCATIONS = {
     },
     serviceRadius: '~25-mile radius in North Texas',
     servingAreas: ['Frisco', 'Plano', 'McKinney', 'Allen', 'The Colony', 'Prosper', 'Celina', 'Little Elm', 'Lewisville', 'Carrollton', 'Richardson', 'Dallas'],
-    googleMapsUrl: 'https://maps.google.com/?q=122+Rose+Lane+Suite+801+Frisco+TX+75036',
+    googleMapsUrl: 'https://maps.app.goo.gl/vW3ESUUQqNNuU3Uh9',
   },
   odessa: {
     id: 'odessa',
@@ -59,7 +59,7 @@ export const LOCATIONS = {
     },
     serviceRadius: 'Serving West Texas',
     servingAreas: ['Odessa', 'Midland', 'Fort Stockton', 'Big Spring', 'Pecos', 'Crane'],
-    googleMapsUrl: 'https://maps.google.com/?q=4111+S+County+Rd+1297+Odessa+TX+79765',
+    googleMapsUrl: 'https://maps.app.goo.gl/98iPqSTQtAaCYudx7',
   },
 };
 

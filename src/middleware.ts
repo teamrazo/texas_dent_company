@@ -52,6 +52,7 @@ export async function middleware(request: NextRequest) {
       "img-src 'self' data: https: blob:",
       "font-src 'self' https://fonts.gstatic.com",
       "connect-src 'self' https://www.google-analytics.com https://rest.gohighlevel.com",
+      "frame-src 'self' https://www.google.com https://maps.google.com",
       "frame-ancestors 'self'",
       "base-uri 'self'",
       "form-action 'self'",
