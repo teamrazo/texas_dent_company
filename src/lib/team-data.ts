@@ -93,6 +93,22 @@ His dedication to quality and continuous learning makes him an important part of
     ghlFormId: 'PLACEHOLDER_FORM_ID',
   },
   {
+    name: 'Nelson Hsaio',
+    role: 'Shop Coordinator & Claims Specialist',
+    slug: 'nelson-hsaio',
+    image: '/images/team/nelson-hsaio.jpg',
+    phone: '469-966-7937',
+    email: 'estimates@texasdentcompany.com',
+    shortBio: 'Six+ years in customer service. Dedicated to excellent client experiences.',
+    fullBio: `Nelson Hsaio brings over six years of customer service experience to his dual role as Shop Coordinator and Claims Specialist at Texas Dent Company. His dedication to providing excellent client experiences is evident in everything he does.
+
+Nelson excels at both the operational and customer-facing aspects of his role. He coordinates shop activities while also helping customers understand their claims and the repair process.
+
+His ability to multitask and maintain high standards of service makes him an invaluable member of the team.`,
+    expertise: ['Shop Coordination', 'Claims Processing', 'Customer Service', 'Operations Management'],
+    ghlFormId: 'PLACEHOLDER_FORM_ID',
+  },
+  {
     name: 'Laurie Denton',
     role: 'Administrative Coordinator',
     slug: 'laurie-denton-administrative-coordinator',
@@ -138,22 +154,6 @@ Nicole is committed to providing clear, helpful information to every customer. S
 
 Her friendly demeanor and professional approach make her an essential part of the customer service team.`,
     expertise: ['Insurance Claims', 'Customer Support', 'Administrative Tasks', 'Documentation'],
-    ghlFormId: 'PLACEHOLDER_FORM_ID',
-  },
-  {
-    name: 'Nelson Hsaio',
-    role: 'Shop Coordinator & Claims Specialist',
-    slug: 'nelson-hsaio',
-    image: '/images/team/nelson-hsaio.jpg',
-    phone: '469-966-7937',
-    email: 'estimates@texasdentcompany.com',
-    shortBio: 'Six+ years in customer service. Dedicated to excellent client experiences.',
-    fullBio: `Nelson Hsaio brings over six years of customer service experience to his dual role as Shop Coordinator and Claims Specialist at Texas Dent Company. His dedication to providing excellent client experiences is evident in everything he does.
-
-Nelson excels at both the operational and customer-facing aspects of his role. He coordinates shop activities while also helping customers understand their claims and the repair process.
-
-His ability to multitask and maintain high standards of service makes him an invaluable member of the team.`,
-    expertise: ['Shop Coordination', 'Claims Processing', 'Customer Service', 'Operations Management'],
     ghlFormId: 'PLACEHOLDER_FORM_ID',
   },
 ];
