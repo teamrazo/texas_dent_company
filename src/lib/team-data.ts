@@ -61,6 +61,38 @@ He takes pride in helping customers through every step of their claim journey, f
     ghlFormId: 'PLACEHOLDER_FORM_ID',
   },
   {
+    name: 'Willian Soares',
+    role: 'Auto Hail Claim Specialist',
+    slug: 'willian-soares-auto-hail-claim-specialist',
+    image: '/images/team/willian-soares.jpg',
+    phone: '469-888-8674',
+    email: 'wsoares@texasdentcompany.com',
+    shortBio: 'Technician with passion for learning from industry experts. Fluent in English, Spanish, and Portuguese.',
+    fullBio: `Willian Soares is an Auto Hail Claim Specialist with a passion for continuous learning and growth in the PDR industry. His multilingual abilities—fluent in English, Spanish, and Portuguese—allow him to serve a diverse customer base effectively.
+
+Willian's dedication to mastering his craft has led him to learn from some of the best experts in the industry. He combines technical knowledge with excellent communication skills to guide customers through the claims process.
+
+His enthusiasm for helping others and commitment to quality make him a valued member of the Texas Dent Company team.`,
+    expertise: ['Insurance Claims', 'Multilingual Support', 'Customer Education', 'PDR Techniques'],
+    ghlFormId: 'PLACEHOLDER_FORM_ID',
+  },
+  {
+    name: 'Nelson Hsaio',
+    role: 'Shop Coordinator & Claims Specialist',
+    slug: 'nelson-hsaio',
+    image: '/images/team/nelson-hsaio.jpg',
+    phone: '469-966-7937',
+    email: 'estimates@texasdentcompany.com',
+    shortBio: 'Six+ years in customer service. Dedicated to excellent client experiences.',
+    fullBio: `Nelson Hsaio brings over six years of customer service experience to his dual role as Shop Coordinator and Claims Specialist at Texas Dent Company. His dedication to providing excellent client experiences is evident in everything he does.
+
+Nelson excels at both the operational and customer-facing aspects of his role. He coordinates shop activities while also helping customers understand their claims and the repair process.
+
+His ability to multitask and maintain high standards of service makes him an invaluable member of the team.`,
+    expertise: ['Shop Coordination', 'Claims Processing', 'Customer Service', 'Operations Management'],
+    ghlFormId: 'PLACEHOLDER_FORM_ID',
+  },
+  {
     name: 'Kelly Flanery',
     role: 'Shop Coordinator',
     slug: 'kelly-flanery-shop-coordinator',
@@ -93,22 +125,6 @@ His dedication to quality and continuous learning makes him an important part of
     ghlFormId: 'PLACEHOLDER_FORM_ID',
   },
   {
-    name: 'Nelson Hsaio',
-    role: 'Shop Coordinator & Claims Specialist',
-    slug: 'nelson-hsaio',
-    image: '/images/team/nelson-hsaio.jpg',
-    phone: '469-966-7937',
-    email: 'estimates@texasdentcompany.com',
-    shortBio: 'Six+ years in customer service. Dedicated to excellent client experiences.',
-    fullBio: `Nelson Hsaio brings over six years of customer service experience to his dual role as Shop Coordinator and Claims Specialist at Texas Dent Company. His dedication to providing excellent client experiences is evident in everything he does.
-
-Nelson excels at both the operational and customer-facing aspects of his role. He coordinates shop activities while also helping customers understand their claims and the repair process.
-
-His ability to multitask and maintain high standards of service makes him an invaluable member of the team.`,
-    expertise: ['Shop Coordination', 'Claims Processing', 'Customer Service', 'Operations Management'],
-    ghlFormId: 'PLACEHOLDER_FORM_ID',
-  },
-  {
     name: 'Laurie Denton',
     role: 'Administrative Coordinator',
     slug: 'laurie-denton-administrative-coordinator',
@@ -122,22 +138,6 @@ Laurie is often the first point of contact for customers, and she takes pride in
 
 Her commitment to excellence and genuine care for customers embodies the values that Texas Dent Company was built on.`,
     expertise: ['Administrative Support', 'Customer Service', 'Scheduling', 'Office Management'],
-    ghlFormId: 'PLACEHOLDER_FORM_ID',
-  },
-  {
-    name: 'Willian Soares',
-    role: 'Auto Hail Claim Specialist',
-    slug: 'willian-soares-auto-hail-claim-specialist',
-    image: '/images/team/willian-soares.jpg',
-    phone: '469-888-8674',
-    email: 'wsoares@texasdentcompany.com',
-    shortBio: 'Technician with passion for learning from industry experts. Fluent in English, Spanish, and Portuguese.',
-    fullBio: `Willian Soares is an Auto Hail Claim Specialist with a passion for continuous learning and growth in the PDR industry. His multilingual abilities—fluent in English, Spanish, and Portuguese—allow him to serve a diverse customer base effectively.
-
-Willian's dedication to mastering his craft has led him to learn from some of the best experts in the industry. He combines technical knowledge with excellent communication skills to guide customers through the claims process.
-
-His enthusiasm for helping others and commitment to quality make him a valued member of the Texas Dent Company team.`,
-    expertise: ['Insurance Claims', 'Multilingual Support', 'Customer Education', 'PDR Techniques'],
     ghlFormId: 'PLACEHOLDER_FORM_ID',
   },
   {
