@@ -61,22 +61,6 @@ He takes pride in helping customers through every step of their claim journey, f
     ghlFormId: 'PLACEHOLDER_FORM_ID',
   },
   {
-    name: 'Roy Harbin',
-    role: 'Auto Hail Claim Specialist',
-    slug: 'roy-harbin-auto-hail-claim-specialist',
-    image: '/images/team/roy-harbin.jpg',
-    phone: '432-535-4048',
-    email: 'roy@texasdentcompany.com',
-    shortBio: 'Extensive experience in customer service and PDR auto repair across Texas.',
-    fullBio: `Roy Harbin brings extensive experience in customer service and PDR auto repair to the Texas Dent Company team. His career has taken him across Texas, where he has developed a deep understanding of the unique challenges faced by vehicle owners in different regions.
-
-Roy's approach combines technical expertise with genuine care for customers. He takes time to explain the repair process, set realistic expectations, and ensure every customer feels confident in their decision to choose Texas Dent Company.
-
-His commitment to excellence and customer satisfaction has made him a valued member of our claims specialist team.`,
-    expertise: ['Customer Service', 'Hail Damage Assessment', 'Claims Documentation', 'Regional Expertise'],
-    ghlFormId: 'PLACEHOLDER_FORM_ID',
-  },
-  {
     name: 'Kelly Flanery',
     role: 'Shop Coordinator',
     slug: 'kelly-flanery-shop-coordinator',
